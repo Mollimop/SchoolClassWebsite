@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta lang="de">
     <title>Anmeldung</title>
+    <link rel="stylesheet" type="text/css" href="stylesheets/loginStyle.css">
 </head>
 <body>
-<form action="/index" method="post">
+<form id="form" action="/index" method="post">
     <p>Benutzername</p>
     <input type="text" name="usr" title="username">
     <p>Password</p>
