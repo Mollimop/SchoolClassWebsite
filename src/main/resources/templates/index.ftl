@@ -5,7 +5,7 @@
     <meta lang="de">
     <title>Klassenwebsite - GyDo9C</title>
     <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
-</head>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab|Open+Sans+Condensed:300|Teko|Khand' rel='stylesheet' type='text/css'></head>
 <body>
 <div id="website">
     <div id="header">
@@ -13,12 +13,11 @@
     </div>
     <div id="nav">
         <a href="/">Startseite</a>
-        <a href="/">Bilder</a>
-        <a href="/">Stundenplan</a>
         <a href="/">Termine</a>
-        <a href="/">Berichte</a>
+        <a href="/">Stundenplan</a>
+        <a href="/">Hausaufgaben</a>
+        <a href="/">Schulprogramme</a>
         <a href="/">Links</a>
-        <a href="/">Changelog</a>
         <a href="/">Kontakt</a>
         <a href="/">Impressum</a>
     </div>
@@ -46,14 +45,14 @@
         <div id="news">
             <h4>Gymnasium Dorfen:</h4>
             <p>Adresse:&nbsp;<a href="https://www.google.de/maps/place/Gymnasium+Dorfen/data=!4m2!3m1!1s0x0:0xcbeefa7a7d451fa3?sa=X&ved=0CDYQrwswA2oVChMIudmngfqjyAIVp8ByCh3M-wRy" target="_blank">Josef-Martin-Bauer-Str.18, 84405 Dorfen</a></p>
-            <p>Tel.: 08081 9572-0</p>
-            <p>Fax: 08081 9572-299</p>
+            <p>Tel.: 08081 9572-0<br>
+            Fax: 08081 9572-299</p>
             <p>E-Mail:&nbsp;<a href="mailto:sekretariat@gymnasiumdorfen.de" target="_blank">sekretariat@<br>gymnasiumdorfen.de</a></p>
             <p>Zur Homepage:&nbsp;<a href="http://gymnasiumdorfen.de" target="_blank">gymnasiumdorfen.de</a></p>
         </div>
         <div>
             <div id="footer">
-                <p>&copy;&nbsp;&nbsp;2015&nbsp;"www.gydokw.de<br>Gymnasium Dorfen, Josef-Martin-Bauer-Str. 18, 84405 Dorfen&nbsp;&nbsp;&nbsp;e-mail:<a href="mailto:gydokw@gmail.com" target="_blank">gydokw@gmail.com</a></p>
+                <p>&copy;&nbsp;&nbsp;2016&nbsp;"www.gydokw.de<br>Gymnasium Dorfen, Josef-Martin-Bauer-Str. 18, 84405 Dorfen&nbsp;&nbsp;&nbsp;e-mail:<a href="mailto:gydokw@gmail.com" target="_blank">gydokw@gmail.com</a></p>
             </div>
         </div>
         <p class="design">designed by Andreas Wagner</p>
