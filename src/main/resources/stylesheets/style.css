@@ -1,5 +1,5 @@
 body {
-    background-color: lightblue;
+    background-color: #b9e4f2;
     text-align: left;
 }
 
@@ -31,23 +31,24 @@ body {
 #header {
     width: 980px;
     height: 90px;
-    background: orange;
+    background: #ffb84c;
 }
 
 #header h1 {
     padding-top: 15px;
     font-size: 60px;
     font-weight: bold;
-    color: white;
+    color: #ffffff;
     font-family: Courier;
     text-align: center;
 }
 
 #nav {
     width: 980px;
-    height: 30px;
-    background: orange;
+    height: 18px;
+    background: #dc9849;
     margin-bottom: 10px;
+    text-align: center;
 }
 
 #nav a {
@@ -61,7 +62,7 @@ body {
 }
 
 #nav a:hover {
-    color: red
+    color: #ff5c3c
 }
 
 #main {
@@ -72,7 +73,7 @@ body {
     float: left;
     width: 740px;
     height: 770px;
-    background: lightyellow;
+    background: #ffffff;
     margin-top: 10px;
     margin-bottom: 10px;
     border-radius: 2px;
@@ -92,20 +93,20 @@ body {
 #content a {
     padding-left: 0px;
     padding-right: 15px;
-    color: blue;
+    color: #4242ff;
     font-size: 16px;
     font-family: Arial;
     text-decoration: none
 }
 
 #content a:hover {
-    color: red
+    color: #ff5c3c
 }
 
 #content h2 {
     padding-left: 16px;
     padding-right: 16px;
-    color: black;
+    color: #2b2b2b;
     font-size: 22px;
     font-family: Arial;
     text-align: center;
@@ -119,7 +120,7 @@ body {
     float: right;
     width: 230px;
     height: 250px;
-    background: white;
+    background: #ffffff;
     margin-top: 10px;
     margin-bottom: 0px;
     border-radius: 2px;
@@ -152,7 +153,7 @@ body {
 }
 
 #news a:hover {
-    color: red
+    color: #ff5c3c
 }
 
 #news dd {
@@ -173,7 +174,7 @@ body {
     width: 980px;
     height: 30px;
     margin-top: 20px;
-    background: orange;
+    background: #ffffff;
     border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -198,7 +199,7 @@ body {
 }
 
 #footer a:hover {
-    color: red;
+    color: #ff5c3c;
 }
 
 hr {
@@ -214,7 +215,7 @@ hr {
     float: left;
     width: 980px;
     height: 100px;
-    background: white;
+    background: #ffffff;
     margin-top: 10px;
     margin-bottom: 10px;
     border-radius: 2px;
@@ -235,7 +236,7 @@ hr {
 #content2 h2 {
     padding-left: 16px;
     padding-right: 16px;
-    color: black;
+    color: #2b2b2b;
     font-size: 20px;
     font-family: Arial;
     text-align: center;
@@ -246,7 +247,7 @@ hr {
     float: left;
     width: 980px;
     height: 150px;
-    background: white;
+    background: #ffffff;
     margin-top: 10px;
     margin-bottom: 10px;
     border-radius: 2px;
@@ -266,7 +267,7 @@ hr {
 #content3 h2 {
     padding-left: 16px;
     padding-right: 16px;
-    color: black;
+    color: #2b2b2b;
     font-size: 20px;
     font-family: Arial;
     text-align: center;
@@ -280,7 +281,7 @@ hr {
 }
 
 #content3 a:hover {
-    color: red;
+    color: #ff5c3c;
 }
 
 /*Hausaufgaben*/
@@ -288,7 +289,7 @@ hr {
     float: left;
     width: 980px;
     height: 400px;
-    background: white;
+    background: #ffffff;
     margin-top: 10px;
     margin-bottom: 10px;
     border-radius: 2px;
@@ -308,7 +309,7 @@ hr {
 #content4 h2 {
     padding-left: 16px;
     padding-right: 16px;
-    color: black;
+    color: #2b2b2b;
     font-size: 20px;
     font-family: Arial;
     text-align: center;
@@ -322,7 +323,7 @@ hr {
 }
 
 #content4 a:hover {
-    color: red
+    color: #ff5c3c
 }
 
 /*Termine*/
@@ -330,7 +331,7 @@ hr {
     float: left;
     width: 980px;
     height: 200px;
-    background: white;
+    background: #ffffff;
     margin-top: 10px;
     margin-bottom: 10px;
     border-radius: 2px;
@@ -350,7 +351,7 @@ hr {
 #content5 h2 {
     padding-left: 16px;
     padding-right: 16px;
-    color: black;
+    color: #2b2b2b;
     font-size: 20px;
     font-family: Arial;
     text-align: center;
@@ -368,7 +369,7 @@ hr {
     float: left;
     width: 980px;
     height: 100px;
-    background: white;
+    background: #ffffff;
     margin-top: 10px;
     margin-bottom: 10px;
     border-radius: 2px;
@@ -388,21 +389,21 @@ hr {
 #content6 h2 {
     padding-left: 16px;
     padding-right: 16px;
-    color: black;
+    color: #2b2b2b;
     font-size: 20px;
     font-family: Arial;
     text-align: center;
 }
 
 #content6 a {
-    color: blue;
+    color: #4242ff;
     font-size: 16px;
     font-family: Arial;
     text-decoration: none;
 }
 
 #content6 a:hover {
-    color: red;
+    color: #ff5c3c;
 }
 
 /*Links*/
@@ -410,7 +411,7 @@ hr {
     float: left;
     width: 980px;
     height: 150px;
-    background: white;
+    background: #ffffff;
     margin-top: 10px;
     margin-bottom: 10px;
     border-radius: 2px;
@@ -430,21 +431,21 @@ hr {
 #content7 h2 {
     padding-left: 16px;
     padding-right: 16px;
-    color: black;
+    color: #2b2b2b;
     font-size: 20px;
     font-family: Arial;
     text-align: center;
 }
 
 #content7 a {
-    color: blue;
+    color: #4242ff;
     font-size: 16px;
     font-family: Arial;
     text-decoration: none;
 }
 
 #content7 a:hover {
-    color: red
+    color: #ff5c3c
 }
 
 /*Changelog*/
@@ -452,7 +453,7 @@ hr {
     float: left;
     width: 980px;
     height: 100px;
-    background: white;
+    background: #ffffff;
     margin-top: 10px;
     margin-bottom: 10px;
     border-radius: 2px;
@@ -472,14 +473,14 @@ hr {
 #content8 h2 {
     padding-left: 16px;
     padding-right: 16px;
-    color: black;
+    color: #2b2b2b;
     font-size: 20px;
     font-family: Arial;
     text-align: center;
 }
 
 #content8 a {
-    color: blue;
+    color: #4242ff;
     font-size: 16px;
     font-family: Arial;
     text-decoration: none;
@@ -490,7 +491,7 @@ hr {
     float: left;
     width: 980px;
     height: 350px;
-    background: white;
+    background: #e9fefc;
     margin-top: 10px;
     margin-bottom: 10px;
     border-radius: 2px;
@@ -510,21 +511,21 @@ hr {
 #content9 h2 {
     padding-left: 16px;
     padding-right: 16px;
-    color: black;
+    color: #2b2b2b;
     font-size: 20px;
     font-family: Arial;
     text-align: center;
 }
 
 #content9 a {
-    color: blue;
+    color: #4242ff;
     font-size: 15px;
     font-family: Arial;
     text-decoration: none;
 }
 
 #content9 a:hover {
-    color: red;
+    color: #e9fefc;
 }
 
 /*Impressum*/
@@ -532,7 +533,7 @@ hr {
     float: left;
     width: 980px;
     height: 100px;
-    background: white;
+    background: #ffb84c;
     margin-top: 10px;
     margin-bottom: 10px;
     border-radius: 2px;
@@ -552,5 +553,5 @@ hr {
 #content10 h2 {
     padding-left: 16px;
     padding-right: 16px;
-    color: black;
+    color: #2b2b2b;
 }

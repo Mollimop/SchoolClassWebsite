@@ -19,8 +19,6 @@
         <a href="/">Berichte</a>
         <a href="/">Links</a>
         <a href="/">Changelog</a>
-        <a href="/">Kontakt</a>
-        <a href="/">Impressum</a>
     </div>
     <div id="main">
         <div id="content">
