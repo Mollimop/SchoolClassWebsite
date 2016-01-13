@@ -28,7 +28,7 @@
             <p class="pscenter">Auf dieser Website k&ouml;nnen die neusten Informationen abgerufen werden.<br><br>Geht Ihnen die ein oder andere Information ab oder m&ouml;chten Sie auf einen Fehler hinweisen, kontaktieren Sie mich bitte unter:&nbsp;<a href="mailto:9c@gymnasiumdorfen.de">9c@gymnasiumdorfen.de</a><br><br>Da diese Website ist ein freiwilliges Angebot des Herausgebers ist, besteht kein Anspruch auf Aktualit&auml;t und Fehlerlosigkeit. Alle Angaben sind ohne Gew&auml;hr!
             </p>
             <hr>
-            <h1 class="hc">Wandertag am Dienstag, den 06.10.2015 nach M&uuml;nchen</h1>
+            <h1 class="hc">Toller Text</h1>
         </div>
         <div id="news">
             <h4>Wichtige Termine:</h4>
