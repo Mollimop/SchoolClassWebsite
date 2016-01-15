@@ -10,7 +10,7 @@
 <form id="form" action="/index" method="post">
     <p>Benutzername</p>
     <input type="text" name="usr" title="username">
-    <p>Password</p>
+    <p>Passwort</p>
     <input type="password" name="psw" title="password"><br>
     <input type="submit" name="Submit">
 </form>

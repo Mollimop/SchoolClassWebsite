@@ -1,5 +1,5 @@
 body {
-    background-image: linear-gradient(to bottom, #0085cc 0%, #ccedff 70%);
+    background: linear-gradient(to bottom, #0085cc 0%, #ccedff 70%) fixed;
     text-align: left;
 }
 
@@ -29,13 +29,11 @@ body {
     color: #808080
 }
 
-#header {
-    width: 980px;
-    height: 90px;
+header {
     background: #ffc000;
 }
 
-#header h1 {
+header h1 {
     padding-top: 8px;
     font-size: 60px;
     font-weight: bold;
@@ -44,55 +42,35 @@ body {
     text-align: center;
 }
 
-#nav {
-    width: 980px;
-    height: 30px;
-    background: #d9a400;
-    margin-bottom: 10px;
+nav {
+    background: #d9a400 !important;
 }
 
-#nav a {
-    padding-top: 8px;
-    padding-left: 17px;
-    padding-right: 18px;
+nav a {
     color: purple;
-    font-size: 16px;
     font-family: 'Roboto Slab', serif;
     text-decoration: none;
+    background: #d9a400 !important;
 }
 
-#nav a:hover {
-    color: red
-}
 
 #main {
     width: 980px;
 }
 
 #content {
-    float: left;
-    width: 740px;
-    height: 770px;
     background: white;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border-radius: 2px;
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
-    -o-border-radius: 2px;
+    font-family: 'Roboto Slab', serif;
 }
 
 #content p {
-    padding-left: 15px;
-    padding-right: 15px;
+    text-align: center;
     color: gray;
     font-size: 16px;
     font-family: 'Roboto Slab', serif;
 }
 
 #content a {
-    padding-left: 0px;
-    padding-right: 15px;
     color: blue;
     font-size: 16px;
     font-family: 'Roboto Slab', serif;
@@ -104,33 +82,18 @@ body {
 }
 
 #content h2 {
-    padding-left: 16px;
-    padding-right: 16px;
+    text-align: center;
     color: black;
     font-size: 22px;
     font-family: 'Roboto Slab', serif;
-    text-align: center;
 }
 
-#content marquee {
-    font-size: 18px;
-    font-family: 'Roboto Slab', serif;
+.news {
+    /*    height: 250px; */
+    background-color: white;
 }
 
-#news {
-    float: right;
-    width: 230px;
-    height: 250px;
-    background: white;
-    margin-top: 10px;
-    margin-bottom: 0px;
-    border-radius: 2px;
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
-    -o-border-radius: 2px;
-}
-
-#news h4 {
+.news h4 {
     font-size: 16px;
     padding-left: 10px;
     padding-right: 10px;
@@ -138,7 +101,7 @@ body {
     font-family: 'Roboto Slab', serif;
 }
 
-#news p {
+.news p {
     font-size: 13px;
     padding-left: 5px;
     padding-right: 5px;
@@ -146,7 +109,7 @@ body {
     color: #737373;
 }
 
-#news a {
+.news a {
     font-size: 13px;
     padding-left: 5px;
     padding-right: 5px;
@@ -154,49 +117,41 @@ body {
     text-decoration: none
 }
 
-#news a:hover {
+.news a:hover {
     color: red
 }
 
-#news dd {
+.news dd {
     padding-left: 5px;
     font-size: 13px;
     font-family: 'Roboto Slab', serif;
     color: #737373;
 }
 
-#news ul {
+.news ul {
     padding-left: 5px;
     font-size: 13px;
     font-family: 'Roboto Slab', serif;
     color: #737373;
 }
 
-#news b {
+.news b {
     color: black;
 }
 
-#footer {
-    width: 980px;
-    height: 30px;
-    margin-top: 20px;
+footer {
     background: orange;
-    border-radius: 5px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -o-border-radius: 5px;
-    clear: both;
+    /*  clear: both;*/
 }
 
-#footer p {
+footer p {
     color: #808080;
-    padding-left: 15px;
     font-size: 10px;
     font-family: 'Roboto Slab', serif;
     text-align: center
 }
 
-#footer a {
+footer a {
     color: #808080;
     font-size: 10px;
     font-family: 'Roboto Slab', serif;
@@ -204,16 +159,19 @@ body {
     text-decoration: none;
 }
 
-#footer a:hover {
+footer a:hover {
     color: red;
 }
 
 hr {
     width: 60%;
-    margin: 0 auto;
-    color: gray;
-    margin-top: 15px;
-    margin-bottom: 60px;
+    color: grey;
+    margin: 15px auto 60px;
+}
+
+.vr {
+    border-left: 1px solid grey;
+    height: 100%;
 }
 
 /*Bilder*/
