@@ -3,9 +3,11 @@ package io.github.tombom4.webApp;
 import com.mongodb.client.MongoCollection;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
-import io.github.tombom4.mongodb.Database;
-import org.bson.BsonDocument;
+import io.github.tombom4.userManagement.Database;
+import io.github.tombom4.userManagement.Session;
+import org.bson.Document;
 
+import java.io.IOException;
 import java.io.StringWriter;
 import java.util.HashMap;
 
@@ -18,23 +20,27 @@ import static spark.Spark.*;
 public class Main {
 
     static Database db;
-    static MongoCollection<BsonDocument> users;
+    static MongoCollection<Document> users;
     static final Configuration configuration = new Configuration();
 
-    public static MongoCollection<BsonDocument> getUsers() {
-        return users;
-    }
-
     public static void main(String[] args) {
-        db = new Database();
+
+        try {
+            db = new Database();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
         users = db.getUsers();
+
+        Session.init(db);
 
         // Initialize Freemarker configuration
         configuration.setClassForTemplateLoading(Main.class, "/");
 
         staticFileLocation("/");
         get("/", (request, response) -> {
-            if (db.checkCredentials(request) != null) {
+            if (Session.checkSession(request) != null) {
                 response.redirect("/index");
             }
             StringWriter writer = new StringWriter();
@@ -48,7 +54,7 @@ public class Main {
             return writer;
         });
 
-        post("/index", (request, response) -> {
+/*        post("/index", (request, response) -> {
             StringWriter writer = new StringWriter();
             try {
                 if (db.logIn(request.queryParams("usr"), request.queryParams("psw"), response) == null) {
@@ -64,11 +70,12 @@ public class Main {
             }
             return writer;
         });
+        */
 
         get("/index", (request, response) -> {
             StringWriter writer = new StringWriter();
             try {
-                if (db.checkCredentials(request) == null) {
+                if (Session.checkSession(request) == null) {
                     response.redirect("/");
                 } else {
                     Template template = configuration.getTemplate("templates/index.ftl");
@@ -79,5 +86,19 @@ public class Main {
             }
             return writer;
         });
+
+        post("/login", (request, response) -> {
+            try {
+                if (Session.checkSession(request) == null) {
+                    new Session(request.queryParams("usr"), request.queryParams("psw"), response);
+                }
+                    response.redirect("/index");
+            } catch (IOException e) {
+                e.printStackTrace();
+                response.redirect("/");
+            }
+            return "login problem";
+        });
+
     }
 }

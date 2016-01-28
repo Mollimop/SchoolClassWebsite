@@ -1,6 +1,6 @@
 package io.github.tombom4.webApp.forum;
 
-import io.github.tombom4.webApp.Password;
+import io.github.tombom4.userManagement.Password;
 
 /**
  * Created by Sebastian on 28.01.2016.

@@ -12,7 +12,8 @@
           type='text/css'>
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          crossorigin="anonymous">
 
     <!-- Bootstrap and jQuery JavaScript libraries -->
     <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
@@ -27,26 +28,12 @@
         <h1 class="col-xs-12">Klassenwebsite</h1>
     </header>
 
-    <!-- Navigation bar
-    <div id="nav" class="row">
-        <a href="/">Startseite</a>
-        <a href="/">Termine</a>
-        <a href="/">Stundenplan</a>
-        <a href="/">Hausaufgaben</a>
-        <a href="/">Schulprogramme</a>
-        <a href="/">Links</a>
-        <a href="/">Kontakt</a>
-        <a href="/">Impressum</a>
-    </div>
-    -->
-
 </div>
 
 <nav class="navbar-default container">
-
+        <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapsed" data-target="#navbar-index"
-                    aria-expanded="false">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-index" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -56,7 +43,7 @@
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="navbar-index">
+        <div class="collapse navbar-collapse" id="navbar-index">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">Startseite <span class="sr-only">(current)</span></a></li>
                 <li><a href="#">Termine</a></li>
@@ -66,8 +53,7 @@
                 <li><a href="#">Kontakt</a></li>
                 <li><a href="#">Impressum</a></li>
             </ul>
-        </div>
-
+        </div><!-- /.navbar-collapse -->
 </nav>
 
 <!-- main content -->
@@ -80,8 +66,8 @@
         <p class="pscenter">Auf dieser Website k&ouml;nnen die neusten Informationen abgerufen werden.
             <br>
             <br>
-            Geht Ihnen die ein oder andere Information ab oder m&ouml;chten Sie auf einen Fehler hinweisen, kontaktieren
-            Sie mich bitte unter:&nbsp;
+            Wenn euch die ein oder andere Funktionalität abgeht, ihr auf einen Fehler hinweisen möchtet oder sonstige
+            Vorschläge oder Kritik loswerden wollt, kontaktiert uns einfach cunter
             <a href="mailto:9c@gymnasiumdorfen.de">9c@gymnasiumdorfen.de</a>
             <br>
             <br>
@@ -104,7 +90,7 @@
             <p>
                 <b>27.02.2016</b><br>&nbsp;&nbsp;Tag der offenen T&uuml;r<br>
                 <b>14.03.2016-18.03.2016</b><br>&nbsp;&nbsp;Betriebspraktikum<br><br><br><br>
-                <a href="Termine.html">mehr</a>
+                <a href="#">mehr</a>
             </p>
         </div>
 
@@ -128,13 +114,9 @@
 <footer class="container">
     <div class="row">
         <p class="col-xs-4">Text: CC-BY Mollimop Organisation.</p>
-        <p class="col-xs-4">Developed by Andreas Wagner, Thomas Kirz and Sebastian Vogt in Germany</p>
-        <p class="col-xs-4">Code published at <a href="https://github.com/tombom4/schoolclasswebsite">Github.com</a>
-            unter the <a href="https://opensource.org/licenses/MIT">MIT License</a></p>
-    </div>
-    <div class="row">
-        <p class="col-sx-12">Gymnasium Dorfen, Josef-Martin-Bauer-Str. 18, 84405 Dorfen&nbsp;&nbsp;&nbsp;e-mail:<a
-                href="mailto:9c@gymnasiumdorfen.de">9c@gymnasiumdorfen.de</a></p>
+        <p class="col-xs-4">Developed by Andi, Thomas and Vogte in Germany</p>
+        <p class="col-xs-4">Source code available at <a
+                href="https://github.com/tombom4/schoolclasswebsite">Github.com</a></p>
     </div>
 </footer>
 
