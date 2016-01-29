@@ -1,67 +1,125 @@
 <!Doctype html>
-<html>
+<html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta lang="de">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffc000">
+
     <title>Klassenwebsite - GyDo9C</title>
     <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab|Open+Sans+Condensed:300|Teko|Khand' rel='stylesheet' type='text/css'></head>
-<body>
-<div id="website">
-    <div id="header">
-        <h1>Klassenwebsite</h1>
-    </div>
-    <div id="nav">
-        <a href="/">Startseite</a>
-        <a href="/">Termine</a>
-        <a href="/">Stundenplan</a>
-        <a href="/">Hausaufgaben</a>
-        <a href="/">Schulprogramme</a>
-        <a href="/">Links</a>
-        <a href="/">Kontakt</a>
-        <a href="/">Impressum</a>
-    </div>
-    <div id="content">
-        <marquee> <emp style="color:red">Morgen (17.01.2016): Deutsch Schulaufgabe!<emp><emp style="color:black;"> ---  Bitte denkt an das Geld f&uuml;r die Hefte (13,20 &euro;)<emp></marquee>
-        <h2>Herzlich Willkommen auf der Klassenwebsite der Klasse 9C</h2>
-        <p class="pscenter">Auf dieser Website k&ouml;nnen die neusten Informationen abgerufen werden.<br><br>Geht Ihnen die ein oder andere Information ab oder m&ouml;chten Sie auf einen Fehler hinweisen, kontaktieren Sie mich bitte unter:&nbsp;<a href="mailto:9c@gymnasiumdorfen.de">9c@gymnasiumdorfen.de</a><br><br>Da diese Website ist ein freiwilliges Angebot des Herausgebers ist, besteht kein Anspruch auf Aktualit&auml;t und Fehlerlosigkeit. Alle Angaben sind ohne Gew&auml;hr!
-        </p>
-        <hr>
-        <h1 class="hc">Informierender Text</h1>
-        <p>Dies ist ein Typoblindtext. An ihm kann man sehen, ob alle Buchstaben da sind und wie sie aussehen. Manchmal benutzt man Worte wie Hamburgefonts, Rafgenduks oder Handgloves, um Schriften zu testen.</p>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab|Open+Sans+Condensed:300|Teko|Khand' rel='stylesheet'
+          type='text/css'>
 
-        <p>Manchmal Sätze, die alle Buchstaben des Alphabets enthalten - man nennt diese Sätze »Pangrams«. Sehr bekannt ist dieser: The quick brown fox jumps over the lazy old dog.
-        Oft werden in Typoblindtexte auch fremdsprachige Satzteile eingebaut (AVAIL® and Wefox™ are testing aussi la Kerning), um die Wirkung in anderen Sprachen zu testen.</p>
-        <p>In Lateinisch sieht zum Beispiel fast jede Schrift gut aus. Quod erat demonstrandum. Seit 1975 fehlen in den meisten Testtexten die Zahlen, weswegen nach TypoGb.
-        204 § ab dem Jahr 2034 Zahlen in 86 der Texte zur Pflicht werden. Nichteinhaltung wird mit bis zu 245 € oder 368 $ bestraft.</p>
-        <p>Genauso wichtig in sind mittlerweile auch Âçcèñtë, die in neueren Schriften aber fast immer enthalten sind. Ein wichtiges aber schwierig zu integrierendes Feld sind OpenType-Funktionalitäten.
-        Je nach Software und Voreinstellungen können eingebaute Kapitälchen, Kerning oder Ligaturen (sehr pfiffig) nicht richtig dargestellt werden. Dies ist ein Typoblindtext.</p>
-        <p>An ihm kann man sehen, ob alle Buchstaben da sind und wie sie aussehen. Manchmal benutzt man Worte wie Hamburgefonts, Rafgenduks oder Handgloves, um Schriften zu testen.
-        Manchmal Sätze, die alle Buchstaben des Alphabets enthalten - man nennt diese Sätze »Pangrams«. Sehr bekannt ist dieser: The quick brown fox jumps over the lazy old dog.</p>
-        <p>Oft werden in Typoblindtexte auch fremdsprachige Satzteile eingebaut (AVAIL® and Wefox™ are testing aussi la Kerning), um die Wirkung in anderen Sprachen zu testen. In Lateinisch sieht zum Beispiel fast jede Schrift gut aus.
-        Quod erat demonstrandum. Seit 1975 fehlen in den meisten Testtexten die Zahlen, weswegen nach TypoGb. 204 § ab dem Jahr 2034 Zahlen in 86 der Texte zur Pflicht werden. Nichteinhaltung wird mit bis zu 245 € oder 368 $ bestraft.</p>
-        <p>Genauso wichtig in sind mittlerweile auch Âçcèñtë, die in neueren Schriften aber fast immer enthalten sind. Ein wichtiges aber schwierig zu integrierendes Feld sind OpenType-Funktionalitäten.
-        Je nach Software und Voreinstellungen können eingebaute Kapitälchen, Kerning oder Ligaturen (sehr pfiffig) nicht richtig dargestellt werden. Dies ist ein Typoblindtext. An ihm kann man sehen, ob alle Buchstaben da sind und wie sie aussehen.</p>
-        <p>Manchmal benutzt man Worte wie Hamburgefonts, Rafgenduks oder Handgloves, um Schriften zu testen. Manchmal Sätze, die alle Buchstaben des Alphabets enthalten - man nennt diese Sätze »Pangrams«.
-        Sehr bekannt ist dieser: The quick brown fox jumps over the lazy old dog. Oft werden in Typoblindtexte auch fremdsprachige Satzteile eingebaut (AVAIL® and Wefox™ are testing aussi la Kerning), um die Wirkung in anderen Sprachen zu testen. In Lateinisch sieht zum Beispiel fast jede Schrift gut aus.</p>
-        <p>Quod erat demonstrandum. Seit 1975 fehlen in den meisten Testtexten die Zahlen, weswegen nach TypoGb. 204 § ab dem Jahr 2034 Zahlen in 86 der Texte zur Pflicht werden. Nichteinhaltung wird mit bis zu 245 € oder 368 $ bestraft. Genauso wichtig in sind mittlerweile auch Âçcèñtë, die in neueren Schriften aber fast immer enthalten sind.</p>
-        </div>
-        <div id="bottomleft">
-            <h4>Gymnasium Dorfen:</h4>
-            <p>Adresse:&nbsp;<a href="https://www.google.de/maps/place/Gymnasium+Dorfen/data=!4m2!3m1!1s0x0:0xcbeefa7a7d451fa3?sa=X&ved=0CDYQrwswA2oVChMIudmngfqjyAIVp8ByCh3M-wRy" target="_blank">Josef-Martin-Bauer-Str.18, 84405 Dorfen</a><br>
-            Tel.: 08081 9572-0<br>
-            Fax: 08081 9572-299<br>
-            E-Mail:&nbsp;<a href="mailto:sekretariat@gymnasiumdorfen.de" target="_blank">sekretariat@gymnasiumdorfen.de</a><br>
-            Zur Homepage:&nbsp;<a href="http://gymnasiumdorfen.de" target="_blank">gymnasiumdorfen.de</a></p>
-        </div>
-        <div id="bottomright">
-            <h4>Kontakt:</h4>
-            <p>Andreas Wagner | Thomas Kirz | Sebastian Vogt:<br>E-Mail:<a href="mailto:9c@gymnasiumdorfen.de">9c@gymnasiumdorfen.de</a><br><br><br><br></p>
-        </div>
-        <div id="footer">
-            <p>&copy;&nbsp;&nbsp;2016&nbsp;"www.gydokw.de<br>Gymnasium Dorfen, Josef-Martin-Bauer-Str. 18, 84405 Dorfen&nbsp;&nbsp;&nbsp;e-mail:<a href="mailto:9c@gymnasiumdorfen.de">9c@gymnasiumdorfen.de</a></p>
-        </div>
-        <p class="design">designed by Andreas Wagner</p>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          crossorigin="anonymous">
+
+    <!-- Bootstrap and jQuery JavaScript libraries -->
+    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<!-- Container for header and nav bar -->
+<div class="container">
+
+    <!-- Header -->
+    <header class="row">
+        <h1 class="col-xs-12">Klassenwebsite</h1>
+    </header>
+
 </div>
+
+<nav class="navbar-default container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-index" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Navigation</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbar-index">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Startseite <span class="sr-only">(current)</span></a></li>
+                <li><a href="#">Termine</a></li>
+                <li><a href="#">Stundenplan</a></li>
+                <li><a href="#">Hausaufgaben</a></li>
+                <li><a href="#">Links</a></li>
+                <li><a href="#">Kontakt</a></li>
+                <li><a href="#">Impressum</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+</nav>
+
+<!-- main content -->
+<main id="content" class="container">
+    <marquee><span style="color:red">Morgen: Deutsch Schulaufgabe!</span>
+        --- Bitte denkt an das Geld f&uuml;r die Hefte (13,20 &euro;)
+    </marquee>
+    <h2 class="row">Herzlich Willkommen auf der Klassenwebsite der Klasse 9C</h2>
+    <div class="row">
+        <p class="pscenter">Auf dieser Website k&ouml;nnen die neusten Informationen abgerufen werden.
+            <br>
+            <br>
+            Wenn euch die ein oder andere Funktionalität abgeht, ihr auf einen Fehler hinweisen möchtet oder sonstige
+            Vorschläge oder Kritik loswerden wollt, kontaktiert uns einfach cunter
+            <a href="mailto:9c@gymnasiumdorfen.de">9c@gymnasiumdorfen.de</a>
+            <br>
+            <br>
+            Da diese Website ist ein freiwilliges Angebot des Herausgebers ist, besteht kein Anspruch auf Aktualit&auml;t
+            und Fehlerlosigkeit.
+            Alle Angaben sind ohne Gew&auml;hr!
+        </p>
+    </div>
+    <hr>
+    <h1 class="hc row">Toller Text</h1>
+</main>
+
+<!-- Contains the three news elements -->
+<div class="container">
+    <div class="row">
+
+        <div class="news col-xs-12 col-md-6">
+            <hr>
+            <h4>Wichtige Termine:</h4>
+            <p>
+                <b>27.02.2016</b><br>&nbsp;&nbsp;Tag der offenen T&uuml;r<br>
+                <b>14.03.2016-18.03.2016</b><br>&nbsp;&nbsp;Betriebspraktikum<br><br><br><br>
+                <a href="#">mehr</a>
+            </p>
+        </div>
+
+        <div class="news col-xs-12 col-md-6">
+            <hr>
+            <h4>Gymnasium Dorfen:</h4>
+            <p>Adresse:&nbsp;<a
+                    href="https://www.google.de/maps/place/Gymnasium+Dorfen/data=!4m2!3m1!1s0x0:0xcbeefa7a7d451fa3?sa=X&ved=0CDYQrwswA2oVChMIudmngfqjyAIVp8ByCh3M-wRy"
+                    target="_blank">Josef-Martin-Bauer-Str.18, 84405 Dorfen</a></p>
+            <p>Tel.: 08081 9572-0<br>
+                Fax: 08081 9572-299</p>
+            <p>E-Mail:&nbsp;<a href="mailto:sekretariat@gymnasiumdorfen.de"
+                               target="_blank">sekretariat@<br>gymnasiumdorfen.de</a>
+            </p>
+            <p>Zur Homepage:&nbsp;<a href="http://gymnasiumdorfen.de" target="_blank">gymnasiumdorfen.de</a></p>
+        </div>
+
+    </div>
+</div>
+
+<footer class="container">
+    <div class="row">
+        <p class="col-xs-4">Text: CC-BY Mollimop Organisation.</p>
+        <p class="col-xs-4">Developed by Andi, Thomas and Vogte in Germany</p>
+        <p class="col-xs-4">Source code available at <a
+                href="https://github.com/tombom4/schoolclasswebsite">Github.com</a></p>
+    </div>
+</footer>
+
 </body>
 </html>
+
