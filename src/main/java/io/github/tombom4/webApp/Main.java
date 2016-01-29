@@ -36,6 +36,8 @@ public class Main {
 
         Session.init(db);
         User.init(db);
+        
+        port(80);
 
         // Initialize Freemarker configuration
         configuration.setClassForTemplateLoading(Main.class, "/");
