@@ -6,8 +6,6 @@ import org.bson.conversions.Bson;
 
 /**
  * User class, an implementation of a user of the website
- * SchoolClassWebsite project (https://github.com/TomBom4/SchoolClassWebsite)
- * Licensed under the MIT License
  *
  * @author Thomas Kirz
  * @author Sebastian Vogt
