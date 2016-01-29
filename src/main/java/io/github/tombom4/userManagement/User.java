@@ -1,4 +1,4 @@
-package io.github.tombom4.webApp.forum;
+package io.github.tombom4.userManagement;
 
 import io.github.tombom4.userManagement.Password;
 

@@ -1,5 +1,7 @@
 package io.github.tombom4.webApp.forum;
 
+import io.github.tombom4.userManagement.User;
+
 /**
  * Created by Sebastian on 27.01.2016.
  */
@@ -10,7 +12,7 @@ public class Thread {
     private String question;
     private Answer[] answers = new Answer[0];
 
-    public Thread(String title,String schoolSubject, String question, User questioner){
+    public Thread(String title, String schoolSubject, String question, User questioner){
         this.questioner = questioner;
         this.schoolSubject = schoolSubject;
         this.title = title;
