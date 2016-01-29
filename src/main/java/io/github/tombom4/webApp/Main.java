@@ -40,7 +40,7 @@ public class Main {
         // Initialize Freemarker configuration
         configuration.setClassForTemplateLoading(Main.class, "/");
 
-        staticFileLocation("/");
+        externalStaticFileLocation("/var/www/public");
         get("/", (request, response) -> {
             if (Session.checkSession(request) != null) {
                 response.redirect("/index");
