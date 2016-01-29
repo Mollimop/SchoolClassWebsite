@@ -22,6 +22,7 @@ public class Database {
     private Properties properties;
     private MongoCollection<Document> users;
     private MongoCollection<Document> sessions;
+    private MongoCollection<Document> events;
 
     /**
      * Gets the users collection
@@ -43,6 +44,15 @@ public class Database {
     }
 
     /**
+     * Gets the events collection
+     *
+     * @return the events collection
+     */
+    public MongoCollection<Document> getEvents() {
+        return events;
+    }
+
+    /**
      * Initializes the database
      *
      * @throws IOException if the config.properties file is missing or not filled in completely
@@ -61,8 +71,10 @@ public class Database {
         mongoClientURI = new MongoClientURI(properties.getProperty("mongoClientURI"));
         MongoClient client = new MongoClient(mongoClientURI);
         MongoDatabase db = client.getDatabase("schoolclasswebsite");
+
         users = db.getCollection("users", Document.class);
         sessions = db.getCollection("sessions", Document.class);
+        events = db.getCollection("events", Document.class);
     }
 
     public boolean checkCredentials(String user, String psw) {
