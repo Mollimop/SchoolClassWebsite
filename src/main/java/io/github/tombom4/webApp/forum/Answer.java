@@ -1,14 +1,16 @@
 package io.github.tombom4.webApp.forum;
 
+import io.github.tombom4.userManagement.User;
+
 /**
  * Created by Sebastian on 27.01.2016.
  */
 public class Answer {
     private String title;
-    private String answerer;
+    private User answerer;
     private String answer;
 
-    public Answer(String title, String answerer, String answer){
+    public Answer(String title, User answerer, String answer){
         this.title = title;
         this.answer = answer;
         this.answerer = answerer;
@@ -26,11 +28,11 @@ public class Answer {
         return title;
     }
 
-    public String getAnswerer(){
+    public User getAnswerer(){
         return  answerer;
     }
 
-    public String getAnswert(){
+    public String getAnswer(){
         return answer;
     }
 

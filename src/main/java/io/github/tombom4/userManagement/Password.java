@@ -7,10 +7,16 @@ public class Password {
     private String encryptedPassword = "";
 
     public Password(String password){
-        cryptPassword(password);
+        encryptPassword(password);
     }
 
-    public String cryptPassword(String psw){
+    public static Password byEncryptedPassword(String password) {
+        Password psw = new Password("");
+        psw.setEncryptedPassword(password);
+        return psw;
+    }
+
+    public void encryptPassword(String psw){
         char[] passwordChars = psw.toCharArray();
         int[] passwordCode = new int[passwordChars.length];
         long[] passwordCodeEncrypted = new long[passwordChars.length];
@@ -19,10 +25,13 @@ public class Password {
             passwordCodeEncrypted[i] = passwordCode[i] * passwordCode[i] * passwordCode[1] * 89222;
             encryptedPassword = encryptedPassword + passwordCodeEncrypted[i];
         }
-        return encryptedPassword;
     }
 
     public String toString() {
         return encryptedPassword;
+    }
+
+    private void setEncryptedPassword(String password) {
+        encryptedPassword = password;
     }
 }
