@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
+ * This class represents quadratic functions used for calculation on the website
  * @author Thomas Kirz, Sebastian Vogt
- * @version 1.0 22.12.2015
  */
 public class QuadraticFunction {
     /**
