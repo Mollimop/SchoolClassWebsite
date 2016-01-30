@@ -3,7 +3,7 @@ package io.github.tombom4.webApp.forum;
 import io.github.tombom4.userManagement.User;
 
 /**
- * Created by Sebastian on 27.01.2016.
+ * @author Sebastian Vogt
  */
 public class Answer {
     private String title;
