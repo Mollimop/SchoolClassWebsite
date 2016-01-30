@@ -3,20 +3,22 @@ package io.github.tombom4.webApp.forum;
 import io.github.tombom4.userManagement.User;
 
 /**
- * Created by Sebastian on 27.01.2016.
+ * @author Sebastian Vogt
  */
 public class Thread {
     private String title;
     private String schoolSubject;
     private User questioner;
     private String question;
+    private User[] visibleFor;
     private Answer[] answers = new Answer[0];
 
-    public Thread(String title, String schoolSubject, String question, User questioner){
+    public Thread(String title, String schoolSubject, String question, User questioner, User[] visibleFor){
         this.questioner = questioner;
         this.schoolSubject = schoolSubject;
         this.title = title;
         this.question = question;
+        this.visibleFor = visibleFor;
     }
 
     public void addAnswer(Answer answer){
@@ -29,6 +31,10 @@ public class Thread {
 
     public void setQuestion(String question){
         this.question = question;
+    }
+
+    public void setVisibleFor(User[] visibleFor){
+        this.visibleFor = visibleFor;
     }
 
     public Answer getAswerN(int whichAnswer){
@@ -53,6 +59,10 @@ public class Thread {
 
     public String getQuestion(){
         return question;
+    }
+
+    public User[] getVisibleFor(){
+        return visibleFor;
     }
 
 
