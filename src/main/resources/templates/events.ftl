@@ -1,3 +1,4 @@
+<#-- @ftlvariable name="events" type="java.util.List<SimpleHash>" -->
 <!Doctype html>
 <html lang="de">
 <head>
@@ -33,7 +34,8 @@
 <nav class="navbar-default container">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-index" aria-expanded="false">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-index"
+                aria-expanded="false">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -45,7 +47,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="navbar-index">
         <ul class="nav navbar-nav">
-            <li><a href="#">Startseite</a></li>
+            <li><a href="/">Startseite</a></li>
             <li class="active"><a href="#">Termine <span class="sr-only">(current)</span></a></li>
             <li><a href="#">Stundenplan</a></li>
             <li><a href="#">Hausaufgaben</a></li>
@@ -61,23 +63,12 @@
     <marquee><span style="color:red">Morgen: Deutsch Schulaufgabe!</span>
         --- Bitte denkt an das Geld f&uuml;r die Hefte (13,20 &euro;)
     </marquee>
-    <h2 class="row">Herzlich Willkommen auf der Klassenwebsite der Klasse 9C</h2>
-    <div class="row">
-        <p class="pscenter">Auf dieser Website k&ouml;nnen die neusten Informationen abgerufen werden.
-            <br>
-            <br>
-            Wenn euch die ein oder andere Funktionalität abgeht, ihr auf einen Fehler hinweisen möchtet oder sonstige
-            Vorschläge oder Kritik loswerden wollt, kontaktiert uns einfach cunter
-            <a href="mailto:9c@gymnasiumdorfen.de">9c@gymnasiumdorfen.de</a>
-            <br>
-            <br>
-            Da diese Website ist ein freiwilliges Angebot des Herausgebers ist, besteht kein Anspruch auf Aktualit&auml;t
-            und Fehlerlosigkeit.
-            Alle Angaben sind ohne Gew&auml;hr!
-        </p>
-    </div>
-    <hr>
-    <h1 class="hc row">Toller Text</h1>
+    <h1>Termine</h1>
+    <h3>Hier seht ihr eine List bevorstehender Termine</h3>
+<#list events as event>
+    <p class="date">${event["dateString"]}</p>
+    <p>${event["description"]}</p>
+</#list>
 </main>
 
 <!-- Contains the three news elements -->

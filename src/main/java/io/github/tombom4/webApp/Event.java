@@ -1,12 +1,18 @@
 package io.github.tombom4.webApp;
 
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.Sorts;
 import io.github.tombom4.userManagement.Database;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+
+import static java.util.Calendar.*;
 
 /**
  * This class implements an event of the events page
@@ -30,6 +36,10 @@ public class Event {
      */
     private Date date;
     /**
+     * The date of the event as a DD.MM.YYYY string
+     */
+    private String dateString;
+    /**
      * A short description of the event
      */
     private String description;
@@ -50,6 +60,29 @@ public class Event {
                 .append("date", date)
                 .append("description", description);
         collection.insertOne(document);
+
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+
+        String year = Integer.toString(cal.get(YEAR));
+        String month = Integer.toString(cal.get(MONTH));
+        if (month.length() < 2) month = "0" + month;
+        String day = Integer.toBinaryString(cal.get(DAY_OF_MONTH));
+        dateString = cal.get(Calendar.DAY_OF_MONTH) + "."
+                + (cal.get(Calendar.MONTH) + 1)+ "."
+                + cal.get(YEAR);
+
+        dateString = day + "." + month + "." + year;
+    }
+
+
+    /**
+     * Gets an event with the information of a given document
+     *
+     * @param doc the document with the data to be added
+     */
+    public Event(Document doc) {
+        this(doc.getDate("date"), doc.getString("description"));
     }
 
     /**
@@ -58,10 +91,8 @@ public class Event {
      * @param id the unique identifier of the event
      */
     public Event(String id) {
-        MongoCollection<Document> collection = db.getEvents();
-        Document doc = collection.find(new Document("_id", id)).first();
-
-        new Event(doc.getDate("date"), doc.getString("description"));
+        this(db.getEvents().find(new Document("_id", id)).first().getDate("date"),
+                db.getEvents().find(new Document("_id", id)).first().getString("description"));
     }
 
     /**
@@ -74,12 +105,21 @@ public class Event {
     }
 
     /**
-     * Gets the date of the event
+     * Gets the date of the event as a Date
      *
      * @return the date of the event
      */
     public Date getDate() {
         return date;
+    }
+
+    /**
+     * Gets the date of the event as a String
+     *
+     * @return the date of the event as a String
+     */
+    public String getDateString() {
+        return dateString;
     }
 
     /**
@@ -116,6 +156,34 @@ public class Event {
      */
     public static void init(Database db) {
         Event.db = db;
+    }
+
+    /**
+     * Gets an ArrayList of the next 'number' events, ordered by date, ascending
+     *
+     * @param number the number of events
+     * @return the ArrayList
+     */
+    public static ArrayList<Event> getNextEvents(int number) {
+        MongoCollection<Document> collection = db.getEvents();
+
+        Bson filter = Filters.gte("date", new Date());
+        Bson sort = Sorts.ascending("date");
+
+        ArrayList<Document> documents = collection.find(filter).sort(sort).limit(number).into(new ArrayList<>());
+        ArrayList<Event> events = new ArrayList<>(documents.size());
+        documents.forEach(document -> events.add(new Event(document)));
+
+        return events;
+    }
+
+    /**
+     * Overloaded <code>getNextEvents(int number)</code>, returning an ArrayList of up to 10 documents
+     *
+     * @return the ArrayList of events
+     */
+    public static ArrayList<Event> getNextEvents() {
+        return getNextEvents(10);
     }
 
     /**

@@ -46,7 +46,7 @@
         <div class="collapse navbar-collapse" id="navbar-index">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">Startseite <span class="sr-only">(current)</span></a></li>
-                <li><a href="#">Termine</a></li>
+                <li><a href="events">Termine</a></li>
                 <li><a href="#">Stundenplan</a></li>
                 <li><a href="#">Hausaufgaben</a></li>
                 <li><a href="#">Links</a></li>
@@ -76,8 +76,6 @@
             Alle Angaben sind ohne Gew&auml;hr!
         </p>
     </div>
-    <hr>
-    <h1 class="hc row">Toller Text</h1>
 </main>
 
 <!-- Contains the three news elements -->
@@ -88,8 +86,8 @@
             <hr>
             <h4>Wichtige Termine:</h4>
             <p>
-                <b>27.02.2016</b><br>&nbsp;&nbsp;Tag der offenen T&uuml;r<br>
-                <b>14.03.2016-18.03.2016</b><br>&nbsp;&nbsp;Betriebspraktikum<br><br><br><br>
+                <b class="date">27.02.2016</b><br>&nbsp;&nbsp;Tag der offenen T&uuml;r<br>
+                <b class="date">14.03.2016-18.03.2016</b><br>&nbsp;&nbsp;Betriebspraktikum<br><br><br><br>
                 <a href="#">mehr</a>
             </p>
         </div>
