@@ -1,5 +1,7 @@
-<#-- @ftlvariable name="events" type="java.util.List<SimpleHash>" -->
-<!DOCTYPE html>
+<#-- @ftlvariable name="origin_path" type="java.lang.String" -->
+<#-- @ftlvariable name="origin" type="java.lang.String" -->
+<#-- @ftlvariable name="stacktrace" type="java.lang.String" -->
+<!Doctype html>
 <html lang="de">
 <head>
     <meta charset="utf-8">
@@ -9,7 +11,7 @@
 
     <title>Klassenwebsite - GyDo9C</title>
     <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab%7COpen+Sans+Condensed:300%7CTeko%7CKhand' rel='stylesheet'
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab|Open+Sans+Condensed:300|Teko|Khand' rel='stylesheet'
           type='text/css'>
 
     <!-- Bootstrap CSS -->
@@ -47,8 +49,8 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="navbar-index">
         <ul class="nav navbar-nav">
-            <li><a href="/">Startseite</a></li>
-            <li class="active"><a href="#">Termine <span class="sr-only">(current)</span></a></li>
+            <li class="active"><a href="#">Startseite <span class="sr-only">(current)</span></a></li>
+            <li><a href="events">Termine</a></li>
             <li><a href="#">Stundenplan</a></li>
             <li><a href="#">Hausaufgaben</a></li>
             <li><a href="#">Links</a></li>
@@ -60,25 +62,18 @@
 
 <!-- main content -->
 <main id="content" class="container">
-    <marquee><span style="color:red">Morgen: Deutsch Schulaufgabe!</span>
-        --- Bitte denkt an das Geld für die Hefte (13,20 €)
-    </marquee>
-    <h1>Termine</h1>
-    <h3>Hier seht ihr eine List bevorstehender Termine</h3>
-<#list events as event>
-    <p class="date">${event["dateString"]}</p>
-    <p>${event["description"]}</p>
-</#list>
-    <h3>Termin hinzufügen</h3>
-    <form action="/addevent" method="post">
-        <p>Datum (TT.MM.JJJJ)</p>
-        <input type="text" name="date" title="date">
-        <br>
-        <br>
-        <p>Name oder kurze Beschreibung</p>
-        <input type="text" name="description" title="description">
-        <input type="submit" name="submit">
-    </form>
+    <h1>Upps!</h1>
+    <h2 style="text-align: left">Irgendwas ist schief gelaufen.</h2>
+    <a class="btn btn-default" href="${origin_path}">Zurück zu ${origin}</a>
+    <br>
+    <button class="btn btn-default" type="button" data-toggle="collapse" data-target="#stacktrace" aria-expanded="false"
+            aria-controls="stacktrace">
+        Details anzeigen (Bitte and Thomas, Sebastian oder Andi senden):
+    </button>
+    <br>
+    <code class="collapse" id="stacktrace">
+    ${stacktrace}
+    </code>
 </main>
 
 <!-- Contains the three news elements -->
@@ -89,8 +84,8 @@
             <hr>
             <h4>Wichtige Termine:</h4>
             <p>
-                <span class="date">27.02.2016</span><br>&nbsp;&nbsp;Tag der offenen T&uuml;r<br>
-                <span class="date">14.03.2016-18.03.2016</span><br>&nbsp;&nbsp;Betriebspraktikum<br><br><br><br>
+                <b class="date">27.02.2016</b><br>&nbsp;&nbsp;Tag der offenen T&uuml;r<br>
+                <b class="date">14.03.2016-18.03.2016</b><br>&nbsp;&nbsp;Betriebspraktikum<br><br><br><br>
                 <a href="#">mehr</a>
             </p>
         </div>
@@ -99,7 +94,7 @@
             <hr>
             <h4>Gymnasium Dorfen:</h4>
             <p>Adresse:&nbsp;<a
-                    href="https://www.google.de/maps/place/Gymnasium+Dorfen/data=!4m2!3m1!1s0x0:0xcbeefa7a7d451fa3?sa=X&amp;ved=0CDYQrwswA2oVChMIudmngfqjyAIVp8ByCh3M-wRy"
+                    href="https://www.google.de/maps/place/Gymnasium+Dorfen/data=!4m2!3m1!1s0x0:0xcbeefa7a7d451fa3?sa=X&ved=0CDYQrwswA2oVChMIudmngfqjyAIVp8ByCh3M-wRy"
                     target="_blank">Josef-Martin-Bauer-Str.18, 84405 Dorfen</a></p>
             <p>Tel.: 08081 9572-0<br>
                 Fax: 08081 9572-299</p>

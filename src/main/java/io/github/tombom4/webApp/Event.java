@@ -31,21 +31,25 @@ public class Event {
      * The unique identifier of the event (_id field in the database)
      */
     private final ObjectId id = new ObjectId();
+
     /**
      * The date of the eveent
      */
     private Date date;
+
     /**
      * The date of the event as a DD.MM.YYYY string
      */
     private String dateString;
+
     /**
      * A short description of the event
      */
     private String description;
 
+
     /**
-     * Creates a new event with given date and description
+     * Creates a new event with given date and description and stores it in the database
      *
      * @param date        the date of the event
      * @param description a short description of the event
@@ -65,12 +69,10 @@ public class Event {
         cal.setTime(date);
 
         String year = Integer.toString(cal.get(YEAR));
-        String month = Integer.toString(cal.get(MONTH));
+        String month = Integer.toString(cal.get(MONTH) + 1);
         if (month.length() < 2) month = "0" + month;
-        String day = Integer.toBinaryString(cal.get(DAY_OF_MONTH));
-        dateString = cal.get(Calendar.DAY_OF_MONTH) + "."
-                + (cal.get(Calendar.MONTH) + 1)+ "."
-                + cal.get(YEAR);
+        String day = Integer.toString(cal.get(DAY_OF_MONTH));
+        if (day.length() < 2) day = "0" + day;
 
         dateString = day + "." + month + "." + year;
     }
@@ -86,11 +88,11 @@ public class Event {
     }
 
     /**
-     * Retrieves the event with the given id from the server
+     * Retrieves the event with the given id from the database
      *
      * @param id the unique identifier of the event
      */
-    public Event(String id) {
+    public Event(ObjectId id) {
         this(db.getEvents().find(new Document("_id", id)).first().getDate("date"),
                 db.getEvents().find(new Document("_id", id)).first().getString("description"));
     }
