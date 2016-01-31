@@ -26,6 +26,11 @@ public class QuadraticFunction {
     private double zero2;
 
     /**
+     * Three points of a function that are used to generate the function term.
+     */
+    Point2D.Double p1, p2, p3;
+
+    /**
      * * Initializes a function with a, b and c and generates d, e, the vertex and the zeroes
      *
      * @throws IllegalArgumentException if a is zero
@@ -39,6 +44,16 @@ public class QuadraticFunction {
         this.c = c;
         generateVertex();
         generateZero();
+    }
+
+    /**
+     * Overloads the constructor of the class (shall be used in case you want to generate the function term using three points of the function).
+     */
+    public QuadraticFunction(Point2D.Double p1, Point2D.Double p2, Point2D.Double p3){
+        this.p1 = p1;
+        this.p2 = p2;
+        this.p3 = p3;
+        generateABC();
     }
 
     /**
@@ -74,6 +89,27 @@ public class QuadraticFunction {
      */
     public double getE() {
         return e;
+    }
+
+    /**
+     * @return the parameter p1 of the function
+     */
+    public Point2D.Double getP1(){
+        return p1;
+    }
+
+    /**
+     * @return the parameter p2 of the function
+     */
+    public Point2D.Double getP2(){
+        return p2;
+    }
+
+    /**
+     * @return the parameter p3 of the function
+     */
+    public Point2D.Double getP3(){
+        return p3;
     }
 
     /**
@@ -144,6 +180,25 @@ public class QuadraticFunction {
         HashMap<Double, Double> images = new HashMap<>();
         list.forEach(x -> images.put(x, getImageOf(x)));
         return images;
+    }
+
+    public void generateABC(){
+        if(p1.x == 0 || p2.x == 0 || p3.x == 0) {
+            if (p1.x == 0) {
+                c = p1.y;
+                a = (((((p2.y - c) - ((p3.y -c) /(p3.x))) / (p2.x * p2.x)) * (p2.x / p3.x)) * (p3.x / p2.x)) / (p2.x * p3.x);
+                b = (p3.y - c - (a * p3.x * p3.x)) / (p3.x);
+            } else if (p2.x == 0) {
+                c = p2.y;
+                a = (((((p2.y - c) - ((p3.y -c) /(p3.x))) / (p2.x * p2.x)) * (p2.x / p3.x)) * (p3.x / p2.x)) / (p2.x * p3.x);
+                b = (p3.y - c - (a * p3.x * p3.x)) / (p3.x);
+            } else {
+                c = p3.y;
+                a = (((((p2.y - c) - ((p3.y -c) /(p3.x))) / (p2.x * p2.x)) * (p2.x / p3.x)) * (p3.x / p2.x)) / (p2.x * p3.x);
+                b = (p3.y - c - (a * p3.x * p3.x)) / (p3.x);
+            }
+
+        }
     }
 
     /**
