@@ -203,26 +203,9 @@ public class Main {
             return "An error occurred while adding an event. An error page could not be generated.";
         });
 
+		
     }
 
-/*    private static void getPage(String path, String pageName, Template template, Map<String, Object> map) {
-        get("/" + path, (request, response) -> {
-            initializeClasses();
-            String user = Session.checkSession(request);
-            if (user == null) {
-                response.header("redirect", path);
-                response.redirect("/");
-            }
-            StringWriter writer = new StringWriter();
-            map.put("username", user);
-            template.process(map, writer);
-            return writer;
-        });
-    }*/
-
-/*    private static void getPage(String pageName, Template template) {
-        getPage(pageName, template, new HashMap<>());
-    }*/
 
     private static void initializeClasses() {
 

@@ -1,3 +1,6 @@
+<#-- @ftlvariable name="origin_path" type="java.lang.String" -->
+<#-- @ftlvariable name="origin" type="java.lang.String" -->
+<#-- @ftlvariable name="stacktrace" type="java.lang.String" -->
 <!Doctype html>
 <html lang="de">
 <head>
@@ -33,7 +36,8 @@
 <nav class="navbar-default container">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-index" aria-expanded="false">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-index"
+                aria-expanded="false">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -45,8 +49,8 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="navbar-index">
         <ul class="nav navbar-nav">
-            <li><a href="#">Startseite</a></li>
-            <li class="active"><a href="#">Termine <span class="sr-only">(current)</span></a></li>
+            <li class="active"><a href="#">Startseite <span class="sr-only">(current)</span></a></li>
+            <li><a href="events">Termine</a></li>
             <li><a href="#">Stundenplan</a></li>
             <li><a href="#">Hausaufgaben</a></li>
             <li><a href="#">Links</a></li>
@@ -58,26 +62,18 @@
 
 <!-- main content -->
 <main id="content" class="container">
-    <marquee><span style="color:red">Morgen: Deutsch Schulaufgabe!</span>
-        --- Bitte denkt an das Geld f&uuml;r die Hefte (13,20 &euro;)
-    </marquee>
-    <h2 class="row">Herzlich Willkommen auf der Klassenwebsite der Klasse 9C</h2>
-    <div class="row">
-        <p class="pscenter">Auf dieser Website k&ouml;nnen die neusten Informationen abgerufen werden.
-            <br>
-            <br>
-            Wenn euch die ein oder andere Funktionalität abgeht, ihr auf einen Fehler hinweisen möchtet oder sonstige
-            Vorschläge oder Kritik loswerden wollt, kontaktiert uns einfach cunter
-            <a href="mailto:9c@gymnasiumdorfen.de">9c@gymnasiumdorfen.de</a>
-            <br>
-            <br>
-            Da diese Website ist ein freiwilliges Angebot des Herausgebers ist, besteht kein Anspruch auf Aktualit&auml;t
-            und Fehlerlosigkeit.
-            Alle Angaben sind ohne Gew&auml;hr!
-        </p>
-    </div>
-    <hr>
-    <h1 class="hc row">Toller Text</h1>
+    <h1>Upps!</h1>
+    <h2 style="text-align: left">Irgendwas ist schief gelaufen.</h2>
+    <a class="btn btn-default" href="${origin_path}">Zurück zu ${origin}</a>
+    <br>
+    <button class="btn btn-default" type="button" data-toggle="collapse" data-target="#stacktrace" aria-expanded="false"
+            aria-controls="stacktrace">
+        Details anzeigen (Bitte and Thomas, Sebastian oder Andi senden):
+    </button>
+    <br>
+    <code class="collapse" id="stacktrace">
+    ${stacktrace}
+    </code>
 </main>
 
 <!-- Contains the three news elements -->
@@ -88,8 +84,8 @@
             <hr>
             <h4>Wichtige Termine:</h4>
             <p>
-                <b>27.02.2016</b><br>&nbsp;&nbsp;Tag der offenen T&uuml;r<br>
-                <b>14.03.2016-18.03.2016</b><br>&nbsp;&nbsp;Betriebspraktikum<br><br><br><br>
+                <b class="date">27.02.2016</b><br>&nbsp;&nbsp;Tag der offenen T&uuml;r<br>
+                <b class="date">14.03.2016-18.03.2016</b><br>&nbsp;&nbsp;Betriebspraktikum<br><br><br><br>
                 <a href="#">mehr</a>
             </p>
         </div>
