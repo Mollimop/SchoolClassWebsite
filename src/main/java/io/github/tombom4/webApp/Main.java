@@ -16,7 +16,7 @@ import static spark.Spark.*;
 
 /**
  * @author Thomas
- * @version 1.0 09.01.2016
+ * @version 1.0 09.01.16
  */
 public class Main {
 
@@ -116,6 +116,85 @@ public class Main {
 
         });
 
+        post("/events/add", (request, response) -> {
+            String user = Session.checkSession(request);
+            if (user != null) {
+
+                try {
+
+                    String param = request.params("param");
+
+                        new Event(parseDate(request.queryParams("date")),
+                                request.queryParams("description"), true);
+
+                        response.redirect("/events");
+
+                } catch (IllegalArgumentException e) {
+                    response.redirect("/events/malformed");
+                } catch (Exception e) {
+
+                    try {
+
+                        Template template = configuration.getTemplate("templates/error.ftl");
+                        StringWriter writer = new StringWriter();
+                        Map<String, Object> root = new HashMap<>(3);
+                        root.put("origin", "Termine");
+                        root.put("origin_path", "/events");
+                        root.put("stacktrace", e.getMessage() + "\n" + Arrays.toString(e.getStackTrace()));
+
+                        template.process(root, writer);
+                        return writer;
+
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+
+                }
+            } else {
+                response.redirect("/");
+            }
+            return "An error occurred while adding an event. An error page could not be generated.";
+        });
+
+        get("/events/remove/:id", (request, response) -> {
+            String user = Session.checkSession(request);
+            if (user != null) {
+
+                try {
+
+                    String id = request.params("id");
+
+                    Event.removeEvent(id);
+
+                    response.redirect("/events");
+
+                } catch (IllegalArgumentException e) {
+                    response.redirect("/events/malformed");
+                } catch (Exception e) {
+
+                    try {
+
+                        Template template = configuration.getTemplate("templates/error.ftl");
+                        StringWriter writer = new StringWriter();
+                        Map<String, Object> root = new HashMap<>(3);
+                        root.put("origin", "Termine");
+                        root.put("origin_path", "/events");
+                        root.put("stacktrace", e.getMessage() + ":\n" + Arrays.toString(e.getStackTrace()));
+
+                        template.process(root, writer);
+                        return writer;
+
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+
+                }
+            } else {
+                response.redirect("/");
+            }
+            return "An error occurred while adding an event. An error page could not be generated.";
+        });
+
 
         // Configure get requests for events
 
@@ -127,12 +206,16 @@ public class Main {
 
                 Map<String, Object> root = new HashMap<>(2);
 
+                initializeClasses();
+
                 List<Event> events = Event.getNextEvents();
+
+                System.out.println(events.size());
 
                 root.put("events", events);
                 root.put("test", "testValue");
+                if (Objects.equals(request.params("param"), "malformed")) root.put("malformed", true);
 
-                initializeClasses();
                 String user = Session.checkSession(request);
                 if (user == null) {
                     response.header("redirect", "events");
@@ -150,11 +233,13 @@ public class Main {
                 try {
 
                     Template template = configuration.getTemplate("templates/error.ftl");
-                    StringWriter writer = new StringWriter();
+
                     Map<String, Object> root = new HashMap<>(3);
                     root.put("origin", "Termine");
                     root.put("origin_path", "/events");
-                    root.put("stacktrace", Arrays.toString(e.getStackTrace()));
+                    root.put("stacktrace", e.getMessage() + ":\n" + Arrays.toString(e.getStackTrace()));
+
+                    StringWriter writer = new StringWriter();
 
                     template.process(root, writer);
                     return writer;
@@ -167,39 +252,6 @@ public class Main {
 
             return "An error occurred while loading events page. An error page could not be generated.";
 
-        });
-
-
-        post("addevent", (request, response) -> {
-            String user = Session.checkSession(request);
-            if (user != null) {
-                try {
-                    Event event = new Event(parseDate(request.queryParams("date")),
-                            request.queryParams("description"));
-                    response.redirect("/events");
-                } catch (Exception e) {
-
-                    try {
-
-                        Template template = configuration.getTemplate("templates/error.ftl");
-                        StringWriter writer = new StringWriter();
-                        Map<String, Object> root = new HashMap<>(3);
-                        root.put("origin", "Termine");
-                        root.put("origin_path", "/events");
-                        root.put("stacktrace", Arrays.toString(e.getStackTrace()));
-
-                        template.process(root, writer);
-                        return writer;
-
-                    } catch (IOException e1) {
-                        e1.printStackTrace();
-                    }
-
-                }
-            } else {
-                response.redirect("/");
-            }
-            return "An error occurred while adding an event. An error page could not be generated.";
         });
 
     }

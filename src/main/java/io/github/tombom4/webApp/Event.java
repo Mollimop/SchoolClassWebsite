@@ -3,6 +3,7 @@ package io.github.tombom4.webApp;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Sorts;
+import com.mongodb.client.model.UpdateOptions;
 import io.github.tombom4.userManagement.Database;
 import org.bson.Document;
 import org.bson.conversions.Bson;
@@ -30,7 +31,7 @@ public class Event {
     /**
      * The unique identifier of the event (_id field in the database)
      */
-    private final ObjectId id = new ObjectId();
+    private final String id;
 
     /**
      * The date of the eveent
@@ -49,21 +50,31 @@ public class Event {
 
 
     /**
-     * Creates a new event with given date and description and stores it in the database
+     * Creates a new event with given date and description and optionally stores it in the database
      *
      * @param date        the date of the event
      * @param description a short description of the event
+     * @param insert      specify if the document should be inserted in the database (use <code>false</code> if the
+     *                    document already exists in the database
      */
-    public Event(Date date, String description) {
+    public Event(Date date, String description, Boolean insert) {
         this.date = date;
         this.description = description;
+        this.id = new ObjectId().toString();
 
-        MongoCollection<Document> collection = db.getEvents();
+        if (insert) {
 
-        Document document = new Document("_id", id)
-                .append("date", date)
-                .append("description", description);
-        collection.insertOne(document);
+            MongoCollection<Document> collection = db.getEvents();
+
+            Bson filter = new Document("_id", new ObjectId(id));
+            Bson update = new Document("$set", new Document()
+                    .append("date", date)
+                    .append("description", description));
+            UpdateOptions options = new UpdateOptions().upsert(true);
+
+            collection.updateOne(filter, update, options);
+
+        }
 
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
@@ -84,7 +95,22 @@ public class Event {
      * @param doc the document with the data to be added
      */
     public Event(Document doc) {
-        this(doc.getDate("date"), doc.getString("description"));
+        ObjectId objectId = doc.getObjectId("_id");
+        MongoCollection<Document> events = db.getEvents();
+        this.id = objectId.toString();
+        this.date = doc.getDate("date");
+        this.description = doc.getString("description");
+
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+
+        String year = Integer.toString(cal.get(YEAR));
+        String month = Integer.toString(cal.get(MONTH) + 1);
+        if (month.length() < 2) month = "0" + month;
+        String day = Integer.toString(cal.get(DAY_OF_MONTH));
+        if (day.length() < 2) day = "0" + day;
+
+        dateString = day + "." + month + "." + year;
     }
 
     /**
@@ -92,9 +118,24 @@ public class Event {
      *
      * @param id the unique identifier of the event
      */
-    public Event(ObjectId id) {
-        this(db.getEvents().find(new Document("_id", id)).first().getDate("date"),
-                db.getEvents().find(new Document("_id", id)).first().getString("description"));
+    public Event(String id) {
+
+        ObjectId objectId = new ObjectId(id);
+        MongoCollection<Document> events = db.getEvents();
+        this.id = id;
+        this.date = events.find(new Document("_id", id)).first().getDate("date");
+        this.description = events.find(new Document("_id", id)).first().getString("description");
+
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+
+        String year = Integer.toString(cal.get(YEAR));
+        String month = Integer.toString(cal.get(MONTH) + 1);
+        if (month.length() < 2) month = "0" + month;
+        String day = Integer.toString(cal.get(DAY_OF_MONTH));
+        if (day.length() < 2) day = "0" + day;
+
+        dateString = day + "." + month + "." + year;
     }
 
     /**
@@ -102,7 +143,7 @@ public class Event {
      *
      * @return the id of the event
      */
-    public ObjectId getId() {
+    public String getId() {
         return id;
     }
 
@@ -152,6 +193,15 @@ public class Event {
     }
 
     /**
+     * Deletes the event of a given id String
+     * @param id the id of the event
+     */
+    public static void removeEvent(String id) {
+        ObjectId objectId = new ObjectId(id);
+        db.getEvents().deleteOne(new Document("_id", objectId));
+    }
+
+    /**
      * Initializes the database field
      *
      * @param db the database
@@ -188,16 +238,4 @@ public class Event {
         return getNextEvents(10);
     }
 
-    /**
-     * Saves the event in the database after a change of the event
-     */
-    private void save() {
-        MongoCollection<Document> collection = db.getEvents();
-
-        Bson filter = new Document("_id", id);
-        Bson set = new Document("$set",
-                new Document("date", date)
-                        .append("description", description));
-        collection.updateOne(filter, set);
-    }
 }
