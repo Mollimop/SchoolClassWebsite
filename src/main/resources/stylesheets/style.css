@@ -171,3 +171,7 @@ hr {
     border-left: 1px solid grey;
     height: 100%;
 }
+
+.error {
+    color: red;
+}

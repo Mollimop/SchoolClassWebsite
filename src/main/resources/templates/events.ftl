@@ -1,3 +1,4 @@
+<#-- @ftlvariable name="malformed" type="String" -->
 <#-- @ftlvariable name="events" type="java.util.List<SimpleHash>" -->
 <!DOCTYPE html>
 <html lang="de">
@@ -8,8 +9,9 @@
     <meta name="theme-color" content="#ffc000">
 
     <title>Klassenwebsite - GyDo9C</title>
-    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab%7COpen+Sans+Condensed:300%7CTeko%7CKhand' rel='stylesheet'
+    <link rel="stylesheet" type="text/css" href="../stylesheets/style.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab%7COpen+Sans+Condensed:300%7CTeko%7CKhand'
+          rel='stylesheet'
           type='text/css'>
 
     <!-- Bootstrap CSS -->
@@ -64,13 +66,29 @@
         --- Bitte denkt an das Geld für die Hefte (13,20 €)
     </marquee>
     <h1>Termine</h1>
-    <h3>Hier seht ihr eine List bevorstehender Termine</h3>
+    <h3>Hier seht ihr eine Liste bevorstehender Termine</h3>
+<#if malformed??>
+    <#if malformed == true>
+        <p class="error">Termin konnte aufgrund falscher Formatierung nicht hinzugefügt werden. Vertippt?</p>
+    </#if>
+</#if>
 <#list events as event>
-    <p class="date">${event["dateString"]}</p>
-    <p>${event["description"]}</p>
+    <div class="row">
+        <div class="col-lg-2 col-md-6 col-xs-6">
+            <p class="date">${event["dateString"]}</p>
+            <p>&nbsp;&nbsp;${event["description"]}</p>
+        </div>
+
+        <div class="col-lg-2 col-md-6 col-xs-6">
+            <a type="button" class="btn btn-default" href="events/remove/${event["id"]}">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Entfernen
+            </a>
+        </div>
+    </div>
 </#list>
+
     <h3>Termin hinzufügen</h3>
-    <form action="/addevent" method="post">
+    <form action="/events/add" method="post">
         <p>Datum (TT.MM.JJJJ)</p>
         <input type="text" name="date" title="date">
         <br>

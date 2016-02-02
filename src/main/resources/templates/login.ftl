@@ -27,11 +27,6 @@
         <h1 class="col-xs-12">Klassenwebsite</h1>
     </header>
 
-    <!-- Navigation bar
-    <div id="nav" class="row">
-    </div>
-    -->
-
 </div>
 
 <!-- main content -->

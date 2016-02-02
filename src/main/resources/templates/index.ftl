@@ -47,7 +47,7 @@
     <div class="collapse navbar-collapse" id="navbar-index">
         <ul class="nav navbar-nav">
             <li class="active"><a href="#">Startseite <span class="sr-only">(current)</span></a></li>
-            <li><a href="events">Termine</a></li>
+            <li><a href="/events">Termine</a></li>
             <li><a href="#">Stundenplan</a></li>
             <li><a href="#">Hausaufgaben</a></li>
             <li><a href="#">Links</a></li>
