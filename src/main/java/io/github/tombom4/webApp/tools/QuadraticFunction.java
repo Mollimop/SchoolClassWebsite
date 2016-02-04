@@ -183,16 +183,11 @@ public class QuadraticFunction {
     }
 
     public void generateABC(){
-        double l = p1.y - p2.y;
-        double m = p1.x -p2.x;
-        double n = p2.y -p3.y;
-        double o = (p2.x * p2.x) - (p3.x * p3.x);
-        double r = (p2.x * p2.x) * n;
-        double s = (p1.x * p1.x) * n;
-        double z = -(p2.x * p2.x * p2.x) + (p3.x * p2.x * p2.x) + (p2.x * p1.x * p1.x) - (p3.x * p1.x * p1.x);
-        b = (-(l * 0) - r + s) / (z - (m * o));
-        a = (n - (p2.x * b) + (p3.x * b)) / o;
-        c = p3.y - (p3.x * p3.x * a) - (p3.x * b);
+        a = ((p1.x * (p3.y - p2.y)) + (p2.x * (p1.y - p3.y))
+                + (p3.x * (p2.y - p1.y))) / ((p1.x - p2.x) * (p1.x - p3.x) * (p2.x - p3.x));
+        b = (((a * ((p3.x * p3.x) - (p2.x * p2.x))) + p2.y - p3.y) / (p2.x - p3.x));
+        c = (p3.y) - (a * (p3.x * p3.x)) - (b * p3.x);
+
     }
 
     /**
