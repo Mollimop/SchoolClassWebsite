@@ -23,9 +23,9 @@ public class Password {
         for(int i = 0; i < passwordChars.length; i++){
             passwordCode[i] = passwordChars[i];
             if(i == 0 || i == 1){
-                passwordCodeEncrypted[i] = passwordCode[i] * passwordCode[i] * passwordCode[i] * 892222;
+                passwordCodeEncrypted[i] = passwordCode[i] * passwordCode[i] * passwordCode[i] * (-892222);
             }else {
-                passwordCodeEncrypted[i] = passwordCode[i] * passwordCode[0] * passwordCode[1] * 89222;
+                passwordCodeEncrypted[i] = passwordCode[i] * passwordCode[0] * passwordCode[1] * (-89222);
             }
 
             if(i == 0){
