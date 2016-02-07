@@ -12,7 +12,8 @@
           type='text/css'>
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          crossorigin="anonymous">
 
     <!-- Bootstrap and jQuery JavaScript libraries -->
     <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
@@ -32,29 +33,21 @@
 <!-- main content -->
 <main id="content" class="container">
     <h2 class="row">Herzlich Willkommen auf der Klassenwebsite der Klasse 9C</h2>
-        <form action="/login" method="post">
-            <p style="text-align: left">Benutzername</p>
-            <input type="text" name="usr" title="username">
-            <br>
-            <br>
-            <p style="text-align: left">Passwort</p>
-            <input type="password" name="psw" title="password"><br>
-            <input type="submit" name="Submit">
-        </form>
+    <form action="/login" method="post">
+        <p style="text-align: left">Benutzername</p>
+        <input type="text" name="usr" title="username">
+        <br>
+        <br>
+        <p style="text-align: left">Passwort</p>
+        <input type="password" name="psw" title="password"><br>
+        <br>
+        <button class="btn btn-default" type="submit" name="Submit">
+                <span class="glyphicon glyphicon-log-in"></span> Anmelden
+        </button>
+        <br>
+        <br>
+    </form>
 </main>
-
-<!-- Contains the three news elements -->
-<div class="container">
-    <div class="row">
-
-        <div class="news col-xs-12 col-md-6">
-
-        </div>
-
-
-
-    </div>
-</div>
 
 <footer class="container">
     <div class="row">

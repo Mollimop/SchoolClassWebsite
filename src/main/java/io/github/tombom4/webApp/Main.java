@@ -195,6 +195,61 @@ public class Main {
             return "An error occurred while adding an event. An error page could not be generated.";
         });
 
+        get("/events/malformed", (request, response) -> {
+
+            try {
+
+                Template template = configuration.getTemplate("templates/events.ftl");
+
+                Map<String, Object> root = new HashMap<>(2);
+
+                initializeClasses();
+
+                List<Event> events = Event.getNextEvents();
+
+                System.out.println(events.size());
+
+                root.put("malformed", true);
+                root.put("events", events);
+                root.put("test", "testValue");
+
+                String user = Session.checkSession(request);
+                if (user == null) {
+                    response.header("redirect", "events");
+                    response.redirect("/");
+                    return "";
+                }
+
+                StringWriter writer = new StringWriter();
+                root.put("username", user);
+                template.process(root, writer);
+                return writer;
+
+            } catch (Exception e) {
+
+                try {
+
+                    Template template = configuration.getTemplate("templates/error.ftl");
+
+                    Map<String, Object> root = new HashMap<>(3);
+                    root.put("origin", "Termine");
+                    root.put("origin_path", "/events");
+                    root.put("stacktrace", e.getMessage() + ":\n" + Arrays.toString(e.getStackTrace()));
+
+                    StringWriter writer = new StringWriter();
+
+                    template.process(root, writer);
+                    return writer;
+
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+
+            }
+
+            return "An error occurred while loading events page. An error page could not be generated.";
+
+        });
 
         // Configure get requests for events
 
