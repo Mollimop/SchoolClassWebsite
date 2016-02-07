@@ -9,11 +9,20 @@ public class Answer {
     private String title;
     private User answerer;
     private String answer;
+    private int likes;
 
     public Answer(String title, User answerer, String answer){
         this.title = title;
         this.answer = answer;
         this.answerer = answerer;
+        this.likes = 0;
+    }
+
+    public Answer(String title, User answerer, String answer, int likes){
+        this.title = title;
+        this.answer = answer;
+        this.answerer = answerer;
+        this.likes = likes;
     }
 
     public void setTitle(String title){
@@ -22,6 +31,10 @@ public class Answer {
 
     public void setAnswer(String answer){
         this.answer = answer;
+    }
+
+    public void like(){
+        likes = likes + 1;
     }
 
     public String getTitle(){
@@ -34,6 +47,10 @@ public class Answer {
 
     public String getAnswer(){
         return answer;
+    }
+
+    public int getLikes(){
+        return likes;
     }
 
 }

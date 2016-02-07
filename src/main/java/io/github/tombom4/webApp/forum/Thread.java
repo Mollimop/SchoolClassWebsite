@@ -12,13 +12,16 @@ public class Thread {
     private String question;
     private User[] visibleFor;
     private Answer[] answers = new Answer[0];
+    private boolean open;
 
-    public Thread(String title, String schoolSubject, String question, User questioner, User[] visibleFor){
+    public Thread(String title, String schoolSubject, String question, User questioner, User[] visibleFor, Answer[] answers, boolean open){
         this.questioner = questioner;
         this.schoolSubject = schoolSubject;
         this.title = title;
         this.question = question;
         this.visibleFor = visibleFor;
+        this.answers = answers;
+        this.open = open;
     }
 
     public void addAnswer(Answer answer){
@@ -35,6 +38,10 @@ public class Thread {
 
     public void setVisibleFor(User[] visibleFor){
         this.visibleFor = visibleFor;
+    }
+
+    public void setOpen(boolean open){
+        this.open = open;
     }
 
     public Answer getAswerN(int whichAnswer){
@@ -63,6 +70,10 @@ public class Thread {
 
     public User[] getVisibleFor(){
         return visibleFor;
+    }
+
+    public boolean isOpen(){
+        return open;
     }
 
 
