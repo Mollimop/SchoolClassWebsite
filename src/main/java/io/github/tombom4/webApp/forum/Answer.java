@@ -11,18 +11,15 @@ public class Answer {
     private String answer;
     private int likes;
 
-    public Answer(String title, User answerer, String answer){
-        this.title = title;
-        this.answer = answer;
-        this.answerer = answerer;
-        this.likes = 0;
-    }
-
     public Answer(String title, User answerer, String answer, int likes){
         this.title = title;
         this.answer = answer;
         this.answerer = answerer;
         this.likes = likes;
+    }
+    
+    public Answer(String title, User answerer, String answer){
+        this(title, answerer, answer, 0);
     }
 
     public void setTitle(String title){
