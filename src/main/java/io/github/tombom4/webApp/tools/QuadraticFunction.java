@@ -1,8 +1,8 @@
 package io.github.tombom4.webApp.tools;
 
 import java.awt.geom.Point2D;
-import java.util.ArrayList;
-import java.util.HashMap;
+        import java.util.ArrayList;
+        import java.util.HashMap;
 
 /**
  * This class represents quadratic functions used for calculation on the website
@@ -183,22 +183,11 @@ public class QuadraticFunction {
     }
 
     public void generateABC(){
-        if(p1.x == 0 || p2.x == 0 || p3.x == 0) {
-            if (p1.x == 0) {
-                c = p1.y;
-                a = (((((p2.y - c) - ((p3.y -c) /(p3.x))) / (p2.x * p2.x)) * (p2.x / p3.x)) * (p3.x / p2.x)) / (p2.x * p3.x);
-                b = (p3.y - c - (a * p3.x * p3.x)) / (p3.x);
-            } else if (p2.x == 0) {
-                c = p2.y;
-                a = (((((p2.y - c) - ((p3.y -c) /(p3.x))) / (p2.x * p2.x)) * (p2.x / p3.x)) * (p3.x / p2.x)) / (p2.x * p3.x);
-                b = (p3.y - c - (a * p3.x * p3.x)) / (p3.x);
-            } else {
-                c = p3.y;
-                a = (((((p2.y - c) - ((p3.y -c) /(p3.x))) / (p2.x * p2.x)) * (p2.x / p3.x)) * (p3.x / p2.x)) / (p2.x * p3.x);
-                b = (p3.y - c - (a * p3.x * p3.x)) / (p3.x);
-            }
+        a = ((p1.x * (p3.y - p2.y)) + (p2.x * (p1.y - p3.y))
+                + (p3.x * (p2.y - p1.y))) / ((p1.x - p2.x) * (p1.x - p3.x) * (p2.x - p3.x));
+        b = (((a * ((p3.x * p3.x) - (p2.x * p2.x))) + p2.y - p3.y) / (p2.x - p3.x));
+        c = (p3.y) - (a * (p3.x * p3.x)) - (b * p3.x);
 
-        }
     }
 
     /**
