@@ -65,21 +65,25 @@
     <marquee><span style="color:red">Morgen: Deutsch Schulaufgabe!</span>
         --- Bitte denkt an das Geld für die Hefte (13,20 €)
     </marquee>
+
     <h1>Termine</h1>
     <h3>Hier seht ihr eine Liste bevorstehender Termine</h3>
+    <br>
+
 <#if malformed??>
     <#if malformed == true>
         <p class="error">Termin konnte aufgrund falscher Formatierung nicht hinzugefügt werden. Vertippt?</p>
     </#if>
 </#if>
+
 <#list events as event>
     <div class="row">
-        <div class="col-lg-2 col-md-6 col-xs-6">
+        <div class="col-lg-3 col-md-6 col-xs-6">
             <p class="date">${event["dateString"]}</p>
             <p>&nbsp;&nbsp;${event["description"]}</p>
         </div>
 
-        <div class="col-lg-2 col-md-6 col-xs-6">
+        <div class="col-lg-3 col-md-6 col-xs-6">
             <a type="button" class="btn btn-default" href="events/remove/${event["id"]}">
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Entfernen
             </a>
@@ -95,15 +99,17 @@
         <br>
         <p>Name oder kurze Beschreibung</p>
         <input type="text" name="description" title="description">
-        <input type="submit" name="submit">
+        <button class="btn btn-default" type="submit" name="submit">
+            <span class="glyphicon glyphicon-plus"></span> Termin hinzufügen
+        </button>
     </form>
 </main>
 
 <!-- Contains the three news elements -->
-<div class="container">
+<div class="container news">
     <div class="row">
 
-        <div class="news col-xs-12 col-md-6">
+        <div class="col-xs-12 col-md-6">
             <hr>
             <h4>Wichtige Termine:</h4>
             <p>
@@ -113,16 +119,16 @@
             </p>
         </div>
 
-        <div class="news col-xs-12 col-md-6">
+        <div class="col-xs-12 col-md-6">
             <hr>
             <h4>Gymnasium Dorfen:</h4>
             <p>Adresse:&nbsp;<a
                     href="https://www.google.de/maps/place/Gymnasium+Dorfen/data=!4m2!3m1!1s0x0:0xcbeefa7a7d451fa3?sa=X&amp;ved=0CDYQrwswA2oVChMIudmngfqjyAIVp8ByCh3M-wRy"
                     target="_blank">Josef-Martin-Bauer-Str.18, 84405 Dorfen</a></p>
-            <p>Tel.: 08081 9572-0<br>
-                Fax: 08081 9572-299</p>
+            <p>Tel.: 08081 9572-0</p>
+            <p>Fax: 08081 9572-299</p>
             <p>E-Mail:&nbsp;<a href="mailto:sekretariat@gymnasiumdorfen.de"
-                               target="_blank">sekretariat@<br>gymnasiumdorfen.de</a>
+                               target="_blank">sekretariat@gymnasiumdorfen.de</a>
             </p>
             <p>Zur Homepage:&nbsp;<a href="http://gymnasiumdorfen.de" target="_blank">gymnasiumdorfen.de</a></p>
         </div>

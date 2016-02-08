@@ -52,7 +52,6 @@
             <li><a href="#">Hausaufgaben</a></li>
             <li><a href="#">Links</a></li>
             <li><a href="#">Kontakt</a></li>
-            <li><a href="#">Impressum</a></li>
         </ul>
     </div><!-- /.navbar-collapse -->
 </nav>
@@ -80,20 +79,19 @@
 </main>
 
 <!-- Contains the three news elements -->
-<div class="container">
-    <div class="row">
+<div class="container news">
 
-        <div class="news col-xs-12 col-md-6">
+        <div class="col-xs-12 col-md-6">
             <hr>
             <h4>Wichtige Termine:</h4>
             <p>
                 <b class="date">27.02.2016</b><br>&nbsp;&nbsp;Tag der offenen T&uuml;r<br>
                 <b class="date">14.03.2016-18.03.2016</b><br>&nbsp;&nbsp;Betriebspraktikum<br><br><br><br>
-                <a href="#">mehr</a>
+                <a href="/events">mehr</a>
             </p>
         </div>
 
-        <div class="news col-xs-12 col-md-6">
+        <div class="col-xs-12 col-md-6">
             <hr>
             <h4>Gymnasium Dorfen:</h4>
             <p>Adresse:&nbsp;<a
@@ -102,12 +100,11 @@
             <p>Tel.: 08081 9572-0<br>
                 Fax: 08081 9572-299</p>
             <p>E-Mail:&nbsp;<a href="mailto:sekretariat@gymnasiumdorfen.de"
-                               target="_blank">sekretariat@<br>gymnasiumdorfen.de</a>
+                               target="_blank">sekretariat@gymnasiumdorfen.de</a>
             </p>
             <p>Zur Homepage:&nbsp;<a href="http://gymnasiumdorfen.de" target="_blank">gymnasiumdorfen.de</a></p>
         </div>
 
-    </div>
 </div>
 
 <footer class="container">
