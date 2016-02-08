@@ -47,10 +47,13 @@ nav {
 }
 
 nav a {
-    color: purple;
     font-family: 'Roboto Slab', serif;
     text-decoration: none;
     background: #d9a400 !important;
+}
+
+.welcome {
+    text-align: right;
 }
 
 main {
@@ -132,6 +135,10 @@ main h2 {
 .date {
     color: black;
     font-weight: bold;
+}
+
+address {
+    font-family: 'Roboto Slab', serif;
 }
 
 footer {

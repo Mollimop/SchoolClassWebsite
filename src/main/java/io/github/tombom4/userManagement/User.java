@@ -66,10 +66,10 @@ public class User {
         Bson filter = new Document("_id", usr);
         Document doc = coll.find(filter).first();
 
-        String mail = doc.getString("name");
-        Password password = Password.byEncryptedPassword(doc.getString("password"));
-        String displayName = doc.getString("display_name");
-        String type = doc.getString("type");
+        this.name = doc.getString("name");
+        this.password = Password.byEncryptedPassword(doc.getString("password"));
+        this.displayName = doc.getString("display_name");
+        this.type = doc.getString("type");
     }
 
     public static void init(Database db) {
@@ -93,6 +93,7 @@ public class User {
     }
 
     public String getName() {
+        System.out.println(name);
         return name;
     }
 

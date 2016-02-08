@@ -38,7 +38,7 @@ public class Session {
         Session.db = db;
     }
 
-    public static String checkSession (Request request) {
+    public static User checkSession (Request request) {
         MongoCollection<Document> sessions = Session.db.getSessions();
         String id = request.cookie("session");
         Bson filter = new Document("_id", id);
@@ -47,7 +47,7 @@ public class Session {
             return null;
         }
 
-        return (String) sessions.find(filter).first().get("user");
+        return new User( sessions.find(filter).first().getString("user") );
     }
 
 }

@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
           crossorigin="anonymous">
 
-    <!-- Bootstrap and jQuery JavaScript libraries -->
+    <!-- Bootstrap; jQuery and MathJax JavaScript libraries -->
     <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" crossorigin="anonymous"></script>
 </head>
@@ -51,7 +51,10 @@
             <li><a href="#">Stundenplan</a></li>
             <li><a href="#">Hausaufgaben</a></li>
             <li><a href="#">Links</a></li>
-            <li><a href="#">Kontakt</a></li>
+            <li><a href="#">Tools</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="welcome"><a>Willkommen, ${user["displayName"]}</a></li>
         </ul>
     </div><!-- /.navbar-collapse -->
 </nav>
@@ -67,7 +70,7 @@
             <br>
             <br>
             Wenn euch die ein oder andere Funktionalität abgeht, ihr auf einen Fehler hinweisen möchtet oder sonstige
-            Vorschläge oder Kritik loswerden wollt, kontaktiert uns einfach cunter
+            Vorschläge oder Kritik loswerden wollt, kontaktiert uns einfach unter
             <a href="mailto:9c@gymnasiumdorfen.de">9c@gymnasiumdorfen.de</a>
             <br>
             <br>
@@ -81,29 +84,33 @@
 <!-- Contains the three news elements -->
 <div class="container news">
 
-        <div class="col-xs-12 col-md-6">
-            <hr>
-            <h4>Wichtige Termine:</h4>
-            <p>
-                <b class="date">27.02.2016</b><br>&nbsp;&nbsp;Tag der offenen T&uuml;r<br>
-                <b class="date">14.03.2016-18.03.2016</b><br>&nbsp;&nbsp;Betriebspraktikum<br><br><br><br>
-                <a href="/events">mehr</a>
-            </p>
-        </div>
+    <div class="col-xs-12 col-md-6">
+        <hr>
+        <h4>Wichtige Termine:</h4>
+        <p>
+            <b class="date">27.02.2016</b><br>&nbsp;&nbsp;Tag der offenen T&uuml;r<br>
+            <b class="date">14.03.2016-18.03.2016</b><br>&nbsp;&nbsp;Betriebspraktikum<br><br><br><br>
+            <a href="/events">mehr</a>
+        </p>
+    </div>
 
-        <div class="col-xs-12 col-md-6">
-            <hr>
-            <h4>Gymnasium Dorfen:</h4>
-            <p>Adresse:&nbsp;<a
-                    href="https://www.google.de/maps/place/Gymnasium+Dorfen/data=!4m2!3m1!1s0x0:0xcbeefa7a7d451fa3?sa=X&ved=0CDYQrwswA2oVChMIudmngfqjyAIVp8ByCh3M-wRy"
-                    target="_blank">Josef-Martin-Bauer-Str.18, 84405 Dorfen</a></p>
-            <p>Tel.: 08081 9572-0<br>
-                Fax: 08081 9572-299</p>
-            <p>E-Mail:&nbsp;<a href="mailto:sekretariat@gymnasiumdorfen.de"
-                               target="_blank">sekretariat@gymnasiumdorfen.de</a>
-            </p>
-            <p>Zur Homepage:&nbsp;<a href="http://gymnasiumdorfen.de" target="_blank">gymnasiumdorfen.de</a></p>
-        </div>
+    <div class="col-xs-12 col-md-6">
+        <hr>
+        <address>
+            <strong>Gymnasium Dorfen</strong><br>
+            Adresse:&nbsp;<a
+                href="https://www.google.de/maps/place/Gymnasium+Dorfen/data=!4m2!3m1!1s0x0:0xcbeefa7a7d451fa3?sa=X&ved=0CDYQrwswA2oVChMIudmngfqjyAIVp8ByCh3M-wRy"
+                target="_blank">Josef-Martin-Bauer-Str.18, 84405 Dorfen</a><br>
+
+            Tel.: 08081 9572-0<br>
+            Fax: 08081 9572-299<br>
+
+            E-Mail:&nbsp;<a href="mailto:sekretariat@gymnasiumdorfen.de"
+                            target="_blank">sekretariat@gymnasiumdorfen.de</a><br>
+
+            Zur Homepage:&nbsp;<a href="http://gymnasiumdorfen.de" target="_blank">gymnasiumdorfen.de</a><br>
+        </address>
+    </div>
 
 </div>
 

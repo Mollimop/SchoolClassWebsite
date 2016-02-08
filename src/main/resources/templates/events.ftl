@@ -54,8 +54,10 @@
             <li><a href="#">Stundenplan</a></li>
             <li><a href="#">Hausaufgaben</a></li>
             <li><a href="#">Links</a></li>
-            <li><a href="#">Kontakt</a></li>
-            <li><a href="#">Impressum</a></li>
+            <li><a href="#">Tools</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="welcome"><a>Willkommen, ${user["displayName"]}</a></li>
         </ul>
     </div><!-- /.navbar-collapse -->
 </nav>
@@ -72,7 +74,7 @@
 
 <#if malformed??>
     <#if malformed == true>
-        <p class="error">Termin konnte aufgrund falscher Formatierung nicht hinzugefügt werden. Vertippt?</p>
+        <p class="error">Termin konnte aufgrund falscher Formatierung nicht hinzugefügt werden. Vertippt?</p><br>
     </#if>
 </#if>
 
