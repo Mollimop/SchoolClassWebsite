@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#009688">
+    <meta name="theme-color" content="#ffc000">
 
     <title>Klassenwebsite - GyDo9C</title>
     <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
@@ -64,21 +64,26 @@
     <marquee><span style="color:red">Morgen: Deutsch Schulaufgabe!</span>
         --- Bitte denkt an das Geld f&uuml;r die Hefte (13,20 &euro;)
     </marquee>
-    <h2 class="row">Herzlich Willkommen auf der Klassenwebsite der Klasse 9C</h2>
+
+    <h1>Threads</h1>
+
     <div class="row">
-        <p class="pscenter">Auf dieser Website k&ouml;nnen die neusten Informationen abgerufen werden.
-            <br>rrrrrrrrr
-            <br>
-            Wenn euch die ein oder andere Funktionalität abgeht, ihr auf einen Fehler hinweisen möchtet oder sonstige
-            Vorschläge oder Kritik loswerden wollt, kontaktiert uns einfach unter
-            <a href="mailto:9c@gymnasiumdorfen.de">9c@gymnasiumdorfen.de</a>
-            <br>
-            <br>
-            Da diese Website ist ein freiwilliges Angebot des Herausgebers ist, besteht kein Anspruch auf Aktualit&auml;t
-            und Fehlerlosigkeit.
-            Alle Angaben sind ohne Gew&auml;hr!
-        </p>
+    <#if threads??>
+        <#list threads as thread>
+            <div class="thread col-xs-12 col-md-6 col-lg-4">
+                    ${thread["title"]}                      <br><hr>
+                    von ${thread["questionerDisplayName"]}  <br><hr>
+                    ${thread["numberOfAnswers"]} Antwort(en)<br><hr>
+                    <#if thread.isOpen()>
+                        offen
+                    <#else>
+                        geschlossen
+                    </#if>
+            </div>
+        </#list>
+    </#if>
     </div>
+
 </main>
 
 <!-- Contains the three news elements -->
@@ -125,4 +130,3 @@
 
 </body>
 </html>
-

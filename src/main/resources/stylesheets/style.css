@@ -1,5 +1,5 @@
 body {
-    background: linear-gradient(to bottom, #0085cc 0%, #ccedff 70%) fixed;
+    background: linear-gradient(to bottom, #4FC3F7 0%, #4FC3F7 100%) fixed;
     text-align: left;
 }
 
@@ -83,6 +83,19 @@ main h2 {
     color: black;
     font-size: 22px;
     font-family: 'Roboto Slab', serif;
+}
+
+.thread {
+/*    border: 1px solid;*/
+    height: 250px;
+    padding-left: 7px;
+    padding-right: 7px;
+    text-align: center;
+    padding-top: 7px;
+}
+.thread:hover {
+    background: #009688;
+    color: white;
 }
 
 .news {

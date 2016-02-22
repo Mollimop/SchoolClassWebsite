@@ -6,6 +6,7 @@ import freemarker.template.TemplateExceptionHandler;
 import io.github.tombom4.userManagement.Database;
 import io.github.tombom4.userManagement.Session;
 import io.github.tombom4.userManagement.User;
+import io.github.tombom4.webApp.forum.Thread;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -333,6 +334,104 @@ public class Main {
 
         });
 
+        get("/events", (req, res) -> {
+
+            try {
+
+                Template template = FREEMARKER_CONFIG.getTemplate("templates/events.ftl");
+
+                Map<String, Object> root = new HashMap<>(2);
+
+                initializeClasses();
+
+                List<Event> events = Event.getNextEvents();
+
+                root.put("events", events);
+                if (Objects.equals(req.params("param"), "malformed")) root.put("malformed", true);
+
+                User user = Session.checkSession(req);
+                if (user == null) {
+                    res.header("redirect", "events");
+                    res.redirect("/");
+                    return "";
+                }
+
+                StringWriter writer = new StringWriter();
+                root.put("user", user);
+                template.process(root, writer);
+                return writer;
+
+            } catch (Exception e) {
+
+                try {
+
+                    Template template = FREEMARKER_CONFIG.getTemplate("templates/error.ftl");
+
+                    String url = "/error?origin=Termine&path=/events";
+                    if (e.getMessage() != null)
+                        url = url + "&stacktrace=" + URLEncoder.encode(Arrays.toString(e.getStackTrace()), "UTF-8");
+
+                    res.redirect(url);
+
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+
+            }
+
+            return "An error occurred while loading events page. An error page could not be generated.";
+
+        });
+
+
+        get("/forum", (req, res) -> {
+            try {
+
+                Template template = FREEMARKER_CONFIG.getTemplate("templates/forum.ftl");
+
+                initializeClasses();
+
+                User user = Session.checkSession(req);
+                if (user == null) {
+                    res.header("redirect", "forum");
+                    res.redirect("/");
+                    return "";
+                }
+
+                Map<String, Object> root = new HashMap<>();
+//                root.put("threads", Thread.getNextThreads(0, 12));
+                root.put("user", user);
+                root.put("threads", Thread.getNextThreads());
+
+                StringWriter writer = new StringWriter();
+                template.process(root, writer);
+                return writer;
+
+            } catch (Exception e) {
+
+//                try {
+//
+//                    /*Template template = FREEMARKER_CONFIG.getTemplate("templates/error.ftl");
+//
+//                    String url = "/error?origin=Forum&path=/forum";
+//                    if (e.getMessage() != null && e.getMessage() != "")
+//                        url = url + "&stacktrace=" + URLEncoder.encode(Arrays.toString(e.getStackTrace()), "UTF-8");
+//
+//                    res.redirect(url);
+//
+                e.printStackTrace();
+                    return "";
+
+
+//                } catch (IOException e1) {
+//                    e1.printStackTrace();
+//                    return "";
+//                }
+//
+            }
+
+        });
+
     }
 
     private static void initializeClasses() {
@@ -347,6 +446,7 @@ public class Main {
         Session.init(db);
         User.init(db);
         Event.init(db);
+        Thread.init(db);
 
     }
 

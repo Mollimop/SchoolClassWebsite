@@ -28,6 +28,7 @@ public class Event {
      */
     private static Database db;
 
+
     /**
      * The unique identifier of the event (_id field in the database)
      */
