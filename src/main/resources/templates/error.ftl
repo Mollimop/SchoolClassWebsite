@@ -1,4 +1,4 @@
-<#-- @ftlvariable name="origin_path" type="java.lang.String" -->
+<#-- @ftlvariable name="path" type="java.lang.String" -->
 <#-- @ftlvariable name="origin" type="java.lang.String" -->
 <#-- @ftlvariable name="stacktrace" type="java.lang.String" -->
 <!Doctype html>
@@ -49,23 +49,29 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="navbar-index">
         <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Startseite <span class="sr-only">(current)</span></a></li>
-            <li><a href="events">Termine</a></li>
+            <li><a href="/">Startseite</a></li>
+            <li><a href="/events">Termine</a></li>
             <li><a href="#">Stundenplan</a></li>
             <li><a href="#">Hausaufgaben</a></li>
-            <li><a href="#">Links</a></li>
-            <li><a href="#">Kontakt</a></li>
-            <li><a href="#">Impressum</a></li>
+            <li><a href="/forum">Forum</a></li>
+            <li><a href="#">Tools</a></li>
         </ul>
     </div><!-- /.navbar-collapse -->
 </nav>
 
 <!-- main content -->
 <main id="content" class="container">
+
     <h1>Upps!</h1>
     <h2 style="text-align: left">Irgendwas ist schief gelaufen.</h2>
-    <a class="btn btn-default" href="${origin_path}">Zurück zu ${origin}</a>
+<#if path?? && origin??>
+    <a class="btn btn-default" href="${path}">Zurück zu ${origin}</a>
+<#else>
+    <a class="btn btn-default" href="/">Zurück zur Startseite</a>
+</#if>
     <br>
+
+<#if stacktrace??>
     <button class="btn btn-default" type="button" data-toggle="collapse" data-target="#stacktrace" aria-expanded="false"
             aria-controls="stacktrace">
         Details anzeigen (Bitte and Thomas, Sebastian oder Andi senden):
@@ -74,13 +80,14 @@
     <code class="collapse" id="stacktrace">
     ${stacktrace}
     </code>
+</#if>
+
 </main>
 
-<!-- Contains the three news elements -->
-<div class="container">
-    <div class="row">
+<!-- Contains the two news elements -->
+<div class="container news">
 
-        <div class="news col-xs-12 col-md-6">
+        <div class="col-xs-12 col-md-6">
             <hr>
             <h4>Wichtige Termine:</h4>
             <p>
@@ -90,7 +97,7 @@
             </p>
         </div>
 
-        <div class="news col-xs-12 col-md-6">
+        <div class="col-xs-12 col-md-6">
             <hr>
             <h4>Gymnasium Dorfen:</h4>
             <p>Adresse:&nbsp;<a
@@ -104,7 +111,6 @@
             <p>Zur Homepage:&nbsp;<a href="http://gymnasiumdorfen.de" target="_blank">gymnasiumdorfen.de</a></p>
         </div>
 
-    </div>
 </div>
 
 <footer class="container">
@@ -118,4 +124,3 @@
 
 </body>
 </html>
-

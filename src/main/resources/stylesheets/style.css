@@ -1,5 +1,5 @@
 body {
-    background: linear-gradient(to bottom, #0085cc 0%, #ccedff 70%) fixed;
+    background: linear-gradient(to bottom, #4BABDF 0%, #4BABDF 100%) fixed;
     text-align: left;
 }
 
@@ -47,10 +47,13 @@ nav {
 }
 
 nav a {
-    color: purple;
     font-family: 'Roboto Slab', serif;
     text-decoration: none;
     background: #d9a400 !important;
+}
+
+.welcome {
+    text-align: right;
 }
 
 main {
@@ -80,6 +83,29 @@ main h2 {
     color: black;
     font-size: 22px;
     font-family: 'Roboto Slab', serif;
+}
+
+.thread {
+    height: 250px;
+    text-align: center;
+    padding-top: 7px;
+}
+
+.thread:hover {
+    background: #009688;
+    color: white;
+}
+
+#answers-title {
+    text-align: left;
+}
+
+.answer-title {
+    font-weight: 700;
+}
+
+.answerer {
+    font-weight: 300;
 }
 
 .news {
@@ -132,6 +158,10 @@ main h2 {
 .date {
     color: black;
     font-weight: bold;
+}
+
+address {
+    font-family: 'Roboto Slab', serif;
 }
 
 footer {

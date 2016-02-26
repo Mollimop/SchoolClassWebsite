@@ -6,90 +6,124 @@ import freemarker.template.TemplateExceptionHandler;
 import io.github.tombom4.userManagement.Database;
 import io.github.tombom4.userManagement.Session;
 import io.github.tombom4.userManagement.User;
-
+import io.github.tombom4.webApp.forum.Thread;
+import io.github.tombom4.webApp.forum.Answer;
 import java.io.IOException;
 import java.io.StringWriter;
+import java.net.URLEncoder;
 import java.util.*;
-
+import org.bson.types.ObjectId;
 import static freemarker.template.Configuration.VERSION_2_3_23;
 import static spark.Spark.*;
 
 /**
- * @author Thomas
- * @version 1.0 09.01.16
- */
+* @author Thomas
+* @version 1.0 09.01.16
+*/
 public class Main {
 
     static Database db;
-    static final Configuration configuration = new Configuration(VERSION_2_3_23);
+    static final Configuration FREEMARKER_CONFIG = new Configuration(VERSION_2_3_23);
 
     public static void main(String[] args) {
 
         initializeClasses();
 
         // Initialize Freemarker configuration
-        configuration.setClassForTemplateLoading(Main.class, "/");
-        configuration.setDefaultEncoding("UTF-8");
-        configuration.setTemplateExceptionHandler(TemplateExceptionHandler.HTML_DEBUG_HANDLER);
+        FREEMARKER_CONFIG.setClassForTemplateLoading(Main.class, "/");
+        FREEMARKER_CONFIG.setDefaultEncoding("UTF-8");
+        FREEMARKER_CONFIG.setTemplateExceptionHandler(TemplateExceptionHandler.HTML_DEBUG_HANDLER);
 
+<<<<<<< HEAD
         port(80);
         externalStaticFileLocation("/var/www/public");
         get("/", (request, response) -> {
             if (Session.checkSession(request) != null) {
                 if (request.headers("redirect") != null)
                     response.redirect("/" + request.headers("redirect"));
+=======
+        staticFileLocation("/");
+        get("/", (req, res) -> {
+            if (Session.checkSession(req) != null) {
+                if (req.headers("redirect") != null)
+                res.redirect("/" + req.headers("redirect"));
+>>>>>>> refs/remotes/origin/master
                 else
-                    response.redirect("/index");
+                res.redirect("/index");
             }
             StringWriter writer = new StringWriter();
             try {
-                Template template = configuration.getTemplate("templates/login.ftl");
+                Template template = FREEMARKER_CONFIG.getTemplate("templates/login.ftl");
                 template.process(new HashMap<String, Object>(), writer);
             } catch (Exception e) {
-                e.printStackTrace();
-                halt(500);
+                try {
+
+                    Template template = FREEMARKER_CONFIG.getTemplate("templates/error.ftl");
+
+                    String url = "/error?origin=Anmelden&path=/";
+                    if (e.getMessage() != null)
+                    url = url + "&stacktrace=" + URLEncoder.encode(Arrays.toString(e.getStackTrace()), "UTF-8");
+
+                    res.redirect(url);
+
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
             }
             return writer;
         });
 
-        post("/login", (request, response) -> {
+        post("/login", (req, res) -> {
             try {
-                if (Session.checkSession(request) == null) {
-                    new Session(request.queryParams("usr"), request.queryParams("psw"), response);
+                if (Session.checkSession(req) == null) {
+                    new Session(req.queryParams("usr"), req.queryParams("psw"), res);
                 }
 
-                String redirect = request.headers("redirect");
+                String redirect = req.headers("redirect");
 
-                if (redirect != null) response.redirect("/" + redirect);
-                else response.redirect("/");
+                if (redirect != null) res.redirect("/" + redirect);
+                else res.redirect("/");
 
             } catch (IOException e) {
-                e.printStackTrace();
-                response.redirect("/");
+
+                try {
+
+                    Template template = FREEMARKER_CONFIG.getTemplate("templates/error.ftl");
+
+                    String url = "/error?origin=Anmeldung&path=/";
+                    if (e.getMessage() != null)
+                    url = url + "&stacktrace=" + URLEncoder.encode(Arrays.toString(e.getStackTrace()), "UTF-8");
+
+                    res.redirect(url);
+
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
             }
+
             return "login problem";
         });
 
 
         // Configure get requests for index
-        get("/index", (request, response) -> {
+        get("/index", (req, res) -> {
 
             try {
 
-                Template template = configuration.getTemplate("templates/index.ftl");
+                Template template = FREEMARKER_CONFIG.getTemplate("templates/index.ftl");
 
                 Map<String, Object> root = new HashMap<>();
 
-                String user = Session.checkSession(request);
+                User user = Session.checkSession(req);
 
                 if (user == null) {
-                    response.header("redirect", "events");
-                    response.redirect("/");
+                    res.header("redirect", "events");
+                    res.redirect("/");
                     return "";
                 }
 
                 StringWriter writer = new StringWriter();
-                root.put("username", user);
+                root.put("user", user);
                 template.process(root, writer);
                 return writer;
 
@@ -97,15 +131,13 @@ public class Main {
 
                 try {
 
-                    Template template = configuration.getTemplate("templates/error.ftl");
-                    StringWriter writer = new StringWriter();
-                    Map<String, Object> root = new HashMap<>(3);
-                    root.put("origin", "Startseite");
-                    root.put("origin_path", "/index");
-                    root.put("stacktrace", Arrays.toString(e.getStackTrace()));
+                    Template template = FREEMARKER_CONFIG.getTemplate("templates/error.ftl");
 
-                    template.process(root, writer);
-                    return writer;
+                    String url = "/error?origin=Startseite&path=/index";
+                    if (e.getMessage() != null)
+                    url = url + "&stacktrace=" + URLEncoder.encode(Arrays.toString(e.getStackTrace()), "UTF-8");
+
+                    res.redirect(url);
 
                 } catch (IOException e1) {
                     e1.printStackTrace();
@@ -117,34 +149,32 @@ public class Main {
 
         });
 
-        post("/events/add", (request, response) -> {
-            String user = Session.checkSession(request);
+        post("/events/add", (req, res) -> {
+            User user = Session.checkSession(req);
             if (user != null) {
 
                 try {
 
-                    String param = request.params("param");
+                    String param = req.params("param");
 
-                        new Event(parseDate(request.queryParams("date")),
-                                request.queryParams("description"), true);
+                    new Event(parseDate(req.queryParams("date")),
+                    req.queryParams("description"), true);
 
-                        response.redirect("/events");
+                    res.redirect("/events");
 
                 } catch (IllegalArgumentException e) {
-                    response.redirect("/events/malformed");
+                    res.redirect("/events/malformed");
                 } catch (Exception e) {
 
                     try {
 
-                        Template template = configuration.getTemplate("templates/error.ftl");
-                        StringWriter writer = new StringWriter();
-                        Map<String, Object> root = new HashMap<>(3);
-                        root.put("origin", "Termine");
-                        root.put("origin_path", "/events");
-                        root.put("stacktrace", e.getMessage() + "\n" + Arrays.toString(e.getStackTrace()));
+                        Template template = FREEMARKER_CONFIG.getTemplate("templates/error.ftl");
 
-                        template.process(root, writer);
-                        return writer;
+                        String url = "/error?origin=Termin+hinzufuegen&path=/events";
+                        if (e.getMessage() != null)
+                        url = url + "&stacktrace=" + URLEncoder.encode(Arrays.toString(e.getStackTrace()), "UTF-8");
+
+                        res.redirect(url);
 
                     } catch (IOException e1) {
                         e1.printStackTrace();
@@ -152,38 +182,36 @@ public class Main {
 
                 }
             } else {
-                response.redirect("/");
+                res.redirect("/");
             }
             return "An error occurred while adding an event. An error page could not be generated.";
         });
 
-        get("/events/remove/:id", (request, response) -> {
-            String user = Session.checkSession(request);
+        get("/events/remove/:id", (req, res) -> {
+            User user = Session.checkSession(req);
             if (user != null) {
 
                 try {
 
-                    String id = request.params("id");
+                    String id = req.params("id");
 
                     Event.removeEvent(id);
 
-                    response.redirect("/events");
+                    res.redirect("/events");
 
                 } catch (IllegalArgumentException e) {
-                    response.redirect("/events/malformed");
+                    res.redirect("/events/malformed");
                 } catch (Exception e) {
 
                     try {
 
-                        Template template = configuration.getTemplate("templates/error.ftl");
-                        StringWriter writer = new StringWriter();
-                        Map<String, Object> root = new HashMap<>(3);
-                        root.put("origin", "Termine");
-                        root.put("origin_path", "/events");
-                        root.put("stacktrace", e.getMessage() + ":\n" + Arrays.toString(e.getStackTrace()));
+                        Template template = FREEMARKER_CONFIG.getTemplate("templates/error.ftl");
 
-                        template.process(root, writer);
-                        return writer;
+                        String url = "/error?origin=Termin+entfernen&path=/events";
+                        if (e.getMessage() != null)
+                        url = url + "&stacktrace=" + URLEncoder.encode(Arrays.toString(e.getStackTrace()), "UTF-8");
+
+                        res.redirect(url);
 
                     } catch (IOException e1) {
                         e1.printStackTrace();
@@ -191,16 +219,16 @@ public class Main {
 
                 }
             } else {
-                response.redirect("/");
+                res.redirect("/");
             }
             return "An error occurred while adding an event. An error page could not be generated.";
         });
 
-        get("/events/malformed", (request, response) -> {
+        get("/events/malformed", (req, res) -> {
 
             try {
 
-                Template template = configuration.getTemplate("templates/events.ftl");
+                Template template = FREEMARKER_CONFIG.getTemplate("templates/events.ftl");
 
                 Map<String, Object> root = new HashMap<>(2);
 
@@ -208,21 +236,20 @@ public class Main {
 
                 List<Event> events = Event.getNextEvents();
 
-                System.out.println(events.size());
 
                 root.put("malformed", true);
                 root.put("events", events);
                 root.put("test", "testValue");
 
-                String user = Session.checkSession(request);
+                User user = Session.checkSession(req);
                 if (user == null) {
-                    response.header("redirect", "events");
-                    response.redirect("/");
+                    res.header("redirect", "events");
+                    res.redirect("/");
                     return "";
                 }
 
                 StringWriter writer = new StringWriter();
-                root.put("username", user);
+                root.put("user", user);
                 template.process(root, writer);
                 return writer;
 
@@ -230,17 +257,13 @@ public class Main {
 
                 try {
 
-                    Template template = configuration.getTemplate("templates/error.ftl");
+                    Template template = FREEMARKER_CONFIG.getTemplate("templates/error.ftl");
 
-                    Map<String, Object> root = new HashMap<>(3);
-                    root.put("origin", "Termine");
-                    root.put("origin_path", "/events");
-                    root.put("stacktrace", e.getMessage() + ":\n" + Arrays.toString(e.getStackTrace()));
+                    String url = "/error?origin=Termin+hinzufuegen&path=/events/malformed";
+                    if (e.getMessage() != null)
+                    url = url + "&stacktrace=" + URLEncoder.encode(Arrays.toString(e.getStackTrace()), "UTF-8");
 
-                    StringWriter writer = new StringWriter();
-
-                    template.process(root, writer);
-                    return writer;
+                    res.redirect(url);
 
                 } catch (IOException e1) {
                     e1.printStackTrace();
@@ -254,11 +277,11 @@ public class Main {
 
         // Configure get requests for events
 
-        get("/events", (request, response) -> {
+        get("/events", (req, res) -> {
 
             try {
 
-                Template template = configuration.getTemplate("templates/events.ftl");
+                Template template = FREEMARKER_CONFIG.getTemplate("templates/events.ftl");
 
                 Map<String, Object> root = new HashMap<>(2);
 
@@ -266,21 +289,18 @@ public class Main {
 
                 List<Event> events = Event.getNextEvents();
 
-                System.out.println(events.size());
-
                 root.put("events", events);
-                root.put("test", "testValue");
-                if (Objects.equals(request.params("param"), "malformed")) root.put("malformed", true);
+                if (Objects.equals(req.params("param"), "malformed")) root.put("malformed", true);
 
-                String user = Session.checkSession(request);
+                User user = Session.checkSession(req);
                 if (user == null) {
-                    response.header("redirect", "events");
-                    response.redirect("/");
+                    res.header("redirect", "events");
+                    res.redirect("/");
                     return "";
                 }
 
                 StringWriter writer = new StringWriter();
-                root.put("username", user);
+                root.put("user", user);
                 template.process(root, writer);
                 return writer;
 
@@ -288,17 +308,13 @@ public class Main {
 
                 try {
 
-                    Template template = configuration.getTemplate("templates/error.ftl");
+                    Template template = FREEMARKER_CONFIG.getTemplate("templates/error.ftl");
 
-                    Map<String, Object> root = new HashMap<>(3);
-                    root.put("origin", "Termine");
-                    root.put("origin_path", "/events");
-                    root.put("stacktrace", e.getMessage() + ":\n" + Arrays.toString(e.getStackTrace()));
+                    String url = "/error?origin=Termine&path=/events";
+                    if (e.getMessage() != null)
+                    url = url + "&stacktrace=" + URLEncoder.encode(Arrays.toString(e.getStackTrace()), "UTF-8");
 
-                    StringWriter writer = new StringWriter();
-
-                    template.process(root, writer);
-                    return writer;
+                    res.redirect(url);
 
                 } catch (IOException e1) {
                     e1.printStackTrace();
@@ -309,7 +325,228 @@ public class Main {
             return "An error occurred while loading events page. An error page could not be generated.";
 
         });
+
+        get("/error", (req, res) -> {
+
+            Template template = FREEMARKER_CONFIG.getTemplate("templates/error.ftl");
+
+            Map<String, Object> root = new HashMap<String, Object>(3);
+            root.put("origin", req.queryParams("origin"));
+            root.put("path", req.queryParams("path"));
+            root.put("stacktrace", req.queryParams("stacktrace"));
+
+            StringWriter writer = new StringWriter();
+
+            template.process(root, writer);
+            return writer;
+
+        });
+
+        get("/events", (req, res) -> {
+
+            try {
+
+                Template template = FREEMARKER_CONFIG.getTemplate("templates/events.ftl");
+
+                Map<String, Object> root = new HashMap<>(2);
+
+                initializeClasses();
+
+                List<Event> events = Event.getNextEvents();
+
+                root.put("events", events);
+                if (Objects.equals(req.params("param"), "malformed")) root.put("malformed", true);
+
+                User user = Session.checkSession(req);
+                if (user == null) {
+                    res.header("redirect", "events");
+                    res.redirect("/");
+                    return "";
+                }
+
+                StringWriter writer = new StringWriter();
+                root.put("user", user);
+                template.process(root, writer);
+                return writer;
+
+            } catch (Exception e) {
+
+                try {
+
+                    Template template = FREEMARKER_CONFIG.getTemplate("templates/error.ftl");
+
+                    String url = "/error?origin=Termine&path=/events";
+                    if (e.getMessage() != null)
+                    url = url + "&stacktrace=" + URLEncoder.encode(Arrays.toString(e.getStackTrace()), "UTF-8");
+
+                    res.redirect(url);
+
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+
+            }
+
+            return "An error occurred while loading events page. An error page could not be generated.";
+
+        });
+<<<<<<< HEAD
 		
+=======
+
+
+        get("/forum", (req, res) -> {
+            try {
+
+                Template template = FREEMARKER_CONFIG.getTemplate("templates/forum.ftl");
+
+                initializeClasses();
+
+                User user = Session.checkSession(req);
+                if (user == null) {
+                    res.header("redirect", "forum");
+                    res.redirect("/");
+                    return "";
+                }
+
+                Map<String, Object> root = new HashMap<>();
+                root.put("user", user);
+                root.put("threads", Thread.getNextThreads());
+
+                if (req.queryParams("malformed") != null && req.queryParams("malformed") == "true")
+                    root.put("malformed", true);
+
+                StringWriter writer = new StringWriter();
+                template.process(root, writer);
+                return writer;
+
+            } catch (Exception e) {
+
+                try {
+
+                    Template template = FREEMARKER_CONFIG.getTemplate("templates/error.ftl");
+
+                    String url = "/error?origin=Forum&path=/forum";
+                    if (e.getMessage() != null && e.getMessage() != "")
+                    url = url + "&stacktrace=" + URLEncoder.encode(Arrays.toString(e.getStackTrace()), "UTF-8");
+
+                    res.redirect(url);
+
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                    return "";
+                }
+
+            }
+            return "An error occurred while loading thread. Couldn't redirect "
+            + "to error page.";
+
+        });
+
+        get("/forum/:thread", (req, res) -> {
+
+            try {
+
+                Template template = FREEMARKER_CONFIG.getTemplate("templates/thread.ftl");
+
+                initializeClasses();
+
+                User user = Session.checkSession(req);
+
+                if (user == null) {
+                    res.header("redirect", "forum");
+                    res.redirect("/");
+                    return null;
+                }
+
+                Map<String, Object> root = new HashMap<>(2);
+                root.put("user", user);
+                root.put("thread", new Thread(req.params("thread")));
+
+                StringWriter writer = new StringWriter();
+                template.process(root, writer);
+                return writer;
+
+            } catch(Exception e) {
+                try {
+
+                    Template template = FREEMARKER_CONFIG.getTemplate("templates/error.ftl");
+
+                    String url = "/error?origin=Forum&path=/forum";
+                    if (e.getMessage() != null && e.getMessage() != "");
+                    url = url + "&stacktrace=" + URLEncoder.encode(Arrays.toString(e.getStackTrace()), "UTF-8");
+                    e.printStackTrace();
+
+                    res.redirect(url);
+
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                    return "";
+                }
+
+            }
+
+            return "An error occurred while loading thread. Couldn't redirect "
+            + "to error page.";
+
+        });
+
+        post("/forum/add", (req, res) -> {
+
+            try {
+                User user = Session.checkSession(req);
+                if (user == null) {
+                    res.header("redirect", "forum");
+                    res.redirect("/");
+                    return null;
+                }
+
+                String title    = req.queryParams("title");
+                String body     = req.queryParams("body");
+
+                Thread thread = new Thread(title, "", body, user, new User[1],
+                    new ArrayList<Answer>(), true, true);
+
+                res.redirect("/forum");
+
+                return "";
+
+            } catch(Exception e) {
+                res.redirect("/forum?malformed=true");
+                e.printStackTrace();
+            }
+
+            return "";
+        });
+
+        post("/forum/:thread/answer", (req, res) -> {
+            String id = req.params("thread");
+
+            try {
+                User user = Session.checkSession(req);
+                if (user == null) {
+                    res.header("redirect", "forum");
+                    res.redirect("/");
+                    return null;
+                }
+
+                String title    = req.queryParams("title");
+                String body     = req.queryParams("body");
+
+                Thread thread = new Thread(id);
+                thread.addAnswer(new Answer(title, user, body, 0));
+
+                res.redirect("/forum/" + id);
+
+            } catch(Exception e) {
+                res.redirect("/forum/" + id + "?malformed=true");
+                e.printStackTrace();
+            }
+
+            return "";
+        });
+
+>>>>>>> refs/remotes/origin/master
     }
 
     private static void initializeClasses() {
@@ -324,6 +561,7 @@ public class Main {
         Session.init(db);
         User.init(db);
         Event.init(db);
+        Thread.init(db);
 
     }
 

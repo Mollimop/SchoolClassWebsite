@@ -20,9 +20,8 @@ public class Database {
 
     private MongoClientURI mongoClientURI;
     private Properties properties;
-    private MongoCollection<Document> users;
-    private MongoCollection<Document> sessions;
-    private MongoCollection<Document> events;
+
+    private MongoCollection<Document> users, sessions, events, threads;
 
     /**
      * Gets the users collection
@@ -53,6 +52,15 @@ public class Database {
     }
 
     /**
+     * Gets the threads collection
+     *
+     * @return the threads collection
+     */
+    public MongoCollection<Document> getThreads() {
+        return threads;
+    }
+
+    /**
      * Initializes the database
      *
      * @throws IOException if the config.properties file is missing or not filled in completely
@@ -75,6 +83,7 @@ public class Database {
         users = db.getCollection("users", Document.class);
         sessions = db.getCollection("sessions", Document.class);
         events = db.getCollection("events", Document.class);
+        threads = db.getCollection("threads", Document.class);
     }
 
     public boolean checkCredentials(String user, String psw) {
@@ -86,6 +95,4 @@ public class Database {
         }
         return false;
     }
-
 }
-

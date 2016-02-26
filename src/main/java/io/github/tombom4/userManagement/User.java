@@ -4,6 +4,8 @@ import com.mongodb.client.MongoCollection;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 
+import java.util.ArrayList;
+
 /**
  * User class, an implementation of a user of the website
  *
@@ -60,16 +62,18 @@ public class User {
      *
      * @param usr the username (represented as _id in the database) of the user
      */
-    public User(String usr) {
-        MongoCollection<Document> coll = db.getUsers();
+    public User(String usr) throws NullPointerException {
 
-        Bson filter = new Document("_id", usr);
-        Document doc = coll.find(filter).first();
+            MongoCollection<Document> coll = db.getUsers();
 
-        String mail = doc.getString("name");
-        Password password = Password.byEncryptedPassword(doc.getString("password"));
-        String displayName = doc.getString("display_name");
-        String type = doc.getString("type");
+            Bson filter = new Document("_id", usr);
+            Document doc = coll.find(filter).first();
+
+            this.name = usr;
+            this.password = Password.byEncryptedPassword(doc.getString("password"));
+            this.displayName = doc.getString("display_name");
+            this.type = doc.getString("type");
+
     }
 
     public static void init(Database db) {
@@ -93,6 +97,7 @@ public class User {
     }
 
     public String getName() {
+        System.out.println(name);
         return name;
     }
 
@@ -110,5 +115,27 @@ public class User {
 
     public String getDisplayName() {
         return displayName;
+    }
+
+    public static ArrayList<String> toStringArrayList(User[] users) {
+
+        ArrayList<String> strings = new ArrayList<>(users.length);
+
+        for (int i = 0; i < strings.size(); i++) {
+            strings.set(i, users[i].toString());
+        }
+
+        return strings;
+
+    }
+
+    public static User[] toUserArray(ArrayList<String> strings) {
+        User[] users = new User[strings.size()];
+
+        for (int i = 0; i < strings.size(); i++) {
+            users[i] = new User(strings.get(i));
+        }
+
+        return users;
     }
 }

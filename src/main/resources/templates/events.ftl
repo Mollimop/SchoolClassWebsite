@@ -36,7 +36,8 @@
 <nav class="navbar-default container">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-index"
+        <button type="button" class="navbar-toggle collapsed"
+        data-toggle="collapse" data-target="#navbar-index"
                 aria-expanded="false">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
@@ -50,12 +51,15 @@
     <div class="collapse navbar-collapse" id="navbar-index">
         <ul class="nav navbar-nav">
             <li><a href="/">Startseite</a></li>
-            <li class="active"><a href="#">Termine <span class="sr-only">(current)</span></a></li>
+            <li class="active"><a href="#">Termine
+                <span class="sr-only">(current)</span></a></li>
             <li><a href="#">Stundenplan</a></li>
             <li><a href="#">Hausaufgaben</a></li>
-            <li><a href="#">Links</a></li>
-            <li><a href="#">Kontakt</a></li>
-            <li><a href="#">Impressum</a></li>
+            <li><a href="/forum">Forum</a></li>
+            <li><a href="#">Tools</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="welcome"><a>Willkommen, ${user["displayName"]}</a></li>
         </ul>
     </div><!-- /.navbar-collapse -->
 </nav>
@@ -72,7 +76,7 @@
 
 <#if malformed??>
     <#if malformed == true>
-        <p class="error">Termin konnte aufgrund falscher Formatierung nicht hinzugefügt werden. Vertippt?</p>
+        <p class="error">Termin konnte aufgrund falscher Formatierung nicht hinzugefügt werden. Vertippt?</p><br>
     </#if>
 </#if>
 
@@ -147,4 +151,3 @@
 
 </body>
 </html>
-
