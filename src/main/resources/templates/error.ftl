@@ -50,12 +50,11 @@
     <div class="collapse navbar-collapse" id="navbar-index">
         <ul class="nav navbar-nav">
             <li><a href="/">Startseite</a></li>
-            <li><a href="events">Termine</a></li>
+            <li><a href="/events">Termine</a></li>
             <li><a href="#">Stundenplan</a></li>
             <li><a href="#">Hausaufgaben</a></li>
-            <li><a href="#">Links</a></li>
-            <li><a href="#">Kontakt</a></li>
-            <li><a href="#">Impressum</a></li>
+            <li><a href="/forum">Forum</a></li>
+            <li><a href="#">Tools</a></li>
         </ul>
     </div><!-- /.navbar-collapse -->
 </nav>
@@ -125,4 +124,3 @@
 
 </body>
 </html>
-

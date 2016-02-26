@@ -9,32 +9,32 @@
     <title>Klassenwebsite - GyDo9C</title>
     <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab|Open+Sans+Condensed:300|Teko|Khand' rel='stylesheet'
-          type='text/css'>
+    type='text/css'>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-          crossorigin="anonymous">
+    crossorigin="anonymous">
 
     <!-- Bootstrap; jQuery and MathJax JavaScript libraries -->
     <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" crossorigin="anonymous"></script>
 </head>
 <body>
-<!-- Container for header and nav bar -->
-<div class="container">
+    <!-- Container for header and nav bar -->
+    <div class="container">
 
-    <!-- Header -->
-    <header class="row">
-        <h1 class="col-xs-12">Klassenwebsite</h1>
-    </header>
+        <!-- Header -->
+        <header class="row">
+            <h1 class="col-xs-12">Klassenwebsite</h1>
+        </header>
 
-</div>
+    </div>
 
-<nav class="navbar-default container">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-index"
-                aria-expanded="false">
+    <nav class="navbar-default container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-index"
+            aria-expanded="false">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -46,11 +46,12 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="navbar-index">
         <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Startseite <span class="sr-only">(current)</span></a></li>
+            <li><a href="/">Startseite</a></li>
             <li><a href="/events">Termine</a></li>
             <li><a href="#">Stundenplan</a></li>
             <li><a href="#">Hausaufgaben</a></li>
-            <li><a href="#">Links</a></li>
+            <li class="active"><a href="#">Forum
+                <span class="sr-only">(current)</span></a></li>
             <li><a href="#">Tools</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
@@ -65,24 +66,37 @@
         --- Bitte denkt an das Geld f&uuml;r die Hefte (13,20 &euro;)
     </marquee>
 
-    <h1>Threads</h1>
+    <h1>Forum</h1>
 
     <div class="row">
-    <#if threads??>
+        <#if threads??>
         <#list threads as thread>
-            <div class="thread col-xs-12 col-md-6 col-lg-4">
-                    ${thread["title"]}                      <br><hr>
-                    von ${thread["questionerDisplayName"]}  <br><hr>
-                    ${thread["numberOfAnswers"]} Antwort(en)<br><hr>
-                    <#if thread.isOpen()>
-                        offen
-                    <#else>
-                        geschlossen
-                    </#if>
-            </div>
+        <a class="thread col-xs-12 col-md-6 col-lg-4" href="/forum/${thread["id"]}">
+            <br>
+            ${thread["title"]}                      <br><hr>
+            von ${thread["questionerDisplayName"]}  <br><hr>
+            ${thread["numberOfAnswers"]} Antwort(en)<br><hr>
+            <#if thread.open == true>
+            offen
+            <#else>
+            geschlossen
+            </#if>
+        </a>
         </#list>
-    </#if>
+        </#if>
     </div>
+
+    <h3>Threads hinzufügen</h3>
+    <form action="/forum/add" method="post">
+        Titel<br>
+        <input type="text" name="title"><br>
+        Gib eine Frage, deine Meinung oder was auch immer ein :)<br>
+        <textarea name="body" id="thread-body-input" cols="30" rows="10"></textarea>
+        <br>
+        <button class="btn btn-default" type="submit" name="submit">
+            <span class="glyphicon glyphicon-plus"></span> Absenden
+        </button>
+    </form>
 
 </main>
 
@@ -104,14 +118,14 @@
         <address>
             <strong>Gymnasium Dorfen</strong><br>
             Adresse:&nbsp;<a
-                href="https://www.google.de/maps/place/Gymnasium+Dorfen/data=!4m2!3m1!1s0x0:0xcbeefa7a7d451fa3?sa=X&ved=0CDYQrwswA2oVChMIudmngfqjyAIVp8ByCh3M-wRy"
-                target="_blank">Josef-Martin-Bauer-Str.18, 84405 Dorfen</a><br>
+            href="https://www.google.de/maps/place/Gymnasium+Dorfen/data=!4m2!3m1!1s0x0:0xcbeefa7a7d451fa3?sa=X&ved=0CDYQrwswA2oVChMIudmngfqjyAIVp8ByCh3M-wRy"
+            target="_blank">Josef-Martin-Bauer-Str.18, 84405 Dorfen</a><br>
 
             Tel.: 08081 9572-0<br>
             Fax: 08081 9572-299<br>
 
             E-Mail:&nbsp;<a href="mailto:sekretariat@gymnasiumdorfen.de"
-                            target="_blank">sekretariat@gymnasiumdorfen.de</a><br>
+            target="_blank">sekretariat@gymnasiumdorfen.de</a><br>
 
             Zur Homepage:&nbsp;<a href="http://gymnasiumdorfen.de" target="_blank">gymnasiumdorfen.de</a><br>
         </address>
@@ -124,9 +138,9 @@
         <p class="col-xs-4">Text: CC-BY Mollimop Organisation.</p>
         <p class="col-xs-4">Developed by Andi, Thomas and Vogte in Germany</p>
         <p class="col-xs-4">Source code available at <a
-                href="https://github.com/tombom4/schoolclasswebsite">Github.com</a></p>
-    </div>
-</footer>
+            href="https://github.com/tombom4/schoolclasswebsite">Github.com</a></p>
+        </div>
+    </footer>
 
 </body>
 </html>
