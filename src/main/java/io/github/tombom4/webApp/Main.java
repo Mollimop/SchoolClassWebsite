@@ -34,22 +34,14 @@ public class Main {
         FREEMARKER_CONFIG.setDefaultEncoding("UTF-8");
         FREEMARKER_CONFIG.setTemplateExceptionHandler(TemplateExceptionHandler.HTML_DEBUG_HANDLER);
 
-<<<<<<< HEAD
         port(80);
         externalStaticFileLocation("/var/www/public");
-        get("/", (request, response) -> {
-            if (Session.checkSession(request) != null) {
-                if (request.headers("redirect") != null)
-                    response.redirect("/" + request.headers("redirect"));
-=======
-        staticFileLocation("/");
         get("/", (req, res) -> {
             if (Session.checkSession(req) != null) {
                 if (req.headers("redirect") != null)
-                res.redirect("/" + req.headers("redirect"));
->>>>>>> refs/remotes/origin/master
+                    res.redirect("/" + req.headers("redirect"));
                 else
-                res.redirect("/index");
+                    res.redirect("/index");
             }
             StringWriter writer = new StringWriter();
             try {
@@ -390,10 +382,6 @@ public class Main {
             return "An error occurred while loading events page. An error page could not be generated.";
 
         });
-<<<<<<< HEAD
-		
-=======
-
 
         get("/forum", (req, res) -> {
             try {
@@ -545,8 +533,7 @@ public class Main {
 
             return "";
         });
-
->>>>>>> refs/remotes/origin/master
+        
     }
 
     private static void initializeClasses() {
