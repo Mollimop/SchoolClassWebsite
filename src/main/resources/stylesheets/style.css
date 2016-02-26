@@ -86,16 +86,26 @@ main h2 {
 }
 
 .thread {
-/*    border: 1px solid;*/
     height: 250px;
-    padding-left: 7px;
-    padding-right: 7px;
     text-align: center;
     padding-top: 7px;
 }
+
 .thread:hover {
     background: #009688;
     color: white;
+}
+
+#answers-title {
+    text-align: left;
+}
+
+.answer-title {
+    font-weight: 700;
+}
+
+.answerer {
+    font-weight: 300;
 }
 
 .news {

@@ -7,19 +7,19 @@ import io.github.tombom4.userManagement.Database;
 import io.github.tombom4.userManagement.Session;
 import io.github.tombom4.userManagement.User;
 import io.github.tombom4.webApp.forum.Thread;
-
+import io.github.tombom4.webApp.forum.Answer;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.net.URLEncoder;
 import java.util.*;
-
+import org.bson.types.ObjectId;
 import static freemarker.template.Configuration.VERSION_2_3_23;
 import static spark.Spark.*;
 
 /**
- * @author Thomas
- * @version 1.0 09.01.16
- */
+* @author Thomas
+* @version 1.0 09.01.16
+*/
 public class Main {
 
     static Database db;
@@ -38,9 +38,9 @@ public class Main {
         get("/", (req, res) -> {
             if (Session.checkSession(req) != null) {
                 if (req.headers("redirect") != null)
-                    res.redirect("/" + req.headers("redirect"));
+                res.redirect("/" + req.headers("redirect"));
                 else
-                    res.redirect("/index");
+                res.redirect("/index");
             }
             StringWriter writer = new StringWriter();
             try {
@@ -53,7 +53,7 @@ public class Main {
 
                     String url = "/error?origin=Anmelden&path=/";
                     if (e.getMessage() != null)
-                        url = url + "&stacktrace=" + URLEncoder.encode(Arrays.toString(e.getStackTrace()), "UTF-8");
+                    url = url + "&stacktrace=" + URLEncoder.encode(Arrays.toString(e.getStackTrace()), "UTF-8");
 
                     res.redirect(url);
 
@@ -83,7 +83,7 @@ public class Main {
 
                     String url = "/error?origin=Anmeldung&path=/";
                     if (e.getMessage() != null)
-                        url = url + "&stacktrace=" + URLEncoder.encode(Arrays.toString(e.getStackTrace()), "UTF-8");
+                    url = url + "&stacktrace=" + URLEncoder.encode(Arrays.toString(e.getStackTrace()), "UTF-8");
 
                     res.redirect(url);
 
@@ -115,7 +115,6 @@ public class Main {
 
                 StringWriter writer = new StringWriter();
                 root.put("user", user);
-                System.out.println();
                 template.process(root, writer);
                 return writer;
 
@@ -127,7 +126,7 @@ public class Main {
 
                     String url = "/error?origin=Startseite&path=/index";
                     if (e.getMessage() != null)
-                        url = url + "&stacktrace=" + URLEncoder.encode(Arrays.toString(e.getStackTrace()), "UTF-8");
+                    url = url + "&stacktrace=" + URLEncoder.encode(Arrays.toString(e.getStackTrace()), "UTF-8");
 
                     res.redirect(url);
 
@@ -150,7 +149,7 @@ public class Main {
                     String param = req.params("param");
 
                     new Event(parseDate(req.queryParams("date")),
-                            req.queryParams("description"), true);
+                    req.queryParams("description"), true);
 
                     res.redirect("/events");
 
@@ -164,7 +163,7 @@ public class Main {
 
                         String url = "/error?origin=Termin+hinzufuegen&path=/events";
                         if (e.getMessage() != null)
-                            url = url + "&stacktrace=" + URLEncoder.encode(Arrays.toString(e.getStackTrace()), "UTF-8");
+                        url = url + "&stacktrace=" + URLEncoder.encode(Arrays.toString(e.getStackTrace()), "UTF-8");
 
                         res.redirect(url);
 
@@ -201,7 +200,7 @@ public class Main {
 
                         String url = "/error?origin=Termin+entfernen&path=/events";
                         if (e.getMessage() != null)
-                            url = url + "&stacktrace=" + URLEncoder.encode(Arrays.toString(e.getStackTrace()), "UTF-8");
+                        url = url + "&stacktrace=" + URLEncoder.encode(Arrays.toString(e.getStackTrace()), "UTF-8");
 
                         res.redirect(url);
 
@@ -253,7 +252,7 @@ public class Main {
 
                     String url = "/error?origin=Termin+hinzufuegen&path=/events/malformed";
                     if (e.getMessage() != null)
-                        url = url + "&stacktrace=" + URLEncoder.encode(Arrays.toString(e.getStackTrace()), "UTF-8");
+                    url = url + "&stacktrace=" + URLEncoder.encode(Arrays.toString(e.getStackTrace()), "UTF-8");
 
                     res.redirect(url);
 
@@ -304,7 +303,7 @@ public class Main {
 
                     String url = "/error?origin=Termine&path=/events";
                     if (e.getMessage() != null)
-                        url = url + "&stacktrace=" + URLEncoder.encode(Arrays.toString(e.getStackTrace()), "UTF-8");
+                    url = url + "&stacktrace=" + URLEncoder.encode(Arrays.toString(e.getStackTrace()), "UTF-8");
 
                     res.redirect(url);
 
@@ -369,7 +368,7 @@ public class Main {
 
                     String url = "/error?origin=Termine&path=/events";
                     if (e.getMessage() != null)
-                        url = url + "&stacktrace=" + URLEncoder.encode(Arrays.toString(e.getStackTrace()), "UTF-8");
+                    url = url + "&stacktrace=" + URLEncoder.encode(Arrays.toString(e.getStackTrace()), "UTF-8");
 
                     res.redirect(url);
 
@@ -399,9 +398,11 @@ public class Main {
                 }
 
                 Map<String, Object> root = new HashMap<>();
-//                root.put("threads", Thread.getNextThreads(0, 12));
                 root.put("user", user);
                 root.put("threads", Thread.getNextThreads());
+
+                if (req.queryParams("malformed") != null && req.queryParams("malformed") == "true")
+                    root.put("malformed", true);
 
                 StringWriter writer = new StringWriter();
                 template.process(root, writer);
@@ -409,27 +410,100 @@ public class Main {
 
             } catch (Exception e) {
 
-//                try {
-//
-//                    /*Template template = FREEMARKER_CONFIG.getTemplate("templates/error.ftl");
-//
-//                    String url = "/error?origin=Forum&path=/forum";
-//                    if (e.getMessage() != null && e.getMessage() != "")
-//                        url = url + "&stacktrace=" + URLEncoder.encode(Arrays.toString(e.getStackTrace()), "UTF-8");
-//
-//                    res.redirect(url);
-//
-                e.printStackTrace();
+                try {
+
+                    Template template = FREEMARKER_CONFIG.getTemplate("templates/error.ftl");
+
+                    String url = "/error?origin=Forum&path=/forum";
+                    if (e.getMessage() != null && e.getMessage() != "")
+                    url = url + "&stacktrace=" + URLEncoder.encode(Arrays.toString(e.getStackTrace()), "UTF-8");
+
+                    res.redirect(url);
+
+                } catch (IOException e1) {
+                    e1.printStackTrace();
                     return "";
+                }
 
+            }
+            return "An error occurred while loading thread. Couldn't redirect "
+            + "to error page.";
 
-//                } catch (IOException e1) {
-//                    e1.printStackTrace();
-//                    return "";
-//                }
-//
+        });
+
+        get("/forum/:thread", (req, res) -> {
+
+            try {
+
+                Template template = FREEMARKER_CONFIG.getTemplate("templates/thread.ftl");
+
+                initializeClasses();
+
+                User user = Session.checkSession(req);
+
+                if (user == null) {
+                    res.header("redirect", "forum");
+                    res.redirect("/");
+                    return null;
+                }
+
+                Map<String, Object> root = new HashMap<>(2);
+                root.put("user", user);
+                root.put("thread", new Thread(req.params("thread")));
+
+                StringWriter writer = new StringWriter();
+                template.process(root, writer);
+                return writer;
+
+            } catch(Exception e) {
+                try {
+
+                    Template template = FREEMARKER_CONFIG.getTemplate("templates/error.ftl");
+
+                    String url = "/error?origin=Forum&path=/forum";
+                    if (e.getMessage() != null && e.getMessage() != "");
+                    url = url + "&stacktrace=" + URLEncoder.encode(Arrays.toString(e.getStackTrace()), "UTF-8");
+                    e.printStackTrace();
+
+                    res.redirect(url);
+
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                    return "";
+                }
+
             }
 
+            return "An error occurred while loading thread. Couldn't redirect "
+            + "to error page.";
+
+        });
+
+        post("/forum/:thread/answer", (req, res) -> {
+
+            try {
+                User user = Session.checkSession(req);
+                if (user == null) {
+                    res.header("redirect", "forum");
+                    res.redirect("/");
+                    return null;
+                }
+
+                String id       = req.params("thread");
+                String title    = req.queryParams("title");
+                String body     = req.queryParams("body");
+
+                Thread thread = new Thread(id);
+                thread.addAnswer(new Answer(title, user, body, 0));
+
+                res.redirect("/forum/" + id);
+
+            } catch(Exception e) {
+                res.redirect("/forum?malformed=true");
+                e.printStackTrace();
+            }
+
+            return "";
         });
 
     }

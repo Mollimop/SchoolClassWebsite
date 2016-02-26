@@ -109,3 +109,6 @@ buildNumber.properties
 Buildfile
 Procfile
 *.MF
+deploy.bat
+src/test/java/PasswordEncryptingTest.java
+src/test/java/EventTest.java

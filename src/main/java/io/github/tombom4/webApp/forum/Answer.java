@@ -20,7 +20,7 @@ public class Answer {
         this.answerer = answerer;
         this.likes = likes;
     }
-    
+
     public Answer(String title, User answerer, String body){
         this(title, answerer, body, 0);
     }
@@ -45,6 +45,10 @@ public class Answer {
         return  answerer;
     }
 
+    public String getAnswererDisplayName() {
+        return answerer.getDisplayName();
+    }
+
     public String getBody(){
         return body;
     }
@@ -61,35 +65,31 @@ public class Answer {
                 .append("likes", likes);
     }
 
-    public static ArrayList<Document> toDocumentArrayList(Answer[] answers) {
+    public static ArrayList<Document> toDocumentArrayList(ArrayList<Answer> answers) {
 
-        ArrayList<Document> documents = new ArrayList<>(answers.length);
+        ArrayList<Document> documents = new ArrayList<>(answers.size());
         for (int i = 0; i < documents.size(); i++) {
-            documents.set(i, answers[i].toDocument());
+            documents.set(i, answers.get(i).toDocument());
         }
 
         return documents;
     }
 
-    public static Answer[] toAnswerArray(ArrayList<Document> documents) {
-        Answer[] answers = new Answer[documents.size()];
+    public static ArrayList<Answer> toAnswerArrayList(ArrayList<Document> documents) {
+        ArrayList<Answer> answers = new ArrayList<>(documents.size());
 
-        for (int i = 0; i < documents.size(); i++) {
-
+        documents.forEach( doc -> {
             int likes;
             String title, body;
             User answerer;
 
-            Document document = documents.get(i);
+            title = doc.getString("title");
+            answerer = new User(doc.getString("answerer"));
+            body = doc.getString("body");
+            likes = doc.getInteger("likes");
 
-            title = document.getString("title");
-            answerer = new User(document.getString("answerer"));
-            body = document.getString("body");
-            likes = document.getInteger("likes");
-
-            answers[i] = new Answer(title, answerer, body, likes);
-
-        }
+            answers.add(new Answer(title, answerer, body, likes));
+        });
 
         return answers;
     }
