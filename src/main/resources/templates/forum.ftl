@@ -66,7 +66,7 @@
         --- Bitte denkt an das Geld f&uuml;r die Hefte (13,20 &euro;)
     </marquee>
 
-    <h1>Threads</h1>
+    <h1>Forum</h1>
 
     <div class="row">
         <#if threads??>
@@ -85,6 +85,18 @@
         </#list>
         </#if>
     </div>
+
+    <h3>Threads hinzufügen</h3>
+    <form action="/forum/add" method="post">
+        Titel<br>
+        <input type="text" name="title"><br>
+        Gib eine Frage, deine Meinung oder was auch immer ein :)<br>
+        <textarea name="body" id="thread-body-input" cols="30" rows="10"></textarea>
+        <br>
+        <button class="btn btn-default" type="submit" name="submit">
+            <span class="glyphicon glyphicon-plus"></span> Absenden
+        </button>
+    </form>
 
 </main>
 

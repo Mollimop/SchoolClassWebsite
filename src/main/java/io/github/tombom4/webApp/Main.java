@@ -479,7 +479,7 @@ public class Main {
 
         });
 
-        post("/forum/:thread/answer", (req, res) -> {
+        post("/forum/add", (req, res) -> {
 
             try {
                 User user = Session.checkSession(req);
@@ -489,7 +489,35 @@ public class Main {
                     return null;
                 }
 
-                String id       = req.params("thread");
+                String title    = req.queryParams("title");
+                String body     = req.queryParams("body");
+
+                Thread thread = new Thread(title, "", body, user, new User[1],
+                    new ArrayList<Answer>(), true, true);
+
+                res.redirect("/forum");
+
+                return "";
+
+            } catch(Exception e) {
+                res.redirect("/forum?malformed=true");
+                e.printStackTrace();
+            }
+
+            return "";
+        });
+
+        post("/forum/:thread/answer", (req, res) -> {
+            String id = req.params("thread");
+
+            try {
+                User user = Session.checkSession(req);
+                if (user == null) {
+                    res.header("redirect", "forum");
+                    res.redirect("/");
+                    return null;
+                }
+
                 String title    = req.queryParams("title");
                 String body     = req.queryParams("body");
 
@@ -499,7 +527,7 @@ public class Main {
                 res.redirect("/forum/" + id);
 
             } catch(Exception e) {
-                res.redirect("/forum?malformed=true");
+                res.redirect("/forum/" + id + "?malformed=true");
                 e.printStackTrace();
             }
 

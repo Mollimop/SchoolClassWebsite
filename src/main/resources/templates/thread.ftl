@@ -50,7 +50,7 @@
             <li><a href="/events">Termine</a></li>
             <li><a href="#">Stundenplan</a></li>
             <li><a href="#">Hausaufgaben</a></li>
-            <li><a href="#">Forum</a></li>
+            <li><a href="/forum">Forum</a></li>
             <li><a href="#">Tools</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
