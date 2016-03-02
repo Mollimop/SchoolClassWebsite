@@ -1,0 +1,186 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  text-align: center;
+  width: 100%;
+  background: #263238;
+  color: white;
+}
+
+#website{
+  width: 100%;
+  font-family: Tahoma, Geneva, sans-serif;
+}
+
+#nav div{
+  font-size: 900%;
+  color: white;
+  width: 70%;
+}
+
+#nav{
+  padding-bottom: 0.3%;
+  padding-top: 0.3%;
+  width: 10%;
+  float: left;
+  position: fixed;
+  text-align: left;
+  height: 100%;
+  font-size: 70%;
+  text-shadow: 0 0 3px #FF0000;
+}
+
+#content{
+  white-space: pre-line;
+  width: 90%;
+  float: right;
+}
+
+.contentDiv{
+  width: 99%;
+  background: #263238;
+  color: #263238;
+  text-align: left;
+  padding: 1%;
+  margin-left: 0.5%;
+  font-size: 120%;
+}
+
+.contentDiv .divHeading{
+  text-shadow: 0 0 3px #FF0000;
+}
+
+.contentDiv form{
+  visibility: hidden;
+}
+
+.contentDiv .divText{
+  visibility: hidden;
+}
+
+.contentDiv:hover{
+  background: white !important;
+}
+
+.contentDiv:hover .divText{
+  visibility: visible;
+}
+
+.contentDiv:hover form{
+  visibility: visible;
+}
+
+.divHeading{
+  visibility: visible;
+  color: white;
+}
+
+.contentDiv:hover div{
+  color: #263238;
+}
+
+form{
+  white-space: normal;
+}
+
+
+button{
+  -moz-box-shadow: 0 0 0 2px #9fb4f2;
+	-webkit-box-shadow: 0 0 0 2px #9fb4f2;
+	box-shadow: 0 0 0 2px #9fb4f2;
+	background-color: transparent;
+	border: 1px solid #4e6096;
+	display: inline-block;
+	cursor: pointer;
+	color: #000000;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 19px;
+	padding: 6px 15px;
+	text-decoration:none;
+	text-shadow: 0 1px 0 #283966;
+}
+
+#green:hover{
+  color: white;
+  background: #00b0a2;
+}
+
+#blue:hover{
+  color: white;
+  background: #03A9F4;
+}
+
+#orange:hover{
+  color: white;
+  background: #FF9800;
+}
+
+#yellow:hover{
+  color: black;
+  background: #FFEB3B;
+}
+
+#red:hover{
+  color: white;
+  background: #F44336;
+}
+
+#indigo:hover{
+  color: white;
+  background: #3F51B5;
+}
+
+#greenA:hover{
+  color: white;
+  background: #00897B;
+}
+
+#blueA:hover{
+  color: white;
+  background: #039BE5;
+}
+
+#orangeA:hover{
+  color: white;
+  background: #FB8C00;
+}
+
+#yellowA:hover{
+  color: black;
+  background: #FDD835;
+}
+
+#redA:hover{
+  color: white;
+  background: #E53935;
+}
+
+#indigoA:hover{
+  color: white;
+  background: #3949AB;
+}
+
+#footer{
+  width: 100%;
+  clear: both;
+  font-size: 75%;
+}
+
+#nav a{
+  color: white;
+  font-size: 160%;
+  padding: 2%;
+  margin: 1.5%;
+}
+
+#nav a:hover{
+  color: #263238;
+  background: white;
+}
+
+.inactive:hover{
+
+}
