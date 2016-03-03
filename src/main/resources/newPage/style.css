@@ -39,10 +39,13 @@ body{
   float: right;
 }
 
+a{
+    color: white;
+}
+
 .contentDiv{
   width: 99%;
   background: #263238;
-  color: #263238;
   text-align: left;
   padding: 1%;
   margin-left: 0.5%;
@@ -73,13 +76,37 @@ body{
   visibility: visible;
 }
 
+.contentDiv:target{
+    background: white !important;
+}
+
+.contentDiv:target .divText{
+    visibility: visible;
+}
+
+.contentDiv:target form{
+    visibility: visible;
+}
+
 .divHeading{
   visibility: visible;
   color: white;
 }
 
 .contentDiv:hover div{
-  color: #263238;
+  color: #263238 !important;
+}
+
+.contentDiv:target div{
+    color: #263238 !important;
+}
+
+.contentDiv:hover .divHeading a{
+    color: #263238 !important;
+}
+
+.contentDiv:target .divHeading a{
+    color: #263238 !important;
 }
 
 form{
@@ -89,7 +116,7 @@ form{
 
 button{
   -moz-box-shadow: 0 0 0 2px #9fb4f2;
-	-webkit-box-shadow: 0 0 0 2px #9fb4f2;
+  -webkit-box-shadow: 0 0 0 2px #9fb4f2;
 	box-shadow: 0 0 0 2px #9fb4f2;
 	background-color: transparent;
 	border: 1px solid #4e6096;
