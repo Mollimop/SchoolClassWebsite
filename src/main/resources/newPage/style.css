@@ -31,14 +31,16 @@ body{
   height: 100%;
   font-size: 70%;
   text-shadow: 0 0 3px #FF0000;
-    box-shadow:0 0 7px black;
-    background: #202d34;
+  box-shadow:0 0 7px black;
+  background: #202d34;
+  overflow: hidden;
 }
 
 #content{
   white-space: pre-line;
   width: 90%;
-  float: right;
+  float: left;
+  margin-left: 10%;
 }
 
 a{
@@ -46,12 +48,13 @@ a{
 }
 
 .contentDiv{
-  width: 99%;
+  width: 94%;
   background: #263238;
   text-align: left;
   padding: 1%;
-  margin-left: 0.5%;
+  margin: 2%;
   font-size: 120%;
+  float: left;
 }
 
 .contentDiv .divHeading{
