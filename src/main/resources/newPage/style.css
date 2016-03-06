@@ -31,22 +31,30 @@ body{
   height: 100%;
   font-size: 70%;
   text-shadow: 0 0 3px #FF0000;
+  box-shadow:0 0 7px black;
+  background: #202d34;
+  overflow: hidden;
 }
 
 #content{
   white-space: pre-line;
   width: 90%;
-  float: right;
+  float: left;
+  margin-left: 10%;
+}
+
+a{
+    color: white;
 }
 
 .contentDiv{
-  width: 99%;
+  width: 94%;
   background: #263238;
-  color: #263238;
   text-align: left;
   padding: 1%;
-  margin-left: 0.5%;
+  margin: 2%;
   font-size: 120%;
+  float: left;
 }
 
 .contentDiv .divHeading{
@@ -63,6 +71,12 @@ body{
 
 .contentDiv:hover{
   background: white !important;
+    box-shadow:0 0 7px black;
+}
+
+.contentDiv:target{
+  background: white !important;
+    box-shadow:0 0 7px black;
 }
 
 .contentDiv:hover .divText{
@@ -73,13 +87,33 @@ body{
   visibility: visible;
 }
 
+.contentDiv:target .divText{
+    visibility: visible;
+}
+
+.contentDiv:target form{
+    visibility: visible;
+}
+
 .divHeading{
   visibility: visible;
   color: white;
 }
 
 .contentDiv:hover div{
-  color: #263238;
+  color: #263238 !important;
+}
+
+.contentDiv:target div{
+    color: #263238 !important;
+}
+
+.contentDiv:hover .divHeading a{
+    color: #263238 !important;
+}
+
+.contentDiv:target .divHeading a{
+    color: #263238 !important;
 }
 
 form{
@@ -88,9 +122,6 @@ form{
 
 
 button{
-  -moz-box-shadow: 0 0 0 2px #9fb4f2;
-	-webkit-box-shadow: 0 0 0 2px #9fb4f2;
-	box-shadow: 0 0 0 2px #9fb4f2;
 	background-color: transparent;
 	border: 1px solid #4e6096;
 	display: inline-block;
@@ -101,6 +132,7 @@ button{
 	padding: 6px 15px;
 	text-decoration:none;
 	text-shadow: 0 1px 0 #283966;
+    box-shadow:0 0 7px #9fb4f2;
 }
 
 #green:hover{
@@ -133,6 +165,11 @@ button{
   background: #3F51B5;
 }
 
+#black:hover{
+    color: white;
+    background: #263238;
+}
+
 #greenA:hover{
   color: white;
   background: #00897B;
@@ -161,6 +198,11 @@ button{
 #indigoA:hover{
   color: white;
   background: #3949AB;
+}
+
+#blackA:hover{
+    color: white;
+    background: #202d34;
 }
 
 #footer{
