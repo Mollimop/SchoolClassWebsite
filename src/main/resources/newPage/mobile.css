@@ -1,0 +1,28 @@
+.contentDiv{
+  font-size: 200% !important;
+}
+
+#content{
+  width: 100% !important;
+}
+
+button{
+  width: 40%;
+  height: 120%;
+  font-size: 200%;
+}
+
+.contentDiv .nav{
+  visibility: visible;
+  color: white;
+  white-space: normal;
+  font-size: 150%;
+}
+
+.contentDiv .divHeading .nav a{
+  color: white;
+}
+
+.contentDiv:hover .divHeading .nav a{
+  color: #263238;
+}

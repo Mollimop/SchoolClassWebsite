@@ -549,6 +549,7 @@ public class Main {
         User.init(db);
         Event.init(db);
         Thread.init(db);
+        Homework.init(db);
 
     }
 
