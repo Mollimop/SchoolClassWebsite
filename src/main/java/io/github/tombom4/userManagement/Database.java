@@ -21,7 +21,7 @@ public class Database {
     private MongoClientURI mongoClientURI;
     private Properties properties;
 
-    private MongoCollection<Document> users, sessions, events, threads, Homework;
+    private MongoCollection<Document> users, sessions, events, threads, homework;
 
     /**
      * Gets the users collection

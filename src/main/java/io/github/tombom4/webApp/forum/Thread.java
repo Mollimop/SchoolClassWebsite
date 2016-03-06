@@ -214,9 +214,7 @@ public class Thread {
     }
 
     public static ArrayList<Thread> getNextThreads() {
-
         return getNextThreads(0, 10);
-
     }
 
     /**

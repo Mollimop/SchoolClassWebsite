@@ -70,8 +70,8 @@
         --- Bitte denkt an das Geld für die Hefte (13,20 €)
     </marquee>
 
-    <h1>Termine</h1>
-    <h3>Hier seht ihr eine Liste bevorstehender Termine</h3>
+    <h1>Termine und Hausaufgaben</h1>
+    <h3>Hier seht ihr eine Liste bevorstehender Termine und Hausaufgaben</h3>
     <br>
 
 <#if malformed??>
@@ -80,6 +80,52 @@
     </#if>
 </#if>
 
+    <h2>Hausaufgaben</h2>
+<#list homework as homework>
+<div class="row">
+    <div class="col-lg-3 col-md-6 col-xs-6">
+        <p>[${homework["subject"]}] <span class="date">${homework["dateString"]}</span></p>
+        <p>&nbsp;&nbsp;${homework["description"]}</p>
+    </div>
+
+    <div class="col-lg-3 col-md-6 col-xs-6">
+        <a type="button" class="btn btn-default" href="events/removehomework/${homework["id"]}">
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Entfernen
+        </a>
+    </div>
+</div>
+</#list>
+
+<h3>Hausaufgabe hinzufügen</h3>
+<form action="/events/addhomework" method="post">
+    <select name="subject" id="subjectSelector">
+        <option>Deutsch</option>
+        <option>Mathe</option>
+        <option>English</option>
+        <option>Französisch</option>
+        <option>Physik</option>
+        <option>Italienisch</option>
+        <option>Chemie</option>
+        <option>Biologie</option>
+        <option>Informatik</option>
+        <option>Geschichte</option>
+        <option>Wirtschaft und Recht</option>
+        <option>Religion</option>
+    </select>
+    <br>
+    <p>Datum (TT.MM.JJJJ)</p>
+    <input type="text" name="date" title="date">
+    <br>
+    <br>
+    <p>Name oder kurze Beschreibung</p>
+    <input type="text" name="description" title="description">
+    <br>
+    <button class="btn btn-default" type="submit" name="submit">
+        <span class="glyphicon glyphicon-plus"></span> Termin hinzufügen
+    </button>
+</form>
+
+    <h2>Weitere Termine</h2>
 <#list events as event>
     <div class="row">
         <div class="col-lg-3 col-md-6 col-xs-6">
@@ -103,6 +149,7 @@
         <br>
         <p>Name oder kurze Beschreibung</p>
         <input type="text" name="description" title="description">
+        <br>
         <button class="btn btn-default" type="submit" name="submit">
             <span class="glyphicon glyphicon-plus"></span> Termin hinzufügen
         </button>
