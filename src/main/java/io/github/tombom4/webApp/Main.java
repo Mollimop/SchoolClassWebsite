@@ -137,6 +137,61 @@ public class Main {
 
             }
 
+            return "An error occurred while loading index page. An error page could not be generated.";
+
+        });
+
+        // Configure get requests for events
+
+        get("/events", (req, res) -> {
+
+            try {
+
+                Template template = FREEMARKER_CONFIG.getTemplate("templates/events.ftl");
+
+                Map<String, Object> root = new HashMap<>(2);
+
+                initializeClasses();
+
+                List<Event> events = Event.getNextEvents();
+                List<Homework> homework = Homework.getNextHomework();
+
+                root.put("events", events);
+                root.put("homework", homework);
+                if (Objects.equals(req.params("param"), "malformed")) root.put("malformed", true);
+
+                User user = Session.checkSession(req);
+                if (user == null) {
+                    res.header("redirect", "events");
+                    res.redirect("/");
+                    return "";
+                }
+
+                StringWriter writer = new StringWriter();
+                root.put("user", user);
+                template.process(root, writer);
+                return writer;
+
+            } catch (Exception e) {
+
+                try {
+
+                    Template template = FREEMARKER_CONFIG.getTemplate("templates/error.ftl");
+
+                    String url = "/error?origin=Termine&path=/events";
+                    if (e.getMessage() != null)
+                    url = url + "&stacktrace=" + URLEncoder.encode(Arrays.toString(e.getStackTrace()), "UTF-8");
+
+                    res.redirect(url);
+
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+
+                e.printStackTrace();
+
+            }
+
             return "An error occurred while loading events page. An error page could not be generated.";
 
         });
@@ -146,8 +201,6 @@ public class Main {
             if (user != null) {
 
                 try {
-
-                    String param = req.params("param");
 
                     new Event(parseDate(req.queryParams("date")),
                     req.queryParams("description"), true);
@@ -178,6 +231,44 @@ public class Main {
             }
             return "An error occurred while adding an event. An error page could not be generated.";
         });
+
+        post("/events/addhomework", (req, res) -> {
+            User user = Session.checkSession(req);
+            if (user != null) {
+
+                try {
+
+                    new Homework(parseDate(req.queryParams("date")),
+                        req.queryParams("description"),
+                        req.queryParams("subject"), true);
+
+                    res.redirect("/events");
+
+                } catch (IllegalArgumentException e) {
+                    res.redirect("/events/malformed");
+                } catch (Exception e) {
+
+                    try {
+
+                        Template template = FREEMARKER_CONFIG.getTemplate("templates/error.ftl");
+
+                        String url = "/error?origin=Hausaufgabe+hinzufuegen&path=/events";
+                        if (e.getMessage() != null)
+                        url = url + "&stacktrace=" + URLEncoder.encode(Arrays.toString(e.getStackTrace()), "UTF-8");
+
+                        res.redirect(url);
+
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+
+                }
+            } else {
+                res.redirect("/");
+            }
+            return "An error occurred while adding a homework. An error page could not be generated.";
+        });
+
 
         get("/events/remove/:id", (req, res) -> {
             User user = Session.checkSession(req);
@@ -214,6 +305,45 @@ public class Main {
                 res.redirect("/");
             }
             return "An error occurred while adding an event. An error page could not be generated.";
+        });
+
+        get("/events/removehomework/:id", (req, res) -> {
+            User user = Session.checkSession(req);
+            if (user != null) {
+
+                try {
+
+                    String id = req.params("id");
+
+                    Homework.removeHomework(id);
+
+                    res.redirect("/events");
+
+                } catch (IllegalArgumentException e) {
+                    res.redirect("/events/malformed");
+                } catch (Exception e) {
+
+                    try {
+
+                        Template template = FREEMARKER_CONFIG.getTemplate("templates/error.ftl");
+
+                        String url = "/error" +
+                        "?origin=Hausaufgabe+entfernen&path=/events";
+
+                        if (e.getMessage() != null)
+                        url = url + "&stacktrace=" + URLEncoder.encode(Arrays.toString(e.getStackTrace()), "UTF-8");
+
+                        res.redirect(url);
+
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+
+                }
+            } else {
+                res.redirect("/");
+            }
+            return "An error occurred while removing a homework. An error page could not be generated.";
         });
 
         get("/events/malformed", (req, res) -> {
@@ -260,63 +390,12 @@ public class Main {
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
-
             }
 
             return "An error occurred while loading events page. An error page could not be generated.";
 
         });
 
-        // Configure get requests for events
-
-        get("/events", (req, res) -> {
-
-            try {
-
-                Template template = FREEMARKER_CONFIG.getTemplate("templates/events.ftl");
-
-                Map<String, Object> root = new HashMap<>(2);
-
-                initializeClasses();
-
-                List<Event> events = Event.getNextEvents();
-
-                root.put("events", events);
-                if (Objects.equals(req.params("param"), "malformed")) root.put("malformed", true);
-
-                User user = Session.checkSession(req);
-                if (user == null) {
-                    res.header("redirect", "events");
-                    res.redirect("/");
-                    return "";
-                }
-
-                StringWriter writer = new StringWriter();
-                root.put("user", user);
-                template.process(root, writer);
-                return writer;
-
-            } catch (Exception e) {
-
-                try {
-
-                    Template template = FREEMARKER_CONFIG.getTemplate("templates/error.ftl");
-
-                    String url = "/error?origin=Termine&path=/events";
-                    if (e.getMessage() != null)
-                    url = url + "&stacktrace=" + URLEncoder.encode(Arrays.toString(e.getStackTrace()), "UTF-8");
-
-                    res.redirect(url);
-
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
-
-            }
-
-            return "An error occurred while loading events page. An error page could not be generated.";
-
-        });
 
         get("/error", (req, res) -> {
 
@@ -334,54 +413,6 @@ public class Main {
 
         });
 
-        get("/events", (req, res) -> {
-
-            try {
-
-                Template template = FREEMARKER_CONFIG.getTemplate("templates/events.ftl");
-
-                Map<String, Object> root = new HashMap<>(2);
-
-                initializeClasses();
-
-                List<Event> events = Event.getNextEvents();
-
-                root.put("events", events);
-                if (Objects.equals(req.params("param"), "malformed")) root.put("malformed", true);
-
-                User user = Session.checkSession(req);
-                if (user == null) {
-                    res.header("redirect", "events");
-                    res.redirect("/");
-                    return "";
-                }
-
-                StringWriter writer = new StringWriter();
-                root.put("user", user);
-                template.process(root, writer);
-                return writer;
-
-            } catch (Exception e) {
-
-                try {
-
-                    Template template = FREEMARKER_CONFIG.getTemplate("templates/error.ftl");
-
-                    String url = "/error?origin=Termine&path=/events";
-                    if (e.getMessage() != null)
-                    url = url + "&stacktrace=" + URLEncoder.encode(Arrays.toString(e.getStackTrace()), "UTF-8");
-
-                    res.redirect(url);
-
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
-
-            }
-
-            return "An error occurred while loading events page. An error page could not be generated.";
-
-        });
 
         get("/forum", (req, res) -> {
             try {
@@ -533,7 +564,7 @@ public class Main {
 
             return "";
         });
-        
+
     }
 
     private static void initializeClasses() {

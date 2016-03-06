@@ -127,6 +127,11 @@ public class Event {
         this.date = events.find(new Document("_id", id)).first().getDate("date");
         this.description = events.find(new Document("_id", id)).first().getString("description");
 
+        updateDateString();
+
+    }
+
+    protected void updateDateString() {
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
 
@@ -223,7 +228,8 @@ public class Event {
         Bson filter = Filters.gte("date", new Date());
         Bson sort = Sorts.ascending("date");
 
-        ArrayList<Document> documents = collection.find(filter).sort(sort).limit(number).into(new ArrayList<>());
+        ArrayList<Document> documents = collection.find(filter)
+            .sort(sort).limit(number).into(new ArrayList<>());
         ArrayList<Event> events = new ArrayList<>(documents.size());
         documents.forEach(document -> events.add(new Event(document)));
 
