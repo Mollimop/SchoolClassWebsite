@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#009688">
+    <meta name="theme-color" content="#ffc000">
 
     <title>Klassenwebsite - GyDo9C</title>
     <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
