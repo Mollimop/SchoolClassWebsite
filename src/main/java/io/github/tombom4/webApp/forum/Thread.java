@@ -192,25 +192,28 @@ public class Thread {
     */
     public static ArrayList<Thread> getNextThreads(int offset, int number) {
 
-        MongoCollection<Document> collection = db.getThreads();
+        try {
+            MongoCollection<Document> collection = db.getThreads();
 
-        Bson sort = Sorts.ascending("title");
+            Bson sort = Sorts.ascending("title");
 
-        ArrayList<Document> docs = collection.find().sort(sort).skip(offset).limit(number).into(new ArrayList<>());
-        ArrayList<Thread> threads = new ArrayList<>(docs.size());
+            ArrayList<Document> docs = collection.find()
+                .sort(sort).skip(offset).limit(number).into(new ArrayList<>());
+            ArrayList<Thread> threads = new ArrayList<>();
 
-        int tempCounter = 0;
+            int counter = 0;
 
-        System.out.println( docs.get(0).getString("questioner") );
+            for (Document doc : docs) {
+                threads.add(new Thread(doc));
+                counter++;
+            }
 
-        for (Document doc : docs) {
-            threads.add(new Thread(doc));
-            tempCounter++;
-            System.out.println(tempCounter);
+            return threads;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        return threads;
-
+        return null;
     }
 
     public static ArrayList<Thread> getNextThreads() {
