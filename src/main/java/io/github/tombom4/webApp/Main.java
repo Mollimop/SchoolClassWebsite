@@ -8,11 +8,15 @@ import io.github.tombom4.userManagement.Session;
 import io.github.tombom4.userManagement.User;
 import io.github.tombom4.webApp.forum.Thread;
 import io.github.tombom4.webApp.forum.Answer;
+import org.bson.types.ObjectId;
+
+import java.net.URLEncoder;
 import java.io.IOException;
 import java.io.StringWriter;
-import java.net.URLEncoder;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
 import java.util.*;
-import org.bson.types.ObjectId;
+
 import static freemarker.template.Configuration.VERSION_2_3_23;
 import static spark.Spark.*;
 
@@ -22,18 +26,38 @@ import static spark.Spark.*;
 */
 public class Main {
 
+    static Properties properties;
     static Database db;
     static final Configuration FREEMARKER_CONFIG = new Configuration(VERSION_2_3_23);
 
     public static void main(String[] args) {
 
-        initializeClasses();
+        try {
+            initializeClasses();
+        } catch (IOException e) {
+            System.out.println("There was a problem with the" +
+                " configuration file.");
+            e.printStackTrace();
+            return;
+        }
 
         // Initialize Freemarker configuration
         FREEMARKER_CONFIG.setClassForTemplateLoading(Main.class, "/");
         FREEMARKER_CONFIG.setDefaultEncoding("UTF-8");
         FREEMARKER_CONFIG.setTemplateExceptionHandler(TemplateExceptionHandler.HTML_DEBUG_HANDLER);
 
+        int port = 4567;
+        if (properties.getProperty("port") != null
+            && properties.getProperty("port") != "") {
+            try {
+                port = Integer.parseInt(properties.getProperty("port"));
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("Invalid port in" +
+                " config.properties");
+            }
+        }
+
+        port(port);
         staticFileLocation("/");
         get("/", (req, res) -> {
             if (Session.checkSession(req) != null) {
@@ -565,13 +589,18 @@ public class Main {
 
     }
 
-    private static void initializeClasses() {
+    private static void initializeClasses() throws IOException {
 
         try {
-            db = new Database();
+            properties = new Properties();
+            BufferedInputStream stream = new BufferedInputStream(
+                new FileInputStream("resources/config.properties"));
+            properties.load(stream);
+            stream.close();
+            db = new Database(properties);
         } catch (IOException e) {
             e.printStackTrace();
-            return;
+            throw new IOException("Problem with configuration file");
         }
 
         Session.init(db);

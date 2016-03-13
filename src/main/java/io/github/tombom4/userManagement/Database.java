@@ -7,8 +7,6 @@ import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -74,16 +72,8 @@ public class Database {
      *
      * @throws IOException if the config.properties file is missing or not filled in completely
      */
-    public Database() throws IOException {
-        try {
-            properties = new Properties();
-            BufferedInputStream stream = new BufferedInputStream(new FileInputStream("resources/config.properties"));
-            properties.load(stream);
-            stream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-            throw new IOException("Problem with configuration file");
-        }
+    public Database(Properties properties) {
+        this.properties = properties;
 
         mongoClientURI = new MongoClientURI(properties.getProperty("mongoClientURI"));
         MongoClient client = new MongoClient(mongoClientURI);
