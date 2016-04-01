@@ -1,0 +1,81 @@
+//output:index.html
+//please apply your changes to the .jade file, not the .html file!
+doctype html
+html(lang = "de")
+
+  head
+    title Klassenwebsite
+    meta(charset = "utf-8")
+    meta(name = "viewport", content = "width=device-width, initial-scale=1")
+    meta(name = "theme-color", content = "#263238")
+    link(rel = "stylesheet", href = "sass/style.css")
+    link(rel = "stylesheet", href = "https://fonts.googleapis.com/icon?family=Material+Icons")
+    link(rel="icon", type="image/icon", href="pictures/favicon.ico")
+  
+  body#b(onresize = "r()", onload="document.body.style.opacity='1'")
+    
+    aside#header
+      h1#h 9c
+      form#form
+        button#navB(type = "button", onClick = "navBar()") nav
+      #links
+        <i class="material-icons">account_circle</i>User <br><br><br><br>
+        <a href = "#se1" onclick = "linkClick()"><i class="material-icons" class = "icN">home</i> Start</a><br><br>
+        <a href = "#se2" onclick = "linkClick()"><i class="material-icons">event_note</i> Termine +<br>Hausi</a><br><br>
+        <a href = "#se3" onclick = "linkClick()"><i class="material-icons">schedule</i> Stunden +<br>Vertretung</a><br><br>
+        <a href = "#se4" onclick = "linkClick()"><i class="material-icons">forum</i> Forum</a><br><br>
+        <a href = "#se5" onclick = "linkClick()"><i class="material-icons">extension</i> Extras</a>
+        
+    #background
+      #content   
+         section.se#se1
+           h1 <i class="material-icons">home</i> Herzlich Willkommen auf der Klassenwebsite der Klasse 9C</h1>
+           p.p Auf dieser Website können die neusten Informationen abgerufen werden.
+             |  
+             |Wenn euch die ein oder andere Funktionalität abgeht, ihr auf einen Fehler hinweisen möchtet oder sonstige
+             |Vorschläge oder Kritik loswerden wollt, kontaktiert uns einfach unter 9c@gymnasiumdorfen.de
+             |  
+             |Da diese Website ist ein freiwilliges Angebot des Herausgebers ist, besteht kein Anspruch auf Aktualität und Fehlerlosigkeit. Alle Angaben sind ohne Gewähr!
+         section.se#se2
+           h1 <i class="material-icons">event_note</i> Termine + Hausi
+           h2 Aktuelle Hausaufgaben:
+           .line
+             p.p Fach: sachen machen <br> Bis: 11.11.1111
+             p.p Fach: sachen machen <br> Bis: 11.11.1111
+             p.p Fach: sachen machen <br> Bis: 11.11.1111
+             p.p Fach: sachen machen <br> Bis: 11.11.1111
+             p.p Fach: sachen machen <br> Bis: 11.11.1111
+           h2 Termine:
+           .line
+             p.p Schulaufgabe <br> Fach 
+             p.p Schulaufgabe <br> Fach 
+             
+         section.se#se3
+           h1 <i class="material-icons">schedule</i> Stundenplan + Vertretung</h1>
+           p.p Keine Vertretung in den nächsten drei Tagen.
+             | 
+             | 
+             | 
+             |Stundenplan: 
+             <img id = "schedule" src = "pictures/Plan.PNG">
+         section.se#se4  
+           h1 <i class="material-icons">forum</i> Forum</h1>
+           p.p Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla blackBla Bla Bla Bla Bla Bla Bla Bla Bla sgafdg gre rg aerg adg
+             |Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla blaBla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla blaBla Bla Bla Bla Bla Bla Bla Bla Bla Bla areg aeg  aerg ae
+             |Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla blaBla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla blaBla Bla Bla Bla Bla Bla Bla Bla Bla Bla erg aerg aerg aer
+             |Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla blaBla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla blaBla Bla Bla Bla Bla Bla Bla Bla Bla Blag aerg aerg
+             |Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla blaBla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla blaBla Bla Bla Bla Bla Bla Bla Bla Bla Bla
+             |Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla blaBla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla blaBla Bla Bla Bla Bla Bla Bla Bla Bla Bla
+         section.se#se5
+           h1 <i class="material-icons">extension</i> Extras</h1>
+           p.p <a href = "http://www.mpg-met.de/index.php?option=com_content&view=article&id=72&Itemid=56#GLN4" target="_blank"><i class="material-icons">exit_to_app</i> Englisch Vokabeln</a>
+              <a href = "http://www.mpg-met.de/index.php?option=com_content&view=article&id=66&Itemid=57#Dec3" target="_blank"><i class="material-icons">exit_to_app</i> Französisch Vokabeln</a>
+              <a href = "files/QuadraticFunction.jar"><i class="material-icons">exit_to_app</i> Tool für quadratische Funktionen runterladen</a>
+         
+         footer#foot
+            |Diese Website wurde von Thomas, Andi und Vogte erstellt. Sourcecode auf<a href = "https://github.com/TomBom4/SchoolClassWebsite" target="_blank">Github.com</a>einsehbar
+        
+        
+  script(type = "text/javascript" src = "script/respond.js")
+  
+  

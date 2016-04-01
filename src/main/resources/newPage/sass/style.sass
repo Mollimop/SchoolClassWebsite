@@ -1,0 +1,98 @@
+/*the output of the sass files is style.css. Please apply your changes to the right sass file and compile style.sass afterwards,
+ don't touch the style.css file by hand!
+ Please apply your changes to an outsiurces sass file if possible. Feel free to creat new sass files and import them here in order to source
+ some things out, (if it makes sense to do this)*/
+
+
+@import variables
+@import containers
+@import respond
+
+
+aside h1
+  font-size: 350%
+  padding: 0
+  text-align: left
+  background: $primary-color-dark
+  margin: 0
+  position: absolute
+  top: 0%
+  left: 0%
+  visibility: collapse
+  color: $text-color-light
+
+
+#links a
+  color: $text-color-light
+  font-size: 100%
+  padding: 1%
+  text-decoration: none
+  transition: color 0.2s
+  &:hover
+    color: $primary-color-light
+
+
+#form
+  visibility: collapse
+  position: absolute
+  top: 0%
+  left: 40%
+  right: 40%
+  width: 20%
+  height: 30px
+
+
+#navB
+  border: 1px solid $primary-color-light
+  background: $text-color-light
+  font-size: 150%
+  width: 100%
+  height: 100%
+  transition: background 0.5s, color 0.5s
+  transition-timing-function: ease-in-out
+
+
+#navB:hover
+  background: $primary-color-light
+  color: $text-color-light
+
+
+#loginB
+  border: 1px solid $primary-color-light
+  border-radius: 100%
+  padding: 1px
+  width: 40px
+  height: 40px
+  background: $text-color-light
+  color: $primary-text-dark
+
+
+#loginB:hover
+  border: 1px solid $text-color-light
+  background: $primary-color-light
+  color: $text-color-light
+
+
+.se
+  h1
+    font-size: 150%
+    opacity: 0.85
+    color: $primary-color-light
+    text-decoration: underline
+  h2
+    font-size: 110%
+    opacity: 0.85
+    color: $text-color-light
+    text-align: left
+    margin-left: 5%
+  a
+    color: blue
+
+
+#schedule
+  width: 60%
+
+
+footer
+  a
+    color: $text-color-light
