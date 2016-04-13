@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
   get 'main/home'
+  get 'main/events'
+  get 'main/forum'
+  get 'main/homework'
   get 'main/newEvent'
   get 'main/newHomework'
+  get 'main/newThread'
+  get 'main/newAnswer'
+  get 'main/login'
 
   root :to => "main#home"
 
