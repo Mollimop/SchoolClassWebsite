@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'main/home'
   get 'events' => 'main#events'
+  post 'events' => 'main#createEvent'
   get 'forum' =>'main#forum'
   get 'homework' => 'main#homework'
   get 'newEvent' => 'main#newEvent'

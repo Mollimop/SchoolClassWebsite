@@ -33,4 +33,19 @@ class MainController < ApplicationController
   def login
     @users = User.all
   end
+
+  def createEvent
+    @event = Event.new(event_params)
+    if @event.save
+      redirect_to events_path
+    else
+      redirect_to newEvent_path
+    end
+  end
+
+  private
+    def event_params
+      params.require(:event).permit(:date, :event)
+    end
+
 end

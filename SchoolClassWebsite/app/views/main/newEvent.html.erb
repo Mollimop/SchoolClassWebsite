@@ -1,0 +1,5 @@
+<%= simple_form_for @event do |f| %>
+  <%= f.input :date, label: 'Wann ist der Termin?' %>
+  <%= f.input :event, label: 'Was steht an?' %>
+  <%= f.button :submit %>
+<% end %>
