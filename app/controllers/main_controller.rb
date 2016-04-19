@@ -43,6 +43,9 @@ class MainController < ApplicationController
     end
   end
 
+  # add this: ActiveRecord::Base.connection.execute("DELETE from sqlite_sequence where name = '<table_name>'") tu further destroy actions
+  # (after destroying the element) in order to keep the ids low
+
   private
     def event_params
       params.require(:event).permit(:date, :event)

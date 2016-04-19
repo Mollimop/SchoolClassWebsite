@@ -1,4 +1,10 @@
-<% @events.each do |event| %>
+<section>
+<% @events.reverse.each do |event| %>
+<div class = "event">
 <%= event.event %> <br>
-<%= event.date %> <br><br>
+<%= event.date %> <br>
+<a href = "#">bearbeiten</a>
+<a href = "#">löschen</a>
+</div>
 <% end %>
+</section>

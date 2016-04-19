@@ -11,9 +11,11 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<%= render 'layouts/aside' %>
 <%= render 'layouts/header' %>
+<div id = "content">
 <%= yield %>
-<%= render 'layouts/footer' %>
+</div>
 </body>
 
 </html>
