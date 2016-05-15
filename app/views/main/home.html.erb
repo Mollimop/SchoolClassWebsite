@@ -1,1 +1,17 @@
+<h2>Events</h2>
+<section>
+  <% counter = 0%>
+  <% @events.each do |event| %>
+  <div class = "event">
+    <%= event.event %> <br>
+    <%= event.date %>
+  </div>
+    <% counter = counter + 1%>
+    <% if counter > 9 %>
+    <% break %>
+    <% end %>
+  <% end %>
+  <%= link_to "mehr", "/events/show" %>
+</section>
 
+<hr>

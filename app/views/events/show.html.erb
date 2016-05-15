@@ -3,8 +3,11 @@
 <div class = "event">
 <%= event.event %> <br>
 <%= event.date %> <br>
-<a href = "#">bearbeiten</a>
-<a href = "#">löschen</a>
+<%= button_to "destroy", event, :method => "delete" %>
 </div>
 <% end %>
+
+<div>
+  <%= link_to "new", '/events/new' %>
+</div>
 </section>
