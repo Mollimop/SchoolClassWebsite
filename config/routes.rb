@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'main#login'
+  root 'main#home'
   get 'home' => 'main#home'
   resources :threads
   resources :homeworks

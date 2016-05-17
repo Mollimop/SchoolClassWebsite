@@ -1,7 +1,9 @@
-window.onload = ->
-  aside = -> document.getElementById('aside').style.width = "200px"
-  asidere = -> document.getElementById('aside').style.width = "1px"
+ready = ->
+  aside = -> $('#aside').css('width', '200px')
+  asidere = -> $('#aside').css('width', '1px')
+  $('#b').hover(aside)
+  $('#aside').hover(aside, asidere)
 
-  document.getElementById('b').onmouseover = aside
-  document.getElementById('aside').onmouseover = aside
-  document.getElementById('content').onmouseover = asidere
+
+$(document).ready(ready)
+$(document).on('page:change', ready)
