@@ -1,13 +1,14 @@
+<h2>Termine</h2>
 <section>
 <% @events.reverse.each do |event| %>
 <div class = "event">
 <%= event.event %> <br>
-<%= event.date %> <br>
-<%= button_to "destroy", event, :method => "delete" %>
+<%= event.date %> <br><br>
+<%= button_to "löschen", event, :method => "delete" %>
 </div>
 <% end %>
 
-<div>
+<div class = "event">
   <%= link_to "new", '/events/new' %>
 </div>
 </section>

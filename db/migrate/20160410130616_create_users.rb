@@ -7,4 +7,5 @@ class CreateUsers < ActiveRecord::Migration
       t.timestamps null: false
     end
   end
+  add_index :users, :name, :password
 end

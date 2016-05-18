@@ -2,3 +2,53 @@
   margin: 0
   padding: 0
   font-family: 'Lato', sans-serif
+
+a
+  text-decoration: none
+  transition: color 0.5s
+  padding: 5px
+  color: $primary-color-dark
+  &:hover
+    color: $primary-color-light
+
+hr.small
+  width: 13%
+  height: 3px
+  border: none
+  background: $accent-color
+  margin-top: 12px
+  margin-bottom: 12px
+
+hr.big
+  width: 90%
+  height: 1px
+  border: none
+  background: $primary-color-dark
+  margin-top: 27px
+  margin-bottom: 27px
+
+input[type = submit], select.date
+  color: white
+  background: $primary-color-dark
+  border: 1px solid white
+  padding: 5px
+  border-radius: 10px
+  font-size: 16px
+
+.simple_form
+  display: flex
+  flex-direction: column
+  align-items: center
+  .input
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    margin-left: 5%
+    margin-right: 5%
+    width: 90%
+  input.string
+    border: 1px solid $primary-color-dark
+    border-radius: 10px
+    font-size: 16px
+  select.date
+    font-size: 13px

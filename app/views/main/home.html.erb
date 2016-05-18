@@ -1,6 +1,5 @@
-<h2>Events</h2>
+<h2>Termine</h2>
 <hr class = "small">
-
 <section>
   <% counter = 0%>
   <% @events.each do |event| %>
@@ -13,7 +12,9 @@
     <% break %>
     <% end %>
   <% end %>
-  <%= link_to "mehr", "/events/show" %>
+  <div class = "event">
+    <%= link_to "mehr", "/events/show" %>
+  </div>
 </section>
 
 <hr class = "big">

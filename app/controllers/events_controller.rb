@@ -1,13 +1,16 @@
 class EventsController < ApplicationController
   def show
+    auth
     @events = Event.all
   end
 
   def new
+    auth
     @event = Event.new
   end
 
   def create
+    auth
     @event = Event.new(event_params)
     if @event.save
       redirect_to '/events/show'
@@ -17,6 +20,7 @@ class EventsController < ApplicationController
   end
 
   def destroy
+    auth
     Event.find(params[:id]).destroy
     redirect_to '/events/show'
   end

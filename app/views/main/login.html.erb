@@ -1,0 +1,7 @@
+<section>
+<%= simple_form_for User.new do |f| %>
+  <%= f.input :name, label: 'Name' %>
+  <%= f.input :password, label: 'Passwort' %>
+  <%= f.submit "Anmelden"%>
+<% end %>
+</section>
