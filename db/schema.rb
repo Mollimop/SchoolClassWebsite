@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20160410130845) do
   end
 
   create_table "homeworks", force: :cascade do |t|
-    t.string   "date"
+    t.date     "date"
     t.string   "homework"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -1,7 +1,8 @@
 class MainController < ApplicationController
   def home
     auth
-    @events = Event.all.reverse
+    @events = Event.all
+    @homeworks = Homework.all
   end
   def login
   end

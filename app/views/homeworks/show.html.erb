@@ -1,0 +1,15 @@
+<h2>Hausaufgaben</h2>
+<hr class = "small">
+<section>
+<% @homeworks.reverse.each do |homework| %>
+<div class = "event">
+<%= homework.homework %> <br>
+<%= homework.date %> <br><br>
+<%= button_to "löschen", homework, :method => "delete" %>
+</div>
+<% end %>
+
+<div class = "event">
+  <%= link_to "new", '/homeworks/new' %>
+</div>
+</section>

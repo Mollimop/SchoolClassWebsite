@@ -2,7 +2,7 @@
 <hr class = "small">
 <section>
   <% counter = 0%>
-  <% @events.each do |event| %>
+  <% @events.reverse.each do |event| %>
   <div class = "event">
     <%= event.event %> <br>
     <%= event.date %>
@@ -18,3 +18,22 @@
 </section>
 
 <hr class = "big">
+
+<h2>Hausaufgaben</h2>
+<hr class = "small">
+<section>
+  <% counter = 0%>
+  <% @homeworks.reverse.each do |homework| %>
+  <div class = "event">
+    <%= homework.homework %> <br>
+    <%= homework.date %>
+  </div>
+    <% counter = counter + 1%>
+    <% if counter > 9 %>
+    <% break %>
+    <% end %>
+  <% end %>
+  <div class = "event">
+    <%= link_to "mehr", "/homeworks/show" %>
+  </div>
+</section>
