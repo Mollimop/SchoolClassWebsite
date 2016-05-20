@@ -7,7 +7,8 @@ class ApplicationController < ActionController::Base
     if session[:user]
       @user = session[:user]
     else
-      @user = User.new(name: "login", password: "faled")
+      @user = User.new(name: "my friend", password: "failed")
+      session[:user] = @user
     end
     @users = User.all
     login = false
@@ -19,5 +20,5 @@ class ApplicationController < ActionController::Base
     end
     redirect_to '/login' unless login
   end
-  
+
 end

@@ -37,6 +37,7 @@ input[type = submit], select.date
   border-radius: 10px
   font-size: 16px
   outline: none
+  cursor: pointer
 
 .simple_form
   display: flex
@@ -49,9 +50,11 @@ input[type = submit], select.date
     margin-left: 5%
     margin-right: 5%
     width: 90%
-  input.string
+  input.string, input.password
     border: 1px solid $primary-color-dark
     border-radius: 10px
     font-size: 16px
+    outline: none
   select.date
     font-size: 13px
+    cursor: pointer

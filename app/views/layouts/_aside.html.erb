@@ -1,5 +1,6 @@
 <aside id = "aside">
 <div id = "links">
+  <i class="material-icons">account_circle</i> <span id = "usersp">Welcome <a href = "/logout"><%= session[:user]['name'] %></a></span><br><br><br>
   <i class="material-icons">home</i><%= link_to "home", "/home" %><br><br>
   <i class="material-icons">event_note</i><%= link_to "Termine", "/events/show" %>
 </div>

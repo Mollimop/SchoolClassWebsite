@@ -18,6 +18,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def logout
+    session[:user] = User.new(name: "my friend", password: "failed")
+    redirect_to '/login'
+  end
+
   private def user_params()
     params.require(:user).permit(:name, :password)
   end
