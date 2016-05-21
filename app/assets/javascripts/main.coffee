@@ -1,7 +1,11 @@
 ready = ->
 
-  aside = -> $('#aside').fadeIn(500)
-  asidere = -> $('#aside').fadeOut(500)
+  aside = ->
+    $('#aside').stop()
+    $('#aside').fadeIn(500)
+  asidere = ->
+    $('#aside').stop()
+    $('#aside').fadeOut(500)
 
   boblue = -> $(this).css('border', '1px solid #0288D1')
   boblack = -> $(this).css('border', '1px solid #212121')
