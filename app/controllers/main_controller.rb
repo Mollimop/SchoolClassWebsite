@@ -3,6 +3,7 @@ class MainController < ApplicationController
     auth
     @events = Event.all
     @homeworks = Homework.all
+    @threads = ForumThread.all
   end
   def login
   end

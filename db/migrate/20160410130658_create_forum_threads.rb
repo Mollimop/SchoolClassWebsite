@@ -4,6 +4,7 @@ class CreateForumThreads < ActiveRecord::Migration
       t.string :title
       t.text :text
       t.boolean :open
+      t.integer :user_id
 
       t.timestamps null: false
     end

@@ -37,3 +37,26 @@
     <%= link_to "mehr", "/homeworks/show" %>
   </div>
 </section>
+
+<hr class = "big">
+
+<h2>Forum</h2>
+<hr class = "small">
+<section>
+  <% counter = 0%>
+  <% @threads.reverse.each do |thread| %>
+  <div class = "event">
+    <%= link_to "/posts/#{thread.id}" do %>
+      <%= thread.title %> von <%= thread.user.name %> <br>
+    <% end %>
+    <%= thread.text %>
+  </div>
+    <% counter = counter + 1%>
+    <% if counter > 9 %>
+    <% break %>
+    <% end %>
+  <% end %>
+  <div class = "event">
+    <%= link_to "mehr", "/forum_threads/show" %>
+  </div>
+</section>

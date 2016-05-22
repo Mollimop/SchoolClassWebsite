@@ -1,0 +1,19 @@
+<h2>Forum</h2>
+<hr class = "small">
+<section>
+<% @threads.reverse.each do |thread| %>
+<div class = "event">
+<%= link_to "/posts/#{thread.id}" do %>
+  <%= thread.title %> <span class = "u">-<%= thread.user.name %></span> <br>
+<% end %>
+<%= thread.text %> <br><br>
+<% if(thread.user.name == User.new(session[:user]).name) %>
+  <%= button_to "löschen", thread, :method => "delete" %>
+<% end %>
+</div>
+<% end %>
+
+<div class = "buttonNew">
+  <%= link_to 'add', '/forum_threads/new', class: "material-icons" %>
+</div>
+</section>

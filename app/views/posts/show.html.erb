@@ -1,0 +1,23 @@
+<% session[:id] = @id %>
+<h2><%= @thread.title %> <span class = "u">-<%= @thread.user.name %></span></h2>
+<hr class = "small">
+<section class = "thread">
+
+<div class = "event">
+<%= @thread.text %><br>
+<span class = "u">-<%= @thread.user.name %></span>
+</div>
+
+<% @thread.posts.each do |post| %>
+<div class = "event">
+<span class = "h"><%= post.title %></span> <br><br>
+<%= post.text %><br>
+<span class = "u">-<%= post.user.name %></span>
+</div>
+<% end %>
+
+
+<div class = "buttonNew">
+  <%= link_to 'add', '/posts/new', class: "material-icons" %>
+</div>
+</section>

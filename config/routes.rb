@@ -3,9 +3,9 @@ Rails.application.routes.draw do
   get 'logout' => 'users#logout'
   get 'home' => 'main#home'
   get 'login' => 'main#login'
-  resources :threads
+  resources :forum_threads
   resources :homeworks
   resources :events
-  resources :answers
+  resources :posts
   resources :users
 end
