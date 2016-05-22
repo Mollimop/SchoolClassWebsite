@@ -1,0 +1,14 @@
+{
+  "short_name": "9c",
+  "name": "9c Gymnasium Dorfen",
+  "icons": [
+    {
+      "src": "launcher-icon-2x.png",
+      "sizes": "600x600",
+      "type": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/NY-9C.svg/600px-NY-9C.svg.png"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait"
+}
