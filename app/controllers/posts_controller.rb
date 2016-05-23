@@ -14,7 +14,7 @@ class PostsController < ApplicationController
   def create
     auth
     @post = Post.new(post_params)
-    @post.user = User.new(session[:user])
+    @post.user = User.find_by(name: "#{User.new(session[:user]).name}")
     @post.forum_thread = ForumThread.find(session[:id])
     if @post.save
       redirect_to "/posts/#{session[:id]}"

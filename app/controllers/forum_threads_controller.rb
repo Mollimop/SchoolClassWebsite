@@ -13,7 +13,7 @@ class ForumThreadsController < ApplicationController
     auth
     @thread = ForumThread.new(thread_params)
     @thread.open = true
-    @thread.user = User.new(session[:user])
+    @thread.user = User.find_by(name: "#{User.new(session[:user]).name}")
     if @thread.save
       redirect_to '/forum_threads/show'
     else
