@@ -26,7 +26,7 @@ class PostsController < ApplicationController
   def destroy
     auth
     Post.find(params[:id]).destroy
-    redirect_to '/posts/show'
+    redirect_to "/posts/#{session[:id]}"
   end
 
   private

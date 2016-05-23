@@ -12,7 +12,10 @@
 <div class = "event">
 <span class = "h"><%= post.title %></span> <br><br>
 <%= post.text %><br>
-<span class = "u">-<%= post.user.name %></span>
+<span class = "u">-<%= post.user.name %></span><br><br>
+<% if(post.user.name == User.new(session[:user]).name) %>
+  <%= button_to "löschen", post, :method => "delete" %>
+<% end %>
 </div>
 <% end %>
 
