@@ -49,7 +49,7 @@
     <%= link_to "/posts/#{thread.id}" do %>
       <%= thread.title %> von <%= thread.user.name %> <br>
     <% end %>
-    <%= thread.text %>
+    <%= "#{thread.text[0..200]}..." %>
   </div>
     <% counter = counter + 1%>
     <% if counter > 9 %>

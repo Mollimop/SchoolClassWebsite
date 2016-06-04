@@ -6,7 +6,7 @@
 <%= link_to "/posts/#{thread.id}" do %>
   <%= thread.title %> <span class = "u">-<%= thread.user.name %></span> <br>
 <% end %>
-<%= thread.text %> <br><br>
+<%= "#{thread.text[0..200]}..." %> <br><br>
 <% if(thread.user.name == User.new(session[:user]).name) %>
   <%= button_to "löschen", thread, :method => "delete" %>
 <% end %>

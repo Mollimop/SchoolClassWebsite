@@ -3,11 +3,11 @@
 <hr class = "small">
 <section class = "thread">
 
-<div class = "event">
+<div class = "event" id = "question">
 <%= @thread.text %><br>
 <span class = "u">-<%= @thread.user.name %></span>
 </div>
-
+<br><br><br><br><br>
 <% @thread.posts.each do |post| %>
 <div class = "event">
 <span class = "h"><%= post.title %></span> <br><br>
