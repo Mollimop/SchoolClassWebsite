@@ -38,17 +38,25 @@ hr.big
 input[type = submit], select.date
   color: white
   background: $primary-color-dark
-  border: 1px solid white
+  border: none
   padding: 5px
-  border-radius: 10px
+  border-radius: 6px
   font-size: 16px
   outline: none
   cursor: pointer
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.4)
+
+select.date
+  margin-left: 10px
 
 .simple_form
   display: flex
   flex-direction: column
   align-items: center
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.4)
+  padding: 20px
+  background: white
+  border-radius: 6px
   .input
     display: flex
     flex-direction: row
@@ -58,9 +66,15 @@ input[type = submit], select.date
     width: 90%
   input.string, input.password
     border: 1px solid $primary-color-dark
-    border-radius: 10px
     font-size: 16px
     outline: none
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.4)
+    border-radius: 6px
   select.date
     font-size: 13px
     cursor: pointer
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.4)
+    border-radius: 6px
+
+.material-icons
+  font-size: inherit !important

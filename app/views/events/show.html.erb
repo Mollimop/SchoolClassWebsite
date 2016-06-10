@@ -1,5 +1,14 @@
 <h2>Termine</h2>
 <hr class = "small">
+<br><br><br><br>
+<section id = "newevent">
+<%= simple_form_for @event do |f| %>
+  <%= f.input :date, label: 'Wann ist der Termin?' %>
+  <%= f.input :event, label: 'Was steht an?' %>
+  <%= f.button :submit %>
+<% end %>
+</section>
+<br><br><br><br>
 <section>
 <% @events.reverse.each do |event| %>
 <div class = "event">
@@ -10,6 +19,6 @@
 <% end %>
 
 <div class = "buttonNew">
-  <%= link_to 'add', '/events/new', class: "material-icons" %>
+  <a href = "#newevent" class = "material-icons">add</a>
 </div>
 </section>

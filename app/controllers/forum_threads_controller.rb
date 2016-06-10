@@ -2,10 +2,6 @@ class ForumThreadsController < ApplicationController
   def show
     auth
     @threads = ForumThread.all
-  end
-
-  def new
-    auth
     @thread = ForumThread.new
   end
 
@@ -17,7 +13,7 @@ class ForumThreadsController < ApplicationController
     if @thread.save
       redirect_to '/forum_threads/show'
     else
-      redirect_to '/forum_threads/new'
+      redirect_to '/forum_threads/show'
     end
   end
 

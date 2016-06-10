@@ -2,10 +2,6 @@ class EventsController < ApplicationController
   def show
     auth
     @events = Event.all
-  end
-
-  def new
-    auth
     @event = Event.new
   end
 
@@ -15,7 +11,7 @@ class EventsController < ApplicationController
     if @event.save
       redirect_to '/events/show'
     else
-      redirect_to '/events/new'
+      redirect_to '/events/show'
     end
   end
 

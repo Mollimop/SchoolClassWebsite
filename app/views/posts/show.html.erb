@@ -21,6 +21,14 @@
 
 
 <div class = "buttonNew">
-  <%= link_to 'add', '/posts/new', class: "material-icons" %>
+  <a href = "#nevent" class = "material-icons">add</a>
+</div>
+
+<div class = "event" id = "nevent">
+<%= simple_form_for @post do |f| %>
+  <%= f.input :title, label: 'Titel' %>
+  <%= f.input :text, label: 'Deine Antwort' %>
+  <%= f.button :submit %>
+<% end %>
 </div>
 </section>

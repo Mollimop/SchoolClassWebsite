@@ -4,10 +4,6 @@ class PostsController < ApplicationController
     auth
     @thread = ForumThread.find(params[:id])
     @id = params[:id]
-  end
-
-  def new
-    auth
     @post = Post.new
   end
 
@@ -19,7 +15,7 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to "/posts/#{session[:id]}"
     else
-      redirect_to "/posts/new"
+      redirect_to "/posts/#{session[:id]}"
     end
   end
 

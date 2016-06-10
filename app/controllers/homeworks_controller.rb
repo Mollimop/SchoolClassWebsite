@@ -3,10 +3,6 @@ class HomeworksController < ApplicationController
   def show
     auth
     @homeworks = Homework.all
-  end
-
-  def new
-    auth
     @homework = Homework.new
   end
 
@@ -16,7 +12,7 @@ class HomeworksController < ApplicationController
     if @homework.save
       redirect_to '/homeworks/show'
     else
-      redirect_to '/homeworks/new'
+      redirect_to '/homeworks/show'
     end
   end
 
