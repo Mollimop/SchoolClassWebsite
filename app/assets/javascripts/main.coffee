@@ -13,6 +13,17 @@ ready = ->
   bdark = -> $(this).css('background', '#0288D1')
   vibrate = -> $(this).vibrate("short")
 
+  search = ->
+    word = document.forms["sform"].elements[0].value
+    events = $('.event')
+    $('.event').css('display', 'block')
+    i = 0
+    for i in [0...events.length]
+      num = -> return i.toString()
+      $('.event:eq(' + num() + ')' ).css('display', 'none') unless $('.event:eq(' + num() + ')' ).text().includes(word)
+  reset = -> $('.event').css('display', 'block')
+
+
   $('#b').hover(aside)
   $('#aside').hover(null, asidere)
 
@@ -23,5 +34,8 @@ ready = ->
   $('select').click(vibrate)
 
   $('input.required').focus(boblack).focusout(boblue)
+
+  $('#searchbutton').click(search)
+  $('#reset').click(reset)
 
 $(document).on('page:change', ready)
