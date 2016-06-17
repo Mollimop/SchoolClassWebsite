@@ -1,0 +1,80 @@
+*
+  margin: 0
+  padding: 0
+  font-family: 'Roboto', sans-serif
+  -moz-osx-font-smoothing: grayscale
+  -webkit-font-smoothing: antialiased
+  color: #212121
+
+h1, h2
+  letter-spacing: 3px
+h1
+  color: white
+
+a
+  text-decoration: none
+  transition: color 0.5s
+  padding: 5px
+  color: $primary-color-dark
+  &:hover
+    color: $primary-color-light
+
+hr.small
+  width: 13%
+  height: 4px
+  border: none
+  background: $accent-color
+  margin-top: 25px
+  margin-bottom: 12px
+
+hr.big
+  width: 90%
+  height: 1px
+  border: none
+  background: $primary-color-dark
+  margin-top: 50px
+  margin-bottom: 67px
+
+input[type = submit], select.date
+  color: white
+  background: $primary-color-dark
+  border: none
+  padding: 5px
+  border-radius: 6px
+  font-size: 16px
+  outline: none
+  cursor: pointer
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.4)
+
+select.date
+  margin-left: 10px
+
+.simple_form
+  display: flex
+  flex-direction: column
+  align-items: center
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.4)
+  padding: 20px
+  background: white
+  border-radius: 6px
+  .input
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    margin-left: 5%
+    margin-right: 5%
+    width: 90%
+  input.string, input.password
+    border: 1px solid $primary-color-dark
+    font-size: 16px
+    outline: none
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.4)
+    border-radius: 6px
+  select.date
+    font-size: 13px
+    cursor: pointer
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.4)
+    border-radius: 6px
+
+.material-icons
+  font-size: inherit !important

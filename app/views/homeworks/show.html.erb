@@ -1,0 +1,32 @@
+<h2>Hausaufgaben</h2>
+<hr class = "small">
+<br><br><br><br>
+<section>
+<%= simple_form_for @homework do |f| %>
+  <%= f.input :date, label: 'Bis wann muss sie erledigt sein?' %>
+  <%= f.input :homework, label: 'Welche Hausaufgabe?' %>
+  <%= f.button :submit %>
+<% end %>
+</section>
+<br><br><br><br>
+<section>
+<% @homeworks.reverse.each do |homework| %>
+<div class = "event">
+<%= homework.homework %> <br>
+<%= homework.date %> <br><br>
+<%= button_to "löschen", homework, :method => "delete" %>
+</div>
+<% end %>
+
+<div class = "buttonNew">
+  <%= link_to 'add', '/homeworks/new', class: "material-icons" %>
+</div>
+</section>
+
+<section>
+<%= simple_form_for @homework do |f| %>
+  <%= f.input :date, label: 'Bis wann muss sie erledigt sein?' %>
+  <%= f.input :homework, label: 'Welche Hausaufgabe?' %>
+  <%= f.button :submit %>
+<% end %>
+</section>

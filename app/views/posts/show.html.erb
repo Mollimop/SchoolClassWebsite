@@ -1,0 +1,34 @@
+<% session[:id] = @id %>
+<h2><%= @thread.title %> <span class = "u">-<%= @thread.user.name %></span></h2>
+<hr class = "small">
+<section class = "thread">
+
+<div class = "event" id = "question">
+<%= @thread.text %><br>
+<span class = "u">-<%= @thread.user.name %></span>
+</div>
+<br><br><br><br><br>
+<% @thread.posts.each do |post| %>
+<div class = "event">
+<span class = "h"><%= post.title %></span> <br><br>
+<%= post.text %><br>
+<span class = "u">-<%= post.user.name %></span><br><br>
+<% if(post.user.name == User.new(session[:user]).name) %>
+  <%= button_to "löschen", post, :method => "delete" %>
+<% end %>
+</div>
+<% end %>
+
+
+<div class = "buttonNew">
+  <a href = "#nevent" class = "material-icons">add</a>
+</div>
+
+<div class = "event" id = "nevent">
+<%= simple_form_for @post do |f| %>
+  <%= f.input :title, label: 'Titel' %>
+  <%= f.input :text, label: 'Deine Antwort' %>
+  <%= f.button :submit %>
+<% end %>
+</div>
+</section>

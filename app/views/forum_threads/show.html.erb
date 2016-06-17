@@ -1,0 +1,28 @@
+<h2>Forum</h2>
+<hr class = "small">
+<br><br><br><br>
+<section id = "newthread">
+<%= simple_form_for @thread do |f| %>
+  <%= f.input :title, label: 'Titel' %>
+  <%= f.input :text, label: 'Was ist das Problem?' %>
+  <%= f.button :submit %>
+<% end %>
+</section>
+<br><br><br><br>
+<section>
+<% @threads.reverse.each do |thread| %>
+<div class = "event">
+<%= link_to "/posts/#{thread.id}" do %>
+  <%= thread.title %> <span class = "u">-<%= thread.user.name %></span> <br>
+<% end %>
+<%= "#{thread.text[0..200]}..." %> <br><br>
+<% if(thread.user.name == User.new(session[:user]).name) %>
+  <%= button_to "löschen", thread, :method => "delete" %>
+<% end %>
+</div>
+<% end %>
+
+<div class = "buttonNew">
+  <a href = "#newthread" class = "material-icons">add</a>
+</div>
+</section>

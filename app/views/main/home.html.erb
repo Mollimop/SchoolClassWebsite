@@ -1,0 +1,62 @@
+<h2>Termine</h2>
+<hr class = "small">
+<section>
+  <% counter = 0%>
+  <% @events.reverse.each do |event| %>
+  <div class = "event">
+    <%= event.event %> <br>
+    <%= event.date %>
+  </div>
+    <% counter = counter + 1%>
+    <% if counter > 7 %>
+    <% break %>
+    <% end %>
+  <% end %>
+  <div class = "event">
+    <%= link_to "mehr", "/events/show" %>
+  </div>
+</section>
+
+<hr class = "big">
+
+<h2>Hausaufgaben</h2>
+<hr class = "small">
+<section>
+  <% counter = 0%>
+  <% @homeworks.reverse.each do |homework| %>
+  <div class = "event">
+    <%= homework.homework %> <br>
+    <%= homework.date %>
+  </div>
+    <% counter = counter + 1%>
+    <% if counter > 7 %>
+    <% break %>
+    <% end %>
+  <% end %>
+  <div class = "event">
+    <%= link_to "mehr", "/homeworks/show" %>
+  </div>
+</section>
+
+<hr class = "big">
+
+<h2>Forum</h2>
+<hr class = "small">
+<section>
+  <% counter = 0%>
+  <% @threads.reverse.each do |thread| %>
+  <div class = "event">
+    <%= link_to "/posts/#{thread.id}" do %>
+      <%= thread.title %> von <%= thread.user.name %> <br>
+    <% end %>
+    <%= "#{thread.text[0..200]}..." %>
+  </div>
+    <% counter = counter + 1%>
+    <% if counter > 7 %>
+    <% break %>
+    <% end %>
+  <% end %>
+  <div class = "event">
+    <%= link_to "mehr", "/forum_threads/show" %>
+  </div>
+</section>
