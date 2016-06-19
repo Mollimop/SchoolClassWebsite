@@ -1,4 +1,4 @@
-<h2>Termine</h2>
+<h2><%= link_to "Termine", "/events/show" %></h2>
 <hr class = "small">
 <section>
   <% counter = 0%>
@@ -12,14 +12,11 @@
     <% break %>
     <% end %>
   <% end %>
-  <div class = "event">
-    <%= link_to "mehr", "/events/show" %>
-  </div>
 </section>
 
 <hr class = "big">
 
-<h2>Hausaufgaben</h2>
+<h2><%= link_to "Hausaufgaben", "/homeworks/show" %></h2>
 <hr class = "small">
 <section>
   <% counter = 0%>
@@ -33,14 +30,11 @@
     <% break %>
     <% end %>
   <% end %>
-  <div class = "event">
-    <%= link_to "mehr", "/homeworks/show" %>
-  </div>
 </section>
 
 <hr class = "big">
 
-<h2>Forum</h2>
+<h2><%= link_to "Forum", "/forum_threads/show" %></h2>
 <hr class = "small">
 <section>
   <% counter = 0%>
@@ -56,7 +50,4 @@
     <% break %>
     <% end %>
   <% end %>
-  <div class = "event">
-    <%= link_to "mehr", "/forum_threads/show" %>
-  </div>
 </section>

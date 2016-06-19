@@ -9,16 +9,73 @@
 <% end %>
 </section>
 <br><br><br><br>
+
+<h3>Morgen:</h3>
 <section>
+
 <% @events.reverse.each do |event| %>
-<div class = "event">
-<%= event.event %> <br>
-<%= event.date %> <br><br>
-<%= button_to "löschen", event, :method => "delete" %>
-</div>
+  <% if event.date == Date.today + 1 %>
+    <div class = "event">
+      <%= event.event %> <br>
+      <%= event.date %> <br><br>
+      <%= button_to "löschen", event, :method => "delete" %>
+    </div>
+  <% end %>
+<% end %>
+</section>
+
+<h3>Heute:</h3>
+<section>
+
+<% @events.reverse.each do |event| %>
+  <% if event.date == Date.today %>
+    <div class = "event">
+      <%= event.event %> <br>
+      <%= event.date %> <br><br>
+      <%= button_to "löschen", event, :method => "delete" %>
+    </div>
+  <% end %>
 <% end %>
 
+
+<div class = "buttonNew up">
+  <a href = "#anchor" class = "material-icons">keyboard_arrow_down</a>
+</div>
 <div class = "buttonNew">
   <a href = "#newevent" class = "material-icons">add</a>
 </div>
 </section>
+
+<br><br><br>
+<h3>zukünftig:</h3>
+<section>
+
+<% @events.reverse.each do |event| %>
+  <% if event.date > Date.today + 1 %>
+    <div class = "event">
+      <%= event.event %> <br>
+      <%= event.date %> <br><br>
+      <%= button_to "löschen", event, :method => "delete" %>
+    </div>
+  <% end %>
+<% end %>
+
+</section>
+
+<br><br><br>
+<h3>Archiv:</h3>
+<section>
+
+<% @events.reverse.each do |event| %>
+  <% if event.date < Date.today %>
+    <div class = "event">
+      <%= event.event %> <br>
+      <%= event.date %> <br><br>
+      <%= button_to "löschen", event, :method => "delete" %>
+    </div>
+  <% end %>
+<% end %>
+
+</section>
+
+<div id = "anchor"></div>

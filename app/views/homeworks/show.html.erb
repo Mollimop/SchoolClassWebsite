@@ -9,24 +9,54 @@
 <% end %>
 </section>
 <br><br><br><br>
+
+<h3>Bis Morgen:</h3>
 <section>
 <% @homeworks.reverse.each do |homework| %>
+<% if homework.date == Date.today + 1 %>
 <div class = "event">
 <%= homework.homework %> <br>
 <%= homework.date %> <br><br>
 <%= button_to "löschen", homework, :method => "delete" %>
 </div>
 <% end %>
+<% end %>
 
+
+
+<div class = "buttonNew up">
+  <a href = "#anchor" class = "material-icons">keyboard_arrow_down</a>
+</div>
 <div class = "buttonNew">
   <%= link_to 'add', '/homeworks/new', class: "material-icons" %>
 </div>
 </section>
 
+<h3>zukünftig:</h3>
 <section>
-<%= simple_form_for @homework do |f| %>
-  <%= f.input :date, label: 'Bis wann muss sie erledigt sein?' %>
-  <%= f.input :homework, label: 'Welche Hausaufgabe?' %>
-  <%= f.button :submit %>
+<% @homeworks.reverse.each do |homework| %>
+<% if homework.date > Date.today + 1 %>
+<div class = "event">
+<%= homework.homework %> <br>
+<%= homework.date %> <br><br>
+<%= button_to "löschen", homework, :method => "delete" %>
+</div>
+<% end %>
 <% end %>
 </section>
+
+<h3>Archiv:</h3>
+<section>
+<% @homeworks.reverse.each do |homework| %>
+<% if homework.date < Date.today + 1 %>
+<div class = "event">
+<%= homework.homework %> <br>
+<%= homework.date %> <br><br>
+<%= button_to "löschen", homework, :method => "delete" %>
+</div>
+<% end %>
+<% end %>
+</section>
+
+
+<div id = "anchor"></div>
