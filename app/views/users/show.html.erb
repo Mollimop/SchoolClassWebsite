@@ -1,0 +1,19 @@
+Du bist als <%= @user.name %> angemeldet
+<%= link_to "logout", "/logout" %>
+<br><br>
+<%= simple_form_for @user do |f| %>
+  <%= f.input :password, label: 'neues Passwort' %><br>
+  <%= f.button :submit %>
+<% end %>
+<% if session[:updatepsw] == 0 %>
+  Dein Passwort wurde geändert
+  <% session[:updatepsw] = nil %>
+<% elsif session[:updatepsw] == 1 %>
+  Das Passwort konnte nicht geändert werden
+  <% session[:updatepsw] = nil %>
+<% end %>
+<br><br>
+
+Anzahl gestellter Fragen: <%= @threads.count %>
+<br>
+Anzahl Antworten: <%= @posts.count %>
