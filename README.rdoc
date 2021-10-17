@@ -1,3 +1,5 @@
+This repo is archived because the security vulnerability notifications are starting to annoy me
+
 == README
 
 This README would normally document whatever steps are necessary to get the
